@@ -1,0 +1,201 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import PullQuote from '../components/PullQuote.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import Button from '../components/Button.astro';
+import { testimonials } from '../data/testimonials';
+
+const yash = testimonials.find(t => t.id === 'yash')!;
+
+const modalities = [
+  {
+    title: 'Yoga',
+    body: 'Multi-style (agility, strength, conditioning, flexibility) · Therapy yoga · Kundalini practices. 1:1 starts wherever your body is; group works all planes with a grounding approach; kundalini begins with in-person initiation plus group support.',
+  },
+  {
+    title: 'Hands-on Therapy',
+    body: 'Access Bars · Body Process · Energetic Face Lift. Sessions are quiet and gentle. You arrive, you receive, you leave lighter.',
+  },
+  {
+    title: 'Energetic Consultation',
+    body: 'Ease in life · Relationship issues · Emotional clarity · Getting over traumas · A different approach to mental illness · Relationship with food · Positive body image.',
+  },
+];
+
+const credentials = [
+  'Certified Access Bars Practitioner (Access Consciousness 3 Day Body Class)',
+  '10+ Years of Practice',
+  'Holistic Wellness Specialist',
+];
+---
+
+<Base
+  title="About"
+  description="With over a decade of dedicated practice, Likhitha Sree guides yoga, hands-on energy work, and consciousness practices in an unconventional, tailored approach."
+>
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/images/portraits/04_peaceful_closeup_temple_backdrop.jpeg"
+        alt="Likhitha Sree"
+        class="w-full h-full object-cover object-top"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(to bottom, transparent 30%, rgba(251,248,241,0.95) 100%);"
+        aria-hidden="true"
+      ></div>
+    </div>
+    <div class="relative site-container pb-16 md:pb-24 w-full">
+      <SectionEyebrow text="Founder" class="mb-3" />
+      <h1 class="font-display text-4xl md:text-hero text-forest">Likhitha Sree</h1>
+      <p class="font-body text-lg text-muted mt-2 italic">True empowerment as key.</p>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="bg-cream section-pad">
+    <div class="site-container grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+      <div class="prose-region">
+        <p class="font-body text-base text-ink/85 leading-relaxed mb-6">
+          With over a decade of dedicated practice and 5 years of teaching, Sree brings a unique
+          blend of ancient wisdom and modern consciousness techniques. Her journey began with a deep
+          yearning for authentic transformation — not just physical flexibility, but true inner freedom.
+        </p>
+        <p class="font-body text-base text-ink/85 leading-relaxed mb-6">
+          She works with an unconventional and tailored approach that integrates yoga, access
+          consciousness, energy healing, breathing, meditation, and kriyas. Each modality serves as
+          a doorway to greater awareness and presence.
+        </p>
+
+        <PullQuote
+          quote="Every session is an invitation to come home to yourself."
+        />
+
+        <p class="font-body text-base text-ink/85 leading-relaxed">
+          What sets her practice apart is the focus on awareness — not just as a technique but an
+          approach. Every session is an invitation to come home to yourself, to discover the
+          stillness and power that already lives within you.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-8">
+        <img
+          src="/images/portraits/01_hillstation_selfie_daisy_white_tee.jpeg"
+          alt="Likhitha Sree"
+          class="rounded-lg w-full object-cover shadow-soft"
+          loading="lazy"
+          decoding="async"
+        />
+        <!-- Credentials strip -->
+        <div class="bg-sage/30 rounded-lg p-6 flex flex-col gap-3">
+          <p class="font-body text-xs uppercase tracking-[0.06em] text-gold font-medium mb-1">
+            Credentials
+          </p>
+          {credentials.map(c => (
+            <p class="font-body text-sm text-ink/80 flex items-start gap-2">
+              <span class="text-gold mt-0.5">✦</span>
+              {c}
+            </p>
+          ))}
+        </div>
+        <img
+          src="/images/credentials/01_access_3day_body_class_certificate.jpeg"
+          alt="Access Consciousness 3 Day Body Class Certificate"
+          class="rounded border border-rule w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Modalities -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[800px]">
+      <SectionEyebrow text="Modalities" class="mb-4" />
+      <h2 class="font-display text-3xl md:text-4xl text-forest mb-10">
+        Every doorway leads inward.
+      </h2>
+      <div class="flex flex-col gap-6" id="modalities-accordion">
+        {modalities.map((m, idx) => (
+          <div class="border-l-4 border-gold bg-cream rounded-lg overflow-hidden">
+            <button
+              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+              aria-expanded={idx === 0 ? 'true' : 'false'}
+              data-accordion-toggle
+            >
+              <h3 class="font-display text-xl text-forest group-hover:text-gold transition-colors">
+                {m.title}
+              </h3>
+              <svg
+                width="20" height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                class="flex-shrink-0 text-gold transition-transform duration-200 accordion-icon"
+                style={idx === 0 ? 'transform: rotate(180deg)' : ''}
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div
+              class="accordion-body px-6 pb-6 text-base text-ink/80 leading-relaxed"
+              style={idx === 0 ? '' : 'display:none'}
+            >
+              {m.body}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured story -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[800px]">
+      <SectionEyebrow text="A student's story" class="mb-8" />
+      <TestimonialCard quote={yash.quote} name={yash.name} role={yash.role} />
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="bg-forest section-pad">
+    <div class="site-container text-center">
+      <h2 class="font-display text-3xl text-cream mb-10">Ready to begin?</h2>
+      <div class="flex flex-wrap justify-center gap-6">
+        <Button href="/monday" variant="primary">Start with the Monday Night Call</Button>
+        <Button
+          href="/contact"
+          class="border-cream text-cream hover:border-gold"
+          variant="secondary"
+        >
+          Book a 1:1
+        </Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll('[data-accordion-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const body = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.accordion-icon') as HTMLElement;
+
+      btn.setAttribute('aria-expanded', String(!expanded));
+      body.style.display = expanded ? 'none' : 'block';
+      icon.style.transform = expanded ? '' : 'rotate(180deg)';
+    });
+  });
+</script>

@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import OfferingCard from '../../components/OfferingCard.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import { offerings } from '../../data/offerings';
+
+const cardImages: Record<string, string> = {
+  yoga:                    '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
+  'hands-on-therapy':      '/images/healing-sessions/03_access_bars_session_purple_light.jpeg',
+  'talk-energy-clearance': '/images/healing-sessions/05_session_balcony_hillstation_cafe.jpeg',
+  consultation:            '/images/portraits/07_blue_floral_kurta_workshop_context.jpeg',
+};
+---
+
+<Base
+  title="Offerings"
+  description="Yoga, hands-on therapy, talk energy clearance, and consultation — each a doorway to greater awareness."
+>
+  <!-- Page hero -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[60ch]">
+      <SectionEyebrow text="What Sree Space offers" class="mb-4" />
+      <h1 class="font-display text-4xl md:text-hero text-forest mb-6">
+        What are you asking of yourself right now?
+      </h1>
+      <p class="font-body text-lg text-muted leading-relaxed">
+        Each offering starts where you are — not where a program says you should be.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cards grid -->
+  <section class="bg-cream section-pad">
+    <div class="site-container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+        {offerings.map(o => (
+          <OfferingCard
+            title={o.title}
+            short={o.short}
+            slug={o.slug}
+            image={cardImages[o.slug]}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>

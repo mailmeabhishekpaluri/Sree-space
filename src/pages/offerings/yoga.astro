@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import Button from '../../components/Button.astro';
+import { offerings } from '../../data/offerings';
+import { testimonials } from '../../data/testimonials';
+
+const offering = offerings.find(o => o.slug === 'yoga')!;
+const offeringTestimonials = offering.testimonialIds!.map(
+  id => testimonials.find(t => t.id === id)!
+).filter(Boolean);
+---
+
+<Base
+  title="Yoga"
+  description="Multi-style, therapy, kundalini. 1:1 and group yoga with Likhitha Sree."
+>
+  <Hero
+    headline={offering.hero.headline}
+    sub={offering.hero.sub}
+    image={offering.hero.image}
+    imageAlt="Likhitha Sree in crescent lunge in a tropical garden"
+    primaryCta={{ label: 'Book a session', href: '/contact' }}
+    secondaryCta={{ label: 'Join the free Monday call', href: '/monday' }}
+  />
+
+  <!-- Formats -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[900px]">
+      <SectionEyebrow text="Formats" class="mb-4" />
+      <h2 class="font-display text-3xl md:text-4xl text-forest mb-10">
+        Whatever your body and life are asking.
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {offering.formats!.map(f => (
+          <div class="bg-sage/20 rounded-lg p-6 border-l-4 border-gold">
+            <h3 class="font-display text-xl text-forest mb-3">{f.title}</h3>
+            <p class="font-body text-base text-ink/80 leading-relaxed">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual break -->
+  <div class="grid grid-cols-2 h-64 md:h-96">
+    <img
+      src="/images/classes-in-session/02_teaching_two_students_studio_moon_poster.jpeg"
+      alt="Likhitha teaching two students in studio"
+      class="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+    <img
+      src="/images/studio-spaces/01_yoga_wheel_side_stretch_studio_interior.jpeg"
+      alt="Studio interior — yoga wheel side stretch"
+      class="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <!-- Testimonials -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[900px]">
+      <SectionEyebrow text="Students say" class="mb-8" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {offeringTestimonials.map(t => (
+          <TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cream section-pad border-t border-rule">
+    <div class="site-container text-center">
+      <h2 class="font-display text-3xl text-forest mb-6">Ready to begin?</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact" variant="primary">Book a session</Button>
+        <Button href="/monday" variant="secondary">Join the free Monday call</Button>
+      </div>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>

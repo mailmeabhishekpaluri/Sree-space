@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import Button from '../../components/Button.astro';
+import { offerings } from '../../data/offerings';
+import { testimonials } from '../../data/testimonials';
+
+const offering = offerings.find(o => o.slug === 'consultation')!;
+const offeringTestimonials = offering.testimonialIds!.map(
+  id => testimonials.find(t => t.id === id)!
+).filter(Boolean);
+---
+
+<Base
+  title="Consultation"
+  description="Tailor-made plans drawing on yoga, mudra, kriya, and energy work. Ask away."
+>
+  <Hero
+    headline={offering.hero.headline}
+    sub={offering.hero.sub}
+    image={offering.hero.image}
+    imageAlt="Likhitha Sree in workshop setting"
+    primaryCta={{ label: 'Book a consultation', href: '/contact' }}
+    secondaryCta={{ label: 'Start with the free Monday call', href: '/monday' }}
+  />
+
+  <!-- How it works -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[800px]">
+      <SectionEyebrow text="How it works" class="mb-4" />
+      <h2 class="font-display text-3xl text-forest mb-4">
+        Ask and you shall receive.
+      </h2>
+      <p class="font-body text-base text-ink/80 leading-relaxed mb-10">
+        Even the small, bug-like problems often have simple solutions you wouldn't know until you ask.
+        So — ask away.
+      </p>
+      <ol class="flex flex-col gap-6">
+        {offering.howItWorks!.map((step, i) => (
+          <li class="flex items-start gap-5">
+            <span class="flex-shrink-0 w-9 h-9 rounded-full bg-forest text-cream font-display text-lg flex items-center justify-center">
+              {i + 1}
+            </span>
+            <p class="font-body text-base text-ink/80 leading-relaxed pt-1">{step}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[900px]">
+      <SectionEyebrow text="Students say" class="mb-8" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {offeringTestimonials.map(t => (
+          <TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cream section-pad border-t border-rule">
+    <div class="site-container text-center">
+      <h2 class="font-display text-3xl text-forest mb-6">Ready to ask?</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact" variant="primary">Book a consultation</Button>
+        <Button href="/monday" variant="secondary">Join the free Monday call</Button>
+      </div>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>

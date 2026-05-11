@@ -1,0 +1,30 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role?: string;
+  class?: string;
+}
+const { quote, name, role, class: cls = '' } = Astro.props;
+---
+
+<article class:list={[
+  'bg-sage/40 rounded-lg p-8 md:p-10 flex flex-col gap-5 relative',
+  cls,
+]}>
+  <!-- Large decorative quote mark -->
+  <span
+    aria-hidden="true"
+    class="absolute top-4 left-6 font-display text-7xl leading-none text-gold/30 select-none pointer-events-none"
+  >
+    "
+  </span>
+
+  <blockquote class="font-display italic text-lg md:text-xl text-forest leading-relaxed pt-6">
+    "{quote}"
+  </blockquote>
+
+  <footer class="font-body text-sm text-muted">
+    — {name}{role && `, ${role}`}
+  </footer>
+</article>

@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import MondayCTA from '../components/MondayCTA.astro';
+import { testimonials, type Offering } from '../data/testimonials';
+
+const filters: { label: string; value: Offering | 'all' }[] = [
+  { label: 'All',          value: 'all' },
+  { label: 'Yoga',         value: 'yoga' },
+  { label: 'Hands-on',     value: 'hands-on' },
+  { label: 'Talk',         value: 'talk' },
+  { label: 'Consultation', value: 'consultation' },
+];
+---
+
+<Base
+  title="Testimonials"
+  description="Words from students of Sree Space — yoga, energy work, and consciousness practices with Likhitha Sree."
+>
+  <!-- Header -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[60ch]">
+      <SectionEyebrow text="What students say" class="mb-4" />
+      <h1 class="font-display text-4xl md:text-hero text-forest">
+        Their words, unedited.
+      </h1>
+    </div>
+  </section>
+
+  <!-- Grid with filter -->
+  <section class="bg-cream section-pad">
+    <div class="site-container">
+      <!-- Filter chips -->
+      <div
+        class="flex flex-wrap gap-3 mb-10"
+        role="group"
+        aria-label="Filter testimonials by offering"
+      >
+        {filters.map(f => (
+          <button
+            data-filter={f.value}
+            class:list={[
+              'filter-chip font-body text-sm font-medium rounded-pill px-5 py-2 border transition-all duration-150',
+              f.value === 'all'
+                ? 'bg-forest text-cream border-forest'
+                : 'bg-transparent text-forest border-forest/40 hover:border-forest',
+            ]}
+            aria-pressed={f.value === 'all' ? 'true' : 'false'}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Masonry-style grid -->
+      <div
+        id="testimonials-grid"
+        class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
+      >
+        {testimonials.map(t => (
+          <div
+            class="testimonial-item break-inside-avoid"
+            data-offerings={t.offerings.join(',')}
+          >
+            <TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Companion image -->
+  <div class="h-64 md:h-96 overflow-hidden">
+    <img
+      src="/images/healing-sessions/06_post_session_smile_with_friend.jpeg"
+      alt="Post-session moment of warmth"
+      class="w-full h-full object-cover object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <MondayCTA />
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
+  const items = document.querySelectorAll<HTMLElement>('.testimonial-item');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter!;
+
+      chips.forEach(c => {
+        const active = c === chip;
+        c.setAttribute('aria-pressed', String(active));
+        c.classList.toggle('bg-forest', active);
+        c.classList.toggle('text-cream', active);
+        c.classList.toggle('border-forest', active);
+        c.classList.toggle('bg-transparent', !active);
+        c.classList.toggle('text-forest', !active);
+        c.classList.toggle('border-forest/40', !active);
+      });
+
+      items.forEach(item => {
+        const offerings = item.dataset.offerings?.split(',') ?? [];
+        const show = filter === 'all' || offerings.includes(filter);
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>

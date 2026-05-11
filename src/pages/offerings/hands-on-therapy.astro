@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import Button from '../../components/Button.astro';
+import { offerings } from '../../data/offerings';
+import { testimonials } from '../../data/testimonials';
+
+const offering = offerings.find(o => o.slug === 'hands-on-therapy')!;
+const offeringTestimonials = offering.testimonialIds!.map(
+  id => testimonials.find(t => t.id === id)!
+).filter(Boolean);
+---
+
+<Base
+  title="Hands-on Therapy"
+  description="Access Bars, Body Process, Energetic Face Lift. Quiet, gentle sessions that release what words can't."
+>
+  <Hero
+    headline={offering.hero.headline}
+    sub={offering.hero.sub}
+    image={offering.hero.image}
+    imageAlt="Likhitha performing a hands-on Access Bars session on the beach"
+    primaryCta={{ label: 'Book a session', href: '/contact' }}
+    secondaryCta={{ label: 'Ask a question first', href: '/monday' }}
+  />
+
+  <!-- Modalities -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[900px]">
+      <SectionEyebrow text="The work" class="mb-4" />
+      <h2 class="font-display text-3xl md:text-4xl text-forest mb-10">
+        Quiet, gentle, and deeply effective.
+      </h2>
+      <div class="flex flex-col gap-6">
+        {offering.modalities!.map(m => (
+          <div class="bg-sage/20 rounded-lg p-6 md:p-8 border-l-4 border-gold">
+            <h3 class="font-display text-xl text-forest mb-3">{m.title}</h3>
+            <p class="font-body text-base text-ink/80 leading-relaxed">{m.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical info -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[700px]">
+      <SectionEyebrow text="Good to know" class="mb-6" />
+      <ul class="flex flex-col gap-4">
+        {offering.practicalInfo!.map(info => (
+          <li class="flex items-start gap-3 font-body text-base text-ink/80">
+            <span class="text-gold font-bold mt-0.5">✦</span>
+            {info}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[900px]">
+      <SectionEyebrow text="Students say" class="mb-8" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {offeringTestimonials.map(t => (
+          <TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cream section-pad border-t border-rule">
+    <div class="site-container text-center">
+      <h2 class="font-display text-3xl text-forest mb-6">
+        Arrive. Receive. Leave lighter.
+      </h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact" variant="primary">Book a session</Button>
+        <Button href="/monday" variant="secondary">Join the free Monday call</Button>
+      </div>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>

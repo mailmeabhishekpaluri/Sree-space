@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import Button from '../../components/Button.astro';
+import { offerings } from '../../data/offerings';
+import { testimonials } from '../../data/testimonials';
+
+const offering = offerings.find(o => o.slug === 'talk-energy-clearance')!;
+const offeringTestimonials = offering.testimonialIds!.map(
+  id => testimonials.find(t => t.id === id)!
+).filter(Boolean);
+---
+
+<Base
+  title="Talk Energy Clearance"
+  description="Navigate relationships, self-image, mental clarity, emotional turmoil. Conversation as energy work."
+>
+  <Hero
+    headline={offering.hero.headline}
+    sub={offering.hero.sub}
+    image={offering.hero.image}
+    imageAlt="A calm conversation session at a hilltop café"
+    primaryCta={{ label: 'Book a session', href: '/contact' }}
+    secondaryCta={{ label: 'Start with the Monday call', href: '/monday' }}
+  />
+
+  <!-- What it's for -->
+  <section class="bg-cream section-pad">
+    <div class="site-container grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div>
+        <SectionEyebrow text="What it's for" class="mb-4" />
+        <h2 class="font-display text-3xl text-forest mb-8">
+          Sometimes the knot loosens with the right question.
+        </h2>
+        <p class="font-body text-base text-ink/80 leading-relaxed">
+          This is energy work, in the form of a talk. No agenda, no protocol — just the
+          kind of conversation that moves something in you.
+        </p>
+      </div>
+      <ul class="flex flex-col gap-3 mt-2">
+        {offering.whatFor!.map(item => (
+          <li class="flex items-start gap-3 font-body text-base text-ink/80 bg-sage/20 rounded-lg px-5 py-3">
+            <span class="text-gold mt-0.5">✦</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[900px]">
+      <SectionEyebrow text="Students say" class="mb-8" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {offeringTestimonials.map(t => (
+          <TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cream section-pad border-t border-rule">
+    <div class="site-container text-center max-w-[52ch] mx-auto">
+      <h2 class="font-display text-3xl text-forest mb-4">
+        Do you dare to be totally aware?
+      </h2>
+      <p class="font-body text-base text-muted mb-8">
+        The conversation starts when you say so.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact" variant="primary">Book a session</Button>
+        <Button href="/monday" variant="secondary">Join the free Monday call</Button>
+      </div>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>

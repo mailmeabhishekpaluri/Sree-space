@@ -1,0 +1,122 @@
+---
+import LogoMark from './LogoMark.astro';
+import Button from './Button.astro';
+
+const links = [
+  { href: '/about',        label: 'About' },
+  { href: '/offerings',    label: 'Offerings' },
+  { href: '/monday',       label: 'Monday Call' },
+  { href: '/testimonials', label: 'Testimonials' },
+  { href: '/contact',      label: 'Contact' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header
+  id="site-nav"
+  class="sticky top-0 z-50 bg-cream border-b border-transparent transition-all duration-300"
+>
+  <div class="site-container flex items-center justify-between h-16 md:h-18">
+    <!-- Logo -->
+    <LogoMark size="sm" />
+
+    <!-- Desktop links -->
+    <nav aria-label="Main navigation" class="hidden md:flex items-center gap-8">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class:list={[
+            'font-body text-sm font-medium transition-colors duration-150',
+            current === href || current.startsWith(href + '/')
+              ? 'text-gold border-b border-gold'
+              : 'text-ink hover:text-forest',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:block">
+      <Button href="/monday" variant="primary">Join Monday Night Call</Button>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+    >
+      <span class="block w-6 h-0.5 bg-ink transition-all duration-200 menu-bar-1"></span>
+      <span class="block w-6 h-0.5 bg-ink transition-all duration-200 menu-bar-2"></span>
+      <span class="block w-5 h-0.5 bg-ink transition-all duration-200 menu-bar-3"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation"
+    class="hidden fixed inset-0 bg-sage z-40 flex flex-col items-center justify-center gap-10"
+  >
+    <button
+      id="menu-close"
+      aria-label="Close menu"
+      class="absolute top-5 right-6 text-forest text-3xl leading-none"
+    >
+      &times;
+    </button>
+    <nav class="flex flex-col items-center gap-8">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class="font-display text-3xl font-medium text-forest hover:text-gold transition-colors"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+    <Button href="/monday" variant="primary" class="mt-4">Join Monday Night Call</Button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle')!;
+  const close  = document.getElementById('menu-close')!;
+  const menu   = document.getElementById('mobile-menu')!;
+  const nav    = document.getElementById('site-nav')!;
+
+  function openMenu() {
+    menu.classList.remove('hidden');
+    menu.classList.add('flex');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menu.classList.add('hidden');
+    menu.classList.remove('flex');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', openMenu);
+  close.addEventListener('click', closeMenu);
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).tagName === 'A') closeMenu();
+  });
+
+  // Sticky shadow on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 8) {
+      nav.classList.add('border-rule', 'shadow-soft');
+    } else {
+      nav.classList.remove('border-rule', 'shadow-soft');
+    }
+  }, { passive: true });
+</script>

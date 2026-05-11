@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sree-space",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--port", "4321"],
+      "port": 4321,
+      "cwd": "/Users/abhishekpaluri/Documents/Claude/Projects/Sree space/sree-space"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  short: string;
+  slug: string;
+  image?: string;
+}
+const { title, short, slug, image } = Astro.props;
+---
+
+<article class="group bg-cream rounded border border-sage/60 overflow-hidden flex flex-col shadow-soft hover:shadow-md transition-shadow duration-200">
+  {image && (
+    <div class="aspect-[4/3] overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  )}
+  <div class="p-6 md:p-8 flex flex-col flex-1">
+    <h3 class="font-display text-2xl text-forest mb-3">{title}</h3>
+    <p class="font-body text-base text-muted leading-relaxed flex-1">{short}</p>
+    <a
+      href={`/offerings/${slug}`}
+      class="mt-6 inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold transition-colors group/link"
+      aria-label={`Learn more about ${title}`}
+    >
+      Learn more
+      <svg
+        width="16" height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        class="group-hover/link:translate-x-1 transition-transform duration-150"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</article>

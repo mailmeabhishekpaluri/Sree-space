@@ -1,0 +1,92 @@
+---
+import Button from './Button.astro';
+import SectionEyebrow from './SectionEyebrow.astro';
+
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  headlineAccent?: string;
+  sub: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  image: string;
+  imageAlt?: string;
+  /** Attribution line in script font */
+  attribution?: string;
+}
+
+const {
+  eyebrow,
+  headline,
+  headlineAccent,
+  sub,
+  primaryCta,
+  secondaryCta,
+  image,
+  imageAlt = '',
+  attribution,
+} = Astro.props;
+---
+
+<section class="relative min-h-[90vh] flex items-end md:items-center overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <!-- Sage gradient overlay — left to transparent -->
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(105deg, rgba(197,211,192,0.88) 0%, rgba(197,211,192,0.65) 40%, rgba(197,211,192,0.20) 70%, transparent 100%);"
+      aria-hidden="true"
+    ></div>
+    <!-- Bottom fade for text legibility on mobile -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-40 md:hidden"
+      style="background: linear-gradient(to top, rgba(197,211,192,0.75) 0%, transparent 100%);"
+      aria-hidden="true"
+    ></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative site-container py-24 md:py-32 w-full">
+    <div class="max-w-[52ch]">
+      {eyebrow && <SectionEyebrow text={eyebrow} class="mb-4" />}
+
+      <h1 class="font-display text-4xl md:text-hero font-medium leading-tight text-forest mb-6">
+        {headline}
+        {headlineAccent && (
+          <span class="text-gold"> {headlineAccent}</span>
+        )}
+      </h1>
+
+      <p class="font-body text-base md:text-lg text-ink/80 mb-8 max-w-[48ch]">
+        {sub}
+      </p>
+
+      {(primaryCta || secondaryCta) && (
+        <div class="flex flex-wrap gap-4">
+          {primaryCta && (
+            <Button href={primaryCta.href} variant="primary">
+              {primaryCta.label}
+            </Button>
+          )}
+          {secondaryCta && (
+            <Button href={secondaryCta.href} variant="secondary">
+              {secondaryCta.label}
+            </Button>
+          )}
+        </div>
+      )}
+
+      {attribution && (
+        <p class="mt-8 font-script text-lg text-forest/70">{attribution}</p>
+      )}
+    </div>
+  </div>
+</section>

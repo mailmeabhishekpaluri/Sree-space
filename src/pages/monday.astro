@@ -1,0 +1,172 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+const callItems = [
+  'A short opening practice (breath or kriya)',
+  'A theme for the week — usually something that surfaced in the WhatsApp group',
+  'Open conversation and questions',
+  'A closing intention',
+];
+---
+
+<Base
+  title="Monday Night Call"
+  description="A free weekly ritual that gently guides you back to awareness. Join Likhitha Sree every Monday night."
+>
+  <!-- Hero -->
+  <section class="relative min-h-[60vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/images/community-outdoor/03_empty_forest_trail_atmospheric.jpeg"
+        alt="Atmospheric forest trail"
+        class="w-full h-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(to right, rgba(44,95,63,0.85) 0%, rgba(44,95,63,0.60) 50%, rgba(44,95,63,0.30) 100%);"
+        aria-hidden="true"
+      ></div>
+    </div>
+    <div class="relative site-container py-24 w-full">
+      <div class="max-w-[52ch]">
+        <SectionEyebrow text="Free · Every Monday · IST" class="mb-4 !text-gold" />
+        <h1 class="font-display text-4xl md:text-hero text-cream mb-6">
+          A free Monday night call to come home to yourself.
+        </h1>
+        <p class="font-body text-lg text-cream/80 leading-relaxed">
+          A weekly ritual that gently guides you back to awareness. Free, by design.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it's free -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[700px]">
+      <SectionEyebrow text="Why it's free" class="mb-4" />
+      <h2 class="font-display text-3xl text-forest mb-6">
+        The whole exchange.
+      </h2>
+      <p class="font-body text-base md:text-lg text-ink/80 leading-relaxed">
+        Sree wanted to gift consciousness. Participants 'pay' by becoming more present, more
+        aware humans — so she gets to live in a world of better people. That's the whole exchange.
+      </p>
+    </div>
+  </section>
+
+  <!-- What happens -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[700px]">
+      <SectionEyebrow text="What happens on the call" class="mb-6" />
+      <ul class="flex flex-col gap-4">
+        {callItems.map(item => (
+          <li class="flex items-start gap-4 font-body text-base text-ink/80">
+            <span class="flex-shrink-0 w-2 h-2 rounded-full bg-gold mt-2"></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Signup form -->
+  <section class="bg-cream section-pad" id="signup">
+    <div class="site-container max-w-[560px]">
+      <SectionEyebrow text="Save your seat" class="mb-4" />
+      <h2 class="font-display text-3xl text-forest mb-8">Join this Monday.</h2>
+
+      <form
+        name="monday-signup"
+        method="POST"
+        action="/success"
+        class="flex flex-col gap-6"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="monday-signup" />
+        <p class="hidden">
+          <label>Don't fill this: <input name="bot-field" /></label>
+        </p>
+
+        <div class="flex flex-col gap-2">
+          <label for="name" class="font-body text-sm font-medium text-ink">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            autocomplete="name"
+            class="bg-cream border border-sage rounded px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="contact" class="font-body text-sm font-medium text-ink">
+            Email or WhatsApp number
+          </label>
+          <input
+            id="contact"
+            name="contact"
+            type="text"
+            required
+            class="bg-cream border border-sage rounded px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition"
+            placeholder="hello@email.com or +91…"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="reason" class="font-body text-sm font-medium text-ink">
+            What brings you here? <span class="text-muted font-normal">(one line)</span>
+          </label>
+          <input
+            id="reason"
+            name="reason"
+            type="text"
+            class="bg-cream border border-sage rounded px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition"
+            placeholder="Just curious, in pain, sent by a friend…"
+          />
+        </div>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            name="whatsapp_group"
+            checked
+            class="w-4 h-4 accent-gold"
+          />
+          <span class="font-body text-sm text-ink/80">
+            Add me to the WhatsApp group
+          </span>
+        </label>
+
+        <Button type="submit" variant="primary" class="self-start">
+          Save my seat
+        </Button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Direct WhatsApp -->
+  <section class="bg-forest section-pad">
+    <div class="site-container text-center">
+      <p class="font-display italic text-2xl text-cream mb-6">
+        "Ask and you shall receive."
+      </p>
+      <a
+        href={site.socials.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 font-body text-sm font-medium text-cream border border-gold rounded-pill px-7 py-3 hover:bg-gold hover:text-ink transition-all"
+      >
+        Join via WhatsApp
+      </a>
+    </div>
+  </section>
+</Base>

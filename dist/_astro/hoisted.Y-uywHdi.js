@@ -1,0 +1,1 @@
+import"./hoisted.DX_tc6Il.js";document.querySelectorAll("[data-accordion-toggle]").forEach(e=>{e.addEventListener("click",()=>{const t=e.getAttribute("aria-expanded")==="true",o=e.nextElementSibling,r=e.querySelector(".accordion-icon");e.setAttribute("aria-expanded",String(!t)),o.style.display=t?"none":"block",r.style.transform=t?"":"rotate(180deg)"})});

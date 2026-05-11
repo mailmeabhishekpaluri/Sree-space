@@ -1,0 +1,47 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+---
+
+<section
+  class:list={[
+    'relative overflow-hidden bg-forest text-cream',
+    cls,
+  ]}
+>
+  <!-- Background image with heavy overlay -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <img
+      src="/images/portraits/06_lakeside_crouched_dusk.jpeg"
+      alt=""
+      class="w-full h-full object-cover object-center opacity-20"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-forest/70"></div>
+  </div>
+
+  <div class="relative site-container section-pad text-center max-w-[60ch] mx-auto">
+    <p class="font-body text-xs uppercase tracking-[0.06em] text-gold font-medium mb-4">
+      Free · Every Monday
+    </p>
+    <h2 class="font-display text-3xl md:text-4xl text-cream mb-5">
+      Free Monday Night Catch-Up
+    </h2>
+    <p class="font-body text-base text-cream/75 leading-relaxed mb-8">
+      A weekly ritual that gently guides you back to awareness. Free, by design —
+      you 'pay' by becoming a more present human.
+    </p>
+    <a
+      href="/monday"
+      class="inline-flex items-center gap-2 font-body font-medium text-sm text-cream border border-gold rounded-pill px-8 py-3 hover:bg-gold hover:text-ink transition-all duration-200"
+    >
+      Save your seat
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</section>

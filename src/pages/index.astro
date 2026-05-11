@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
+import OfferingCard from '../components/OfferingCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import MondayCTA from '../components/MondayCTA.astro';
+import { offerings } from '../data/offerings';
+import { testimonials } from '../data/testimonials';
+import { site } from '../data/site';
+
+const featuredTestimonial = testimonials.find(t => t.id === 'pragathi')!;
+
+const offeringImages: Record<string, string> = {
+  yoga:                 '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
+  'hands-on-therapy':   '/images/healing-sessions/03_access_bars_session_purple_light.jpeg',
+  'talk-energy-clearance': '/images/healing-sessions/05_session_balcony_hillstation_cafe.jpeg',
+  consultation:         '/images/portraits/07_blue_floral_kurta_workshop_context.jpeg',
+};
+---
+
+<Base>
+  <!-- Hero -->
+  <Hero
+    eyebrow="True empowerment as key"
+    headline="Come home to yourself."
+    sub="Yoga, hands-on energy work, and consciousness practices — guided by Likhitha Sree."
+    primaryCta={{ label: 'Join the free Monday Night Call', href: '/monday' }}
+    secondaryCta={{ label: 'Explore offerings', href: '/offerings' }}
+    image="/images/yoga-poses/03_riverside_sunset_prayer_patchwork_dress.jpeg"
+    imageAlt="Likhitha Sree in prayer pose at riverside sunset"
+  />
+
+  <!-- Rotating anchor quote -->
+  <section class="bg-cream section-pad" aria-label="Signature phrase">
+    <div class="site-container text-center">
+      <p
+        id="rotating-quote"
+        class="font-display text-2xl md:text-4xl text-forest italic transition-opacity duration-700"
+        aria-live="polite"
+      >
+        {site.signaturePhrases[0]}
+      </p>
+    </div>
+  </section>
+
+  <!-- What Sree Space is -->
+  <section class="bg-sage/25 section-pad">
+    <div class="site-container max-w-[760px]">
+      <SectionEyebrow text="What is Sree Space?" class="mb-4" />
+      <h2 class="font-display text-3xl md:text-4xl text-forest mb-8">
+        A space where you find your own light.
+      </h2>
+      <div class="gold-rule"></div>
+      <p class="font-body text-base md:text-lg text-ink/80 leading-relaxed">
+        <em>Sree</em> (śrī / श्री) means ultimate enlightenment, prosperity, knowledge,
+        internal light. <em>Space</em> is where anything can occur. Together: the room
+        you step into to find your own light — and your path home.
+      </p>
+    </div>
+  </section>
+
+  <!-- Four offerings -->
+  <section class="bg-cream section-pad">
+    <div class="site-container">
+      <SectionEyebrow text="Offerings" class="mb-4" />
+      <h2 class="font-display text-3xl md:text-4xl text-forest mb-12 max-w-[38ch]">
+        What are you asking of yourself right now?
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+        {offerings.map((o) => (
+          <OfferingCard
+            title={o.title}
+            short={o.short}
+            slug={o.slug}
+            image={offeringImages[o.slug]}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured testimonial -->
+  <section class="bg-sage/20 section-pad">
+    <div class="site-container max-w-[800px]">
+      <SectionEyebrow text="A student's words" class="mb-8" />
+      <TestimonialCard
+        quote={featuredTestimonial.quote}
+        name={featuredTestimonial.name}
+        role={featuredTestimonial.role}
+      />
+      <div class="mt-8 text-center">
+        <a
+          href="/testimonials"
+          class="font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors"
+        >
+          Read more →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Monday Night Call CTA -->
+  <MondayCTA />
+</Base>
+
+<script define:vars={{ phrases: site.signaturePhrases }}>
+  const el = document.getElementById('rotating-quote');
+  if (el) {
+    let i = 0;
+    setInterval(() => {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % phrases.length;
+        el.textContent = phrases[i];
+        el.style.opacity = '1';
+      }, 700);
+    }, 4000);
+  }
+</script>

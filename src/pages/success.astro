@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+---
+
+<Base title="Message received" noIndex={true}>
+  <section class="bg-cream section-pad min-h-[60vh] flex items-center">
+    <div class="site-container max-w-[52ch] text-center">
+      <p class="font-body text-xs uppercase tracking-[0.06em] text-gold font-medium mb-4">
+        Received
+      </p>
+      <h1 class="font-display text-3xl md:text-4xl text-forest mb-6">
+        Ask and you shall receive.
+      </h1>
+      <p class="font-body text-base text-muted leading-relaxed mb-10">
+        Your message is with Sree. She responds personally — expect to hear back within 48 hours.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/" variant="primary">Back home</Button>
+        <Button href="/monday" variant="secondary">Join Monday Night Call</Button>
+      </div>
+    </div>
+  </section>
+</Base>
