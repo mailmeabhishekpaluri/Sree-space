@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import DevanagariMark from '../components/DevanagariMark.astro';
+import Ornament from '../components/Ornament.astro';
+import Watercolor from '../components/Watercolor.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
 import { site } from '../data/site';
 ---
 
@@ -110,6 +113,45 @@ import { site } from '../data/site';
           </a>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PAUSE / BRAND IDENTITY ──────────────────────────────── -->
+  <section class="relative bg-cream overflow-hidden" style="padding-top:6rem; padding-bottom:6rem;">
+    <Watercolor position="top-right" opacity={0.35} variant={1} />
+
+    <div class="site-container">
+      <div class="grid grid-cols-12 gap-6 items-start">
+
+        <!-- Left: giant श्री -->
+        <div class="col-span-3 flex justify-end pt-2 select-none" aria-hidden="true">
+          <DevanagariMark size={320} opacity={0.60} color="#C99A4B" />
+        </div>
+
+        <!-- Right: content -->
+        <ScrollReveal class="col-span-9 md:col-span-8 md:col-start-4">
+          <!-- Eyebrow -->
+          <p class="font-script text-saffron mb-4" style="font-size:20px; letter-spacing:0.04em;">
+            What is Sree Space?
+          </p>
+
+          <!-- Headline -->
+          <h2 class="font-display text-forest mb-4" style="font-size:clamp(2.4rem,5vw,3.5rem); line-height:1.1; font-weight:500;">
+            A space where you find your own light.
+          </h2>
+
+          <!-- Swash ornament -->
+          <Ornament name="swash" size={56} color="#C99A4B" class="mb-6 opacity-90" />
+
+          <!-- Body copy -->
+          <p class="font-body text-ink/80 leading-relaxed max-w-prose" style="font-size:1.06rem;">
+            <em class="not-italic font-medium text-gold">Sree</em> (śrī / श्री) means ultimate
+            enlightenment, prosperity, knowledge, internal light.
+            <em class="not-italic font-medium text-forest">Space</em> is where anything can occur.
+            Together: the room you step into to find your own light — and your path home.
+          </p>
+        </ScrollReveal>
       </div>
     </div>
   </section>
