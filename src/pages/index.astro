@@ -1,154 +1,157 @@
 ---
 import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import SectionEyebrow from '../components/SectionEyebrow.astro';
-import OfferingCard from '../components/OfferingCard.astro';
-import TestimonialCard from '../components/TestimonialCard.astro';
-import MondayCTA from '../components/MondayCTA.astro';
-import { offerings } from '../data/offerings';
-import { testimonials } from '../data/testimonials';
+import DevanagariMark from '../components/DevanagariMark.astro';
 import { site } from '../data/site';
-
-const featuredTestimonial = testimonials.find(t => t.id === 'pragathi')!;
-
-const offeringImages: Record<string, string> = {
-  yoga:                 '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
-  'hands-on-therapy':   '/images/healing-sessions/03_access_bars_session_purple_light.jpeg',
-  'talk-energy-clearance': '/images/healing-sessions/05_session_balcony_hillstation_cafe.jpeg',
-  consultation:         '/images/portraits/07_blue_floral_kurta_workshop_context.jpeg',
-};
 ---
 
 <Base>
-  <!-- Hero -->
-  <Hero
-    eyebrow="True empowerment as key"
-    headline="Come home to yourself."
-    sub="Yoga, hands-on energy work, and consciousness practices — guided by Likhitha Sree."
-    primaryCta={{ label: 'Join the free Monday Night Call', href: '/monday' }}
-    secondaryCta={{ label: 'Explore offerings', href: '/offerings' }}
-    image="/images/yoga-poses/03_riverside_sunset_prayer_patchwork_dress.jpeg"
-    imageAlt="Likhitha Sree in prayer pose at riverside sunset"
-  />
+  <!-- ─── HERO ──────────────────────────────────────────────────── -->
+  <section class="hero relative min-h-screen flex items-center overflow-hidden">
 
-  <!-- Rotating anchor quote -->
-  <section class="bg-cream section-pad" aria-label="Signature phrase">
-    <div class="site-container text-center">
-      <p
-        id="rotating-quote"
-        class="font-display text-2xl md:text-4xl text-forest italic transition-opacity duration-700"
-        aria-live="polite"
-      >
-        {site.signaturePhrases[0]}
-      </p>
+    <!-- Ken Burns photo -->
+    <div class="absolute inset-0 overflow-hidden">
+      <img
+        src="/images/yoga-poses/03_riverside_sunset_prayer_patchwork_dress.jpeg"
+        alt="Likhitha Sree in prayer at riverside sunset"
+        class="kenburns w-full h-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <!-- Sage → transparent mask, left 40% -->
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(100deg, rgba(197,211,192,0.92) 0%, rgba(197,211,192,0.80) 25%, rgba(197,211,192,0.50) 45%, rgba(197,211,192,0.10) 65%, transparent 80%);"
+        aria-hidden="true"
+      ></div>
+      <!-- Bottom vignette for mobile legibility -->
+      <div
+        class="absolute bottom-0 left-0 right-0 h-48 md:hidden"
+        style="background: linear-gradient(to top, rgba(197,211,192,0.7) 0%, transparent 100%);"
+        aria-hidden="true"
+      ></div>
     </div>
-  </section>
 
-  <!-- What Sree Space is -->
-  <section class="bg-sage/25 section-pad">
-    <div class="site-container max-w-[760px]">
-      <SectionEyebrow text="What is Sree Space?" class="mb-4" />
-      <h2 class="font-display text-3xl md:text-4xl text-forest mb-8">
-        A space where you find your own light.
-      </h2>
-      <div class="gold-rule"></div>
-      <p class="font-body text-base md:text-lg text-ink/80 leading-relaxed">
-        <em>Sree</em> (śrī / श्री) means ultimate enlightenment, prosperity, knowledge,
-        internal light. <em>Space</em> is where anything can occur. Together: the room
-        you step into to find your own light — and your path home.
-      </p>
+    <!-- Devanagari watermark — center-left -->
+    <div class="absolute left-[2%] top-1/2 -translate-y-1/2 pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={480} opacity={0.10} color="#2C5F3F" />
     </div>
-  </section>
 
-  <!-- Experience Yoga as a Whole — tree design -->
-  <section class="bg-cream section-pad">
-    <div class="site-container">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div>
-          <SectionEyebrow text="Experience Yoga as a Whole" class="mb-4" />
-          <h2 class="font-display text-3xl md:text-4xl text-forest mb-6">
-            Your health doesn't need quick fixes.
-          </h2>
-          <div class="gold-rule"></div>
-          <p class="font-body text-base md:text-lg text-ink/80 leading-relaxed mb-8">
-            From Hatha to Kundalini, from Pranayama to Kriya — yoga is a whole tree, not a single branch.
-            Likhitha's practice meets you wherever you are on it.
-          </p>
+    <!-- Content -->
+    <div class="relative site-container py-32 md:py-40 w-full">
+      <div class="max-w-[54ch]">
+
+        <!-- Eyebrow in Caveat script, saffron -->
+        <p
+          class="font-script text-saffron mb-5 hero-eyebrow"
+          style="font-size:24px; opacity:0; transform:translateY(10px); transition:opacity 0.6s ease, transform 0.6s ease;"
+        >
+          True empowerment as key
+        </p>
+
+        <!-- Headline -->
+        <h1
+          id="hero-headline"
+          class="font-display font-medium text-cream leading-tight mb-6"
+          style="font-size: clamp(3.5rem, 8vw, 6rem); line-height:1.05;"
+          aria-label="Come home to yourself."
+        >
+          <span class="hero-word">Come</span>
+          <span class="hero-word"> home</span>
+          <span class="hero-word"> to</span>
+          <span class="hero-word"> <em class="not-italic italic">yourself</em></span><span class="hero-word">.</span>
+        </h1>
+
+        <!-- Hand-drawn gold underline under "yourself" -->
+        <div class="mb-8 -mt-4 ml-[calc(3ch)]" aria-hidden="true">
+          <svg width="200" height="14" viewBox="0 0 200 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9 C30 4 55 13 85 7 C115 2 138 11 165 6 C178 4 190 8 197 6"
+              stroke="#C99A4B" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Sub -->
+        <p
+          class="font-body text-cream/90 mb-10 hero-sub"
+          style="font-size:19px; max-width:52ch; opacity:0; transform:translateY(10px); transition:opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s;"
+        >
+          Yoga, hands-on energy work, and consciousness practices —
+          guided by Likhitha Sree.
+        </p>
+
+        <!-- CTAs -->
+        <div
+          class="flex flex-wrap gap-5 items-center hero-ctas"
+          style="opacity:0; transform:translateY(10px); transition:opacity 0.7s ease 0.75s, transform 0.7s ease 0.75s;"
+        >
+          <!-- Primary: gold fill, forest text, pill -->
           <a
-            href="/offerings/yoga"
-            class="inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors"
+            href="/monday"
+            class="font-body font-medium text-forest bg-gold rounded-pill transition-all duration-200 hover:bg-gold-dark"
+            style="padding:16px 32px; font-size:15px; letter-spacing:0.01em;"
           >
-            Explore yoga offerings →
+            Join the free Monday Night Call
+          </a>
+          <!-- Secondary: cream underline + animated arrow -->
+          <a
+            href="/offerings"
+            class="group font-body font-medium text-cream underline decoration-cream/50 underline-offset-4 hover:decoration-gold transition-all duration-200 flex items-center gap-2"
+            style="font-size:15px;"
+          >
+            Explore offerings
+            <svg
+              width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              class="transition-transform duration-200 group-hover:translate-x-1.5"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
         </div>
-        <div class="flex justify-center">
-          <img
-            src="/images/branding/yoga_tree_design.png"
-            alt="Experience Yoga as a Whole — a tree of practices: Hatha, Yin/Restorative, Ashtanga Vinyasa, Kriya, Pranayama, Kundalini. Guided by Likhitha."
-            class="w-full max-w-[420px] object-contain drop-shadow-sm"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Four offerings -->
-  <section class="bg-sage/15 section-pad">
-    <div class="site-container">
-      <SectionEyebrow text="Offerings" class="mb-4" />
-      <h2 class="font-display text-3xl md:text-4xl text-forest mb-12 max-w-[38ch]">
-        What are you asking of yourself right now?
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-        {offerings.map((o) => (
-          <OfferingCard
-            title={o.title}
-            short={o.short}
-            slug={o.slug}
-            image={offeringImages[o.slug]}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured testimonial -->
-  <section class="bg-sage/20 section-pad">
-    <div class="site-container max-w-[800px]">
-      <SectionEyebrow text="A student's words" class="mb-8" />
-      <TestimonialCard
-        quote={featuredTestimonial.quote}
-        name={featuredTestimonial.name}
-        role={featuredTestimonial.role}
-      />
-      <div class="mt-8 text-center">
-        <a
-          href="/testimonials"
-          class="font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors"
-        >
-          Read more →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Monday Night Call CTA -->
-  <MondayCTA />
 </Base>
 
+<!-- ─── SCRIPTS ────────────────────────────────────────────────── -->
 <script define:vars={{ phrases: site.signaturePhrases }}>
-  const el = document.getElementById('rotating-quote');
-  if (el) {
-    let i = 0;
-    setInterval(() => {
-      el.style.opacity = '0';
-      setTimeout(() => {
-        i = (i + 1) % phrases.length;
-        el.textContent = phrases[i];
-        el.style.opacity = '1';
-      }, 700);
-    }, 4000);
+  // ── Nav transparent until scroll ──
+  document.body.classList.add('nav-transparent');
+  const nav = document.getElementById('site-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // ── Word-by-word hero reveal (stagger 80ms) ──
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function revealHero() {
+    const eyebrow = document.querySelector('.hero-eyebrow');
+    if (eyebrow) { eyebrow.style.opacity = '1'; eyebrow.style.transform = 'translateY(0)'; }
+
+    if (!reduced) {
+      document.querySelectorAll('.hero-word').forEach((el, i) => {
+        const e = el;
+        e.style.cssText += `opacity:0; display:inline-block; transform:translateY(10px); transition:opacity 0.55s ease ${100 + i * 80}ms, transform 0.55s ease ${100 + i * 80}ms;`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          e.style.opacity = '1';
+          e.style.transform = 'translateY(0)';
+        }));
+      });
+    }
+
+    const sub  = document.querySelector('.hero-sub');
+    const ctas = document.querySelector('.hero-ctas');
+    if (sub)  { sub.style.opacity  = '1'; sub.style.transform  = 'translateY(0)'; }
+    if (ctas) { ctas.style.opacity = '1'; ctas.style.transform = 'translateY(0)'; }
   }
+
+  requestAnimationFrame(() => requestAnimationFrame(revealHero));
 </script>
