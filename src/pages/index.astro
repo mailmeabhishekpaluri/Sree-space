@@ -117,6 +117,55 @@ import { site } from '../data/site';
     </div>
   </section>
 
+  <!-- ─── QUICK-FIXES / YOGA TREE ────────────────────────────── -->
+  <section class="relative overflow-hidden" style="background:#EFF3ED; padding-top:6rem; padding-bottom:6rem;">
+    <Watercolor position="center-right" opacity={0.45} variant={2} />
+
+    <div class="site-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: text -->
+        <ScrollReveal class="order-2 md:order-1">
+          <p class="font-script text-saffron mb-4" style="font-size:20px; letter-spacing:0.04em;">
+            Experience yoga as a whole
+          </p>
+          <h2 class="font-display text-forest mb-6" style="font-size:clamp(2.6rem,5vw,4rem); line-height:1.1; font-weight:500;">
+            Your health doesn't need
+            <span class="relative inline-block">
+              quick fixes.
+              <svg class="absolute -bottom-1 left-0 w-full" height="12" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M3 9 C40 3 90 11 130 6 C160 3 180 9 197 6" stroke="#E07B2C" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h2>
+          <p class="font-body text-ink/80 leading-relaxed mb-8" style="font-size:1.06rem; max-width:44ch;">
+            From Hatha to Kundalini, from Pranayama to Kriya — yoga is a whole tree, not
+            a single branch. Likhitha's practice meets you wherever you are on it.
+          </p>
+          <a
+            href="/offerings/yoga"
+            class="group inline-flex items-center gap-3 font-body text-sm font-medium text-forest hover:text-gold transition-colors duration-200"
+          >
+            Explore yoga offerings
+            <Ornament name="swash" size={20} color="#C99A4B" class="group-hover:translate-x-1 transition-transform duration-200" />
+          </a>
+        </ScrollReveal>
+
+        <!-- Right: tree image, bleeds off right -->
+        <div class="order-1 md:order-2 relative flex justify-end md:-mr-8">
+          <img
+            src="/images/branding/yoga_tree_design.png"
+            alt="Yoga as a whole tree — Hatha, Yin, Ashtanga, Kriya, Pranayama, Kundalini"
+            class="w-full max-w-[440px] md:max-w-[520px] object-contain drop-shadow-sm relative z-10"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ─── PAUSE / BRAND IDENTITY ──────────────────────────────── -->
   <section class="relative bg-cream overflow-hidden" style="padding-top:6rem; padding-bottom:6rem;">
     <Watercolor position="top-right" opacity={0.35} variant={1} />
