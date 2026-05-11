@@ -1,0 +1,59 @@
+---
+interface Props {
+  delay?: number;      // ms stagger for each direct child
+  y?: number;          // translateY start offset in px
+  duration?: number;   // ms
+  class?: string;
+}
+const {
+  delay = 0,
+  y = 18,
+  duration = 700,
+  class: cls = '',
+} = Astro.props;
+---
+
+<div
+  class:list={['sr-root', cls]}
+  data-sr-delay={delay}
+  data-sr-y={y}
+  data-sr-duration={duration}
+>
+  <slot />
+</div>
+
+<script>
+  // Respect prefers-reduced-motion
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('.sr-root').forEach(root => {
+    const delay    = Number(root.dataset.srDelay    ?? 0);
+    const yOffset  = Number(root.dataset.srY        ?? 18);
+    const duration = Number(root.dataset.srDuration ?? 700);
+
+    // Animate the root itself (or its children if delay > 0)
+    const targets = delay > 0
+      ? Array.from(root.children) as HTMLElement[]
+      : [root];
+
+    if (reduced) return; // skip animation entirely for a11y
+
+    targets.forEach((el, i) => {
+      (el as HTMLElement).style.cssText +=
+        `opacity:0; transform:translateY(${yOffset}px); transition:opacity ${duration}ms ease ${delay * i}ms, transform ${duration}ms ease ${delay * i}ms;`;
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        targets.forEach(el => {
+          (el as HTMLElement).style.opacity = '1';
+          (el as HTMLElement).style.transform = 'translateY(0)';
+        });
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+
+    io.observe(root);
+  });
+</script>

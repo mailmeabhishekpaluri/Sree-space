@@ -38,10 +38,13 @@
   --text-hero: 4.50rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 html {
   background: var(--color-cream);
   color: var(--color-ink);
-  scroll-behavior: smooth;
 }
 
 body {
@@ -49,6 +52,20 @@ body {
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Paper grain overlay — 3% noise texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  background-repeat: repeat;
 }
 
 h1, h2, h3, h4 {
@@ -93,6 +110,53 @@ a {
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
+
+/* Ken Burns hero drift */
+@keyframes kenburns {
+  0%   { transform: scale(1)    translateZ(0); }
+  100% { transform: scale(1.07) translateZ(0); }
+}
+.kenburns {
+  animation: kenburns 15s ease-out forwards;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kenburns { animation: none; }
+}
+
+/* Nav transparent mode */
+.nav-transparent #site-nav {
+  background: transparent;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+}
+.nav-transparent #site-nav a,
+.nav-transparent #site-nav button:not(.btn-cta) {
+  color: var(--color-cream);
+}
+.nav-transparent #site-nav.scrolled {
+  background: var(--color-cream);
+}
+.nav-transparent #site-nav.scrolled a,
+.nav-transparent #site-nav.scrolled button:not(.btn-cta) {
+  color: var(--color-ink);
+}
+
+/* Offering card hover gold rule */
+.offering-card .card-rule {
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transition: width 0.35s ease;
+}
+.offering-card:hover .card-rule { width: 3rem; }
+
+/* Offering card arrow slide */
+.offering-card .card-arrow {
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+.offering-card:hover .card-arrow { transform: translateX(6px); }
 
 /* Gold rule divider */
 .gold-rule {

@@ -1,0 +1,114 @@
+---
+type OrnamentName = 'lotus' | 'leaf' | 'swash' | 'sun' | 'tree' | 'hands' | 'speech' | 'arrow';
+
+interface Props {
+  name: OrnamentName;
+  size?: number;
+  color?: string;
+  strokeWidth?: number;
+  class?: string;
+}
+const {
+  name,
+  size = 48,
+  color = '#C99A4B',
+  strokeWidth = 1.8,
+  class: cls = '',
+} = Astro.props;
+
+const shared = `fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round"`;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  aria-hidden="true"
+  class:list={['inline-block', cls]}
+  set:html={
+    name === 'lotus'
+      ? `<g ${shared}>
+          <path d="M50 82 C44 68 46 52 50 38 C54 52 56 68 50 82Z"/>
+          <path d="M50 82 C35 75 28 58 33 44 C40 56 44 70 50 82Z"/>
+          <path d="M50 82 C65 75 72 58 67 44 C60 56 56 70 50 82Z"/>
+          <path d="M50 82 C28 78 18 62 22 46 C32 60 40 74 50 82Z"/>
+          <path d="M50 82 C72 78 82 62 78 46 C68 60 60 74 50 82Z"/>
+          <path d="M34 82 C40 85 50 87 66 82" stroke-opacity="0.6"/>
+         </g>`
+    : name === 'leaf'
+      ? `<g ${shared}>
+          <path d="M50 88 C24 72 18 44 36 18 C42 8 58 8 64 18 C82 44 76 72 50 88Z"/>
+          <line x1="50" y1="88" x2="50" y2="18"/>
+          <path d="M50 62 C36 56 26 50 20 46"/>
+          <path d="M50 62 C64 56 74 50 80 46"/>
+          <path d="M50 44 C38 38 30 33 24 30"/>
+          <path d="M50 44 C62 38 70 33 76 30"/>
+         </g>`
+    : name === 'swash'
+      ? `<g ${shared}>
+          <path d="M10 72 C18 58 32 50 46 54 C60 58 68 72 80 68 C90 65 88 52 78 46 C68 40 52 44 42 36 C32 28 34 14 46 12 C58 10 66 20 64 30 C62 40 50 44 42 50"/>
+          <path d="M64 88 C70 84 74 78 72 74"/>
+         </g>`
+    : name === 'sun'
+      ? `<g ${shared}>
+          <circle cx="50" cy="50" r="14"/>
+          <line x1="50" y1="8"  x2="50" y2="22"/>
+          <line x1="50" y1="78" x2="50" y2="92"/>
+          <line x1="8"  y1="50" x2="22" y2="50"/>
+          <line x1="78" y1="50" x2="92" y2="50"/>
+          <line x1="22" y1="22" x2="32" y2="32"/>
+          <line x1="78" y1="22" x2="68" y2="32"/>
+          <line x1="22" y1="78" x2="32" y2="68"/>
+          <line x1="78" y1="78" x2="68" y2="68"/>
+         </g>`
+    : name === 'tree'
+      ? `<g ${shared}>
+          <line x1="50" y1="92" x2="50" y2="38"/>
+          <path d="M50 75 C42 65 28 60 16 58"/>
+          <path d="M50 75 C58 65 72 60 84 58"/>
+          <path d="M50 60 C43 50 32 44 22 40"/>
+          <path d="M50 60 C57 50 68 44 78 40"/>
+          <path d="M50 46 C46 36 43 26 44 18"/>
+          <path d="M50 46 C54 36 57 26 56 18"/>
+          <circle cx="16" cy="58" r="3"/>
+          <circle cx="84" cy="58" r="3"/>
+          <circle cx="22" cy="40" r="3"/>
+          <circle cx="78" cy="40" r="3"/>
+          <circle cx="44" cy="18" r="4"/>
+          <circle cx="56" cy="18" r="4"/>
+          <circle cx="50" cy="14" r="3"/>
+          <path d="M50 92 C42 90 36 88 28 86"/>
+          <path d="M50 92 C58 90 64 88 72 86"/>
+         </g>`
+    : name === 'hands'
+      ? `<g ${shared}>
+          <path d="M18 68 C12 56 14 42 22 38 C26 36 28 38 29 42 L29 56"/>
+          <path d="M29 42 C29 36 32 32 36 32 C40 32 41 36 41 42 L41 56"/>
+          <path d="M41 42 C41 36 44 32 48 32 C52 32 53 36 53 42 L53 56"/>
+          <path d="M18 68 L53 68 C54 70 54 72 53 74"/>
+          <path d="M82 68 C88 56 86 42 78 38 C74 36 72 38 71 42 L71 56"/>
+          <path d="M71 42 C71 36 68 32 64 32 C60 32 59 36 59 42 L59 56"/>
+          <path d="M82 68 L59 68 C58 70 58 72 59 74"/>
+          <path d="M53 74 C50 80 50 84 50 86"/>
+          <path d="M59 74 C52 80 50 84 50 86"/>
+          <path d="M50 86 C44 76 46 66 50 56 C54 66 56 76 50 86Z"/>
+          <path d="M50 86 C38 80 34 68 38 58 C42 66 44 78 50 86Z" opacity="0.7"/>
+          <path d="M50 86 C62 80 66 68 62 58 C58 66 56 78 50 86Z" opacity="0.7"/>
+         </g>`
+    : name === 'speech'
+      ? `<g ${shared}>
+          <path d="M18 30 C18 18 28 10 50 10 C72 10 82 18 82 30 C82 42 72 50 50 50 C44 50 38 49 34 47 L18 56 L22 46 C19 42 18 36 18 30Z"/>
+          <line x1="34" y1="28" x2="66" y2="28"/>
+          <line x1="30" y1="38" x2="70" y2="38"/>
+          <circle cx="50" cy="72" r="3"/>
+          <circle cx="50" cy="82" r="4"/>
+          <circle cx="50" cy="93" r="5"/>
+         </g>`
+    : /* arrow */
+      `<g ${shared}>
+          <path d="M10 50 C30 50 60 50 82 50"/>
+          <path d="M68 36 C76 42 82 50 76 64"/>
+          <path d="M62 28 C72 34 82 44 82 50 C82 56 78 64 68 70"/>
+         </g>`
+  }
+/>
