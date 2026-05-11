@@ -279,6 +279,61 @@ import { site } from '../data/site';
     </div>
   </section>
 
+  <!-- ─── MONDAY NIGHT CALL CTA ───────────────────────────────── -->
+  <section class="relative overflow-hidden text-cream" style="min-height:560px; display:flex; align-items:center;">
+    <!-- Background photo -->
+    <div class="absolute inset-0" aria-hidden="true">
+      <img
+        src="/images/portraits/06_lakeside_crouched_dusk.jpeg"
+        alt=""
+        class="w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+      <!-- Forest→transparent gradient from bottom + inset vignette -->
+      <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(44,95,63,0.90) 0%, rgba(44,95,63,0.55) 40%, rgba(44,95,63,0.25) 70%, transparent 100%), radial-gradient(ellipse at center, transparent 50%, rgba(44,95,63,0.45) 100%);"></div>
+    </div>
+
+    <!-- Lotus ornament bottom-right, faint -->
+    <div class="absolute bottom-8 right-8 pointer-events-none select-none" aria-hidden="true">
+      <Ornament name="lotus" size={64} color="#C99A4B" strokeWidth={1.2} class="opacity-[0.08]" />
+    </div>
+
+    <div class="relative site-container w-full text-center" style="padding-top:6rem; padding-bottom:6rem;">
+      <ScrollReveal>
+        <div class="max-w-[52ch] mx-auto">
+          <!-- Caveat eyebrow -->
+          <p class="font-script text-gold mb-4" style="font-size:22px; letter-spacing:0.03em;">
+            Every Monday · 8 PM IST
+          </p>
+          <!-- Headline -->
+          <h2 class="font-display text-cream mb-5" style="font-size:clamp(2.4rem,5vw,4rem); line-height:1.1; font-weight:500;">
+            Free Monday Night Catch-Up
+          </h2>
+          <!-- Sub -->
+          <p class="font-body leading-relaxed mb-10" style="font-size:17px; color:rgba(251,248,241,0.88); max-width:52ch;">
+            A weekly ritual that gently guides you back to awareness.
+            Free, by design — you 'pay' by becoming a more present human.
+          </p>
+          <!-- CTA: gold fill, forest text, pill, hand-drawn arrow -->
+          <a
+            href="/monday"
+            class="group inline-flex items-center gap-3 font-body font-medium text-forest bg-gold transition-all duration-200 hover:bg-gold-dark"
+            style="padding:16px 36px; font-size:15px; border-radius:9999px; letter-spacing:0.01em;"
+          >
+            Save your seat
+            <!-- Hand-drawn arrow -->
+            <svg width="22" height="22" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="group-hover:translate-x-1 transition-transform duration-200">
+              <path d="M10 50 C30 50 60 50 82 50"/>
+              <path d="M68 36 C76 42 82 50 76 64"/>
+              <path d="M62 28 C72 34 82 44 82 50 C82 56 78 64 68 70"/>
+            </svg>
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
   <!-- ─── PAUSE / BRAND IDENTITY ──────────────────────────────── -->
   <section class="relative bg-cream overflow-hidden" style="padding-top:6rem; padding-bottom:6rem;">
     <Watercolor position="top-right" opacity={0.35} variant={1} />
