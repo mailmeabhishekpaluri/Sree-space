@@ -1,50 +1,397 @@
 ---
 import Base from '../../layouts/Base.astro';
-import SectionEyebrow from '../../components/SectionEyebrow.astro';
-import OfferingCard from '../../components/OfferingCard.astro';
-import MondayCTA from '../../components/MondayCTA.astro';
-import { offerings } from '../../data/offerings';
-
-const cardImages: Record<string, string> = {
-  yoga:                    '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
-  'hands-on-therapy':      '/images/healing-sessions/03_access_bars_session_purple_light.jpeg',
-  'talk-energy-clearance': '/images/healing-sessions/05_session_balcony_hillstation_cafe.jpeg',
-  consultation:            '/images/portraits/07_blue_floral_kurta_workshop_context.jpeg',
-};
+import Watercolor from '../../components/Watercolor.astro';
+import Ornament from '../../components/Ornament.astro';
+import DevanagariMark from '../../components/DevanagariMark.astro';
+import ScrollReveal from '../../components/ScrollReveal.astro';
+import TreatedPhoto from '../../components/TreatedPhoto.astro';
 ---
 
 <Base
   title="Offerings"
-  description="Yoga, hands-on therapy, talk energy clearance, and consultation — each a doorway to greater awareness."
+  description="Yoga, hands-on therapy, talk energy clearance, and consultation — each beginning where you are, not where a program says you should be."
 >
-  <!-- Page hero -->
-  <section class="bg-sage/20 section-pad">
-    <div class="site-container max-w-[60ch]">
-      <SectionEyebrow text="What Sree Space offers" class="mb-4" />
-      <h1 class="font-display text-4xl md:text-hero text-forest mb-6">
-        What are you asking of yourself right now?
-      </h1>
-      <p class="font-body text-lg text-muted leading-relaxed">
-        Each offering starts where you are — not where a program says you should be.
-      </p>
-    </div>
-  </section>
 
-  <!-- Cards grid -->
-  <section class="bg-cream section-pad">
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════ -->
+  <section class="offerings-hero relative bg-cream overflow-hidden" style="padding-top:7rem; padding-bottom:5rem;">
+    <!-- Devanagari watermark right side -->
+    <div class="absolute right-[-4%] top-1/2 -translate-y-1/2 pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={540} opacity={0.10} color="#2C5F3F" />
+    </div>
+
     <div class="site-container">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-        {offerings.map(o => (
-          <OfferingCard
-            title={o.title}
-            short={o.short}
-            slug={o.slug}
-            image={cardImages[o.slug]}
-          />
-        ))}
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-8">
+          <ScrollReveal>
+            <!-- Eyebrow -->
+            <p class="font-script text-saffron mb-5" style="font-size:22px; display:inline-block; transform:rotate(-1deg);">
+              The Menu
+            </p>
+
+            <!-- Headline — word-by-word reveal handled by script -->
+            <h1
+              class="font-display font-medium text-forest mb-7 offerings-headline"
+              style="font-size:clamp(2.8rem, 7vw, 6rem); line-height:1.05;"
+              aria-label="What are you asking of yourself right now?"
+            >
+              <span class="hw">What</span>
+              <span class="hw"> are</span>
+              <span class="hw"> you</span>
+              <span class="hw"> asking</span>
+              <span class="hw"> of</span>
+              <span class="hw"> yourself</span>
+              <span class="hw"> right</span>
+              <span class="hw"> now?</span>
+            </h1>
+
+            <!-- Sub -->
+            <p class="font-body text-ink/75 mb-8" style="font-size:19px; max-width:60ch; line-height:1.65;">
+              Each offering starts where you are — not where a program says you should be.
+            </p>
+
+            <!-- Gold thin rule + chapter counter -->
+            <div class="flex items-center gap-5">
+              <div style="width:64px; height:1px; background:#C99A4B;" aria-hidden="true"></div>
+              <span class="font-script text-gold" style="font-size:20px; letter-spacing:0.06em;">01 — 04</span>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </div>
   </section>
 
-  <MondayCTA />
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 2 — YOGA (FEATURE, IMAGE LEFT)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <div class="site-container">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+
+        <!-- Photo cols 1–6 -->
+        <ScrollReveal class="md:col-span-6 relative">
+          <div class="absolute pointer-events-none select-none" style="bottom:-24px; left:-32px; z-index:0;" aria-hidden="true">
+            <Watercolor position="bottom-left" opacity={0.55} variant={2} />
+          </div>
+          <TreatedPhoto
+            src="/images/yoga-poses/06_lotus_meditation_on_rock_outdoors.jpeg"
+            alt="Likhitha in lotus meditation on a flat rock outdoors, serene tree backdrop"
+            framed
+            class="relative z-10"
+            width={600}
+            height={780}
+          />
+        </ScrollReveal>
+
+        <!-- Content cols 7–12 -->
+        <ScrollReveal class="md:col-span-6" delay={80}>
+          <p class="font-script text-saffron mb-4" style="font-size:19px; letter-spacing:0.04em;">01 · Yoga</p>
+          <h2 class="font-display font-medium text-forest mb-5" style="font-size:clamp(2rem,4vw,3.5rem); line-height:1.1; max-width:18ch;">
+            Movement that meets you where you are.
+          </h2>
+          <p class="font-body text-ink/80 leading-relaxed mb-5" style="font-size:1.06rem; max-width:46ch;">
+            Multi-style, therapy, kundalini practices. Sessions begin wherever your body is
+            today — agility, strength, conditioning, flexibility, or stillness.
+          </p>
+          <p class="font-body text-muted mb-7" style="font-size:14px; letter-spacing:0.12em; font-variant:small-caps;">
+            1:1 &nbsp;·&nbsp; Group &nbsp;·&nbsp; Therapy &nbsp;·&nbsp; Kundalini
+          </p>
+
+          <blockquote class="border-l-4 border-gold pl-5 mb-8">
+            <p class="font-display italic text-forest/90" style="font-size:1.375rem; line-height:1.4;">
+              "I really enjoy the way you teach yoga. It is more like doing it out of love and respect for my body."
+            </p>
+            <footer class="mt-2 font-body text-muted" style="font-size:0.9rem;">— A long-time student</footer>
+          </blockquote>
+
+          <a href="/offerings/yoga" class="group inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors duration-200">
+            Explore Yoga
+            <Ornament name="swash" size={18} color="#C99A4B" class="group-hover:translate-x-1 transition-transform duration-200" />
+          </a>
+        </ScrollReveal>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 3 — HANDS-ON THERAPY (ALTERNATING, IMAGE RIGHT)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+    <Watercolor position="top-left" opacity={0.30} variant={1} />
+
+    <div class="site-container">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+
+        <!-- Content cols 1–6 -->
+        <ScrollReveal class="md:col-span-6 order-2 md:order-1" delay={80}>
+          <p class="font-script text-saffron mb-4" style="font-size:19px; letter-spacing:0.04em;">02 · Hands-on Therapy</p>
+          <h2 class="font-display font-medium text-forest mb-5" style="font-size:clamp(2rem,4vw,3.5rem); line-height:1.1;">
+            Quiet sessions for what words can't reach.
+          </h2>
+          <p class="font-body text-ink/80 leading-relaxed mb-5" style="font-size:1.06rem; max-width:46ch;">
+            Access Bars · Body Process · Energetic Face Lift. You arrive, you receive, you leave lighter.
+          </p>
+          <p class="font-body text-muted mb-7" style="font-size:14px; letter-spacing:0.12em; font-variant:small-caps;">
+            Access Bars &nbsp;·&nbsp; Body Process &nbsp;·&nbsp; Face Lift
+          </p>
+
+          <blockquote class="border-l-4 border-gold pl-5 mb-8">
+            <p class="font-display italic text-forest/90" style="font-size:1.375rem; line-height:1.4;">
+              "On the drive back home it was a lot quieter than before. I had this positive reinforcement, this subtle energy that was telling me it's all gonna be okay soon."
+            </p>
+            <footer class="mt-2 font-body text-muted" style="font-size:0.9rem;">— Yash, climbing instructor</footer>
+          </blockquote>
+
+          <a href="/offerings/hands-on-therapy" class="group inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors duration-200">
+            Explore Hands-on Therapy
+            <Ornament name="swash" size={18} color="#C99A4B" class="group-hover:translate-x-1 transition-transform duration-200" />
+          </a>
+        </ScrollReveal>
+
+        <!-- Photo cols 7–12 -->
+        <ScrollReveal class="md:col-span-6 order-1 md:order-2 relative">
+          <div class="absolute pointer-events-none select-none" style="top:-24px; right:-32px; z-index:0;" aria-hidden="true">
+            <Watercolor position="top-right" opacity={0.45} variant={3} />
+          </div>
+          <TreatedPhoto
+            src="/images/healing-sessions/02_beach_shavasana_head_touch.jpeg"
+            alt="Overhead view of a student in shavasana on sand, receiving Access Bars scalp work from Likhitha"
+            framed
+            class="relative z-10"
+            width={600}
+            height={780}
+          />
+        </ScrollReveal>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 4 — MID-PAGE PULL-QUOTE (PRAGATHI)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={420} opacity={0.06} color="#2C5F3F" />
+    </div>
+
+    <div class="site-container relative z-10">
+      <ScrollReveal>
+        <p class="font-script text-gold text-center mb-8" style="font-size:20px; letter-spacing:0.04em;">
+          A student's words
+        </p>
+        <div class="max-w-[720px] mx-auto">
+          <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B; margin-left:-24px; padding-left:2rem;">
+            <p class="font-display italic text-forest" style="font-size:clamp(1.6rem,3.5vw,2.625rem); line-height:1.35; max-width:36ch;">
+              "Her questions don't bind me with the set answers — they set me free to find the answers for myself."
+            </p>
+            <footer class="mt-6 text-right">
+              <cite class="font-script not-italic text-gold" style="font-size:20px;">— Pragathi, teacher</cite>
+            </footer>
+          </blockquote>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 5 — TALK + CONSULTATION (PAIRED CARDS)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <div class="site-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        <!-- Card 03: Talk Energy Clearance -->
+        <ScrollReveal>
+          <div class="paired-card group">
+            <div class="relative mb-6">
+              <TreatedPhoto
+                src="/images/healing-sessions/05_session_balcony_hillstation_cafe.jpeg"
+                alt="Likhitha in a balcony session at a hillstation café — a relaxed talk energy clearance setting"
+                framed
+                width={600}
+                height={400}
+                class="w-full"
+              />
+              <div class="absolute -top-4 -left-4 z-20 transition-transform duration-500 group-hover:rotate-6" aria-hidden="true">
+                <Ornament name="swash" size={48} color="#C99A4B" />
+              </div>
+            </div>
+            <p class="font-script text-saffron mb-2" style="font-size:17px; letter-spacing:0.04em;">03 · Talk Energy Clearance</p>
+            <div class="paired-card-rule-wrap mb-3"><div class="paired-card-rule"></div></div>
+            <h3 class="font-display font-medium text-forest mb-4" style="font-size:2.25rem; line-height:1.1;">Talk Energy Clearance</h3>
+            <p class="font-body text-ink/80 leading-relaxed mb-6" style="font-size:1rem; max-width:40ch;">
+              A conversation that moves something. Sometimes the knot loosens with the right
+              question — this is energy work, in the form of a talk.
+            </p>
+            <a href="/offerings/talk-energy-clearance" class="group/link inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors duration-200">
+              Explore Talk Energy Clearance
+              <Ornament name="swash" size={18} color="#C99A4B" class="group-hover/link:translate-x-1 transition-transform duration-200" />
+            </a>
+          </div>
+        </ScrollReveal>
+
+        <!-- Card 04: Consultation -->
+        <ScrollReveal delay={100}>
+          <div class="paired-card group">
+            <div class="relative mb-6">
+              <TreatedPhoto
+                src="/images/portraits/04_peaceful_closeup_temple_backdrop.jpeg"
+                alt="Likhitha Sree in quiet meditation at a temple backdrop — consultation portrait"
+                framed
+                width={600}
+                height={400}
+                class="w-full"
+              />
+              <div class="absolute -top-4 -left-4 z-20 transition-transform duration-500 group-hover:rotate-6" aria-hidden="true">
+                <Ornament name="lotus" size={48} color="#C99A4B" />
+              </div>
+            </div>
+            <p class="font-script text-saffron mb-2" style="font-size:17px; letter-spacing:0.04em;">04 · Consultation</p>
+            <div class="paired-card-rule-wrap mb-3"><div class="paired-card-rule"></div></div>
+            <h3 class="font-display font-medium text-forest mb-4" style="font-size:2.25rem; line-height:1.1;">Consultation</h3>
+            <p class="font-body text-ink/80 leading-relaxed mb-6" style="font-size:1rem; max-width:40ch;">
+              Tailor-made plans drawing on yoga, mudra, kriya, and energy work. Small problems
+              often have simple solutions you wouldn't know until you ask.
+            </p>
+            <a href="/offerings/consultation" class="group/link inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors duration-200">
+              Explore Consultation
+              <Ornament name="swash" size={18} color="#C99A4B" class="group-hover/link:translate-x-1 transition-transform duration-200" />
+            </a>
+          </div>
+        </ScrollReveal>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 6 — NOT SURE WHERE TO START?
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden" style="padding-top:6rem; padding-bottom:6rem;">
+    <Watercolor position="top-right" opacity={0.40} variant={1} />
+
+    <div class="site-container relative z-10 text-center">
+      <ScrollReveal>
+        <p class="font-script text-saffron mb-4" style="font-size:20px; letter-spacing:0.04em;">First time?</p>
+        <h2 class="font-display font-medium text-forest mb-6 mx-auto" style="font-size:clamp(2rem,4vw,3.5rem); line-height:1.1; max-width:28ch;">
+          Not sure where to start? Begin with a conversation.
+        </h2>
+        <p class="font-body text-ink/75 leading-relaxed mb-10 mx-auto" style="font-size:1.06rem; max-width:52ch;">
+          The Monday Night Call is free, weekly, and the simplest first step. Or write to
+          Likhitha — she'll point you somewhere.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-5">
+          <a
+            href="/monday"
+            class="font-body font-medium text-forest bg-gold hover:bg-gold-dark transition-colors duration-200"
+            style="padding:14px 30px; font-size:15px; border-radius:9999px;"
+          >
+            Join Monday Call
+          </a>
+          <Ornament name="lotus" size={32} color="#C99A4B" class="opacity-70" />
+          <a
+            href="/contact"
+            class="font-body font-medium text-forest border border-forest hover:border-gold hover:text-gold transition-colors duration-200"
+            style="padding:14px 30px; font-size:15px; border-radius:9999px;"
+          >
+            Write to Likhitha
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 7 — MONDAY BAND CTA
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden bg-forest text-cream" style="padding-top:5rem; padding-bottom:5rem;">
+    <div class="absolute bottom-6 right-8 pointer-events-none select-none" aria-hidden="true">
+      <Ornament name="lotus" size={64} color="#C99A4B" strokeWidth={1.2} class="opacity-[0.08]" />
+    </div>
+
+    <div class="relative site-container text-center">
+      <ScrollReveal>
+        <p class="font-script text-gold mb-4" style="font-size:22px; letter-spacing:0.03em;">
+          Every Monday · 8 PM IST
+        </p>
+        <h2 class="font-display font-medium text-cream mb-5" style="font-size:clamp(2.4rem,5vw,4rem); line-height:1.1;">
+          Or just come listen for an hour.
+        </h2>
+        <p class="font-body leading-relaxed mb-10 mx-auto" style="font-size:17px; color:rgba(251,248,241,0.88); max-width:52ch;">
+          A weekly ritual, free by design. Pay by becoming more present.
+        </p>
+        <a
+          href="/monday"
+          class="group inline-flex items-center gap-3 font-body font-medium text-forest bg-gold hover:bg-gold-dark transition-colors duration-200"
+          style="padding:16px 36px; font-size:15px; border-radius:9999px;"
+        >
+          Save your seat
+          <Ornament name="swash" size={18} color="#2C5F3F" class="group-hover:translate-x-1 transition-transform duration-200" />
+        </a>
+      </ScrollReveal>
+    </div>
+  </section>
+
 </Base>
+
+
+<style>
+  /* ─── Hero word reveal ───────────────────────── */
+  .hw {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  /* ─── Paired offering cards ──────────────────── */
+  .paired-card {
+    background: #FBF8F1;
+    border: 1px solid rgba(197,211,192,0.7);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: visible;
+  }
+  .paired-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -12px rgba(31,42,36,0.14);
+  }
+  .paired-card-rule {
+    width: 0;
+    height: 2px;
+    background: #C99A4B;
+    transition: width 0.3s ease;
+    border-radius: 1px;
+  }
+  .paired-card:hover .paired-card-rule {
+    width: 4rem;
+  }
+</style>
+
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.hw').forEach((el, i) => {
+    if (reduced) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      return;
+    }
+    el.style.transition = `opacity 0.55s ease ${120 + i * 70}ms, transform 0.55s ease ${120 + i * 70}ms`;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }));
+  });
+</script>

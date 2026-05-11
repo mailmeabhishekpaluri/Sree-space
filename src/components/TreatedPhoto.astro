@@ -1,0 +1,60 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  framed?: boolean;
+  class?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+}
+const {
+  src,
+  alt,
+  framed = false,
+  class: cls = '',
+  width,
+  height,
+  loading = 'lazy',
+} = Astro.props;
+---
+
+<div class:list={['treated-photo-wrap relative overflow-hidden', framed && 'treated-photo-framed', cls]}>
+  <!-- Cream matte + gold frame (when framed) is handled via CSS -->
+  <img
+    {src}
+    {alt}
+    class="treated-photo-img w-full h-full object-cover"
+    {loading}
+    decoding="async"
+    {...(width  ? { width }  : {})}
+    {...(height ? { height } : {})}
+  />
+  <!-- Sage multiply overlay -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: #C5D3C0; opacity: 0.08; mix-blend-mode: multiply;"
+    aria-hidden="true"
+  ></div>
+  <!-- Radial vignette -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: radial-gradient(ellipse at center, transparent 50%, rgba(31,42,36,0.12) 100%);"
+    aria-hidden="true"
+  ></div>
+</div>
+
+<style>
+  .treated-photo-img {
+    filter: saturate(0.78) brightness(0.96);
+    display: block;
+  }
+
+  /* Framed: 4px cream matte + 1px gold inner border */
+  .treated-photo-framed {
+    padding: 4px;
+    background: #FBF8F1;
+    outline: 1px solid #C99A4B;
+    outline-offset: -1px;
+  }
+</style>
