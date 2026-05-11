@@ -1,172 +1,636 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionEyebrow from '../components/SectionEyebrow.astro';
-import Button from '../components/Button.astro';
+import Watercolor from '../components/Watercolor.astro';
+import Ornament from '../components/Ornament.astro';
+import DevanagariMark from '../components/DevanagariMark.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import TreatedPhoto from '../components/TreatedPhoto.astro';
 import { site } from '../data/site';
-
-const callItems = [
-  'A short opening practice (breath or kriya)',
-  'A theme for the week — usually something that surfaced in the WhatsApp group',
-  'Open conversation and questions',
-  'A closing intention',
-];
 ---
 
 <Base
   title="Monday Night Call"
-  description="A free weekly ritual that gently guides you back to awareness. Join Likhitha Sree every Monday night."
+  description="A free weekly ritual that gently guides you back to awareness. Join Likhitha Sree every Monday at 8 PM IST."
 >
-  <!-- Hero -->
-  <section class="relative min-h-[60vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0">
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center overflow-hidden">
+
+    <!-- Background photo -->
+    <div class="absolute inset-0" aria-hidden="true">
       <img
-        src="/images/community-outdoor/03_empty_forest_trail_atmospheric.jpeg"
-        alt="Atmospheric forest trail"
-        class="w-full h-full object-cover"
+        src="/images/portraits/06_lakeside_crouched_dusk.jpeg"
+        alt=""
+        class="w-full h-full object-cover object-center"
         loading="eager"
         fetchpriority="high"
         decoding="async"
       />
+      <!-- Sage gradient: heavy left where type sits, fades right -->
       <div
         class="absolute inset-0"
-        style="background: linear-gradient(to right, rgba(44,95,63,0.85) 0%, rgba(44,95,63,0.60) 50%, rgba(44,95,63,0.30) 100%);"
-        aria-hidden="true"
+        style="background: linear-gradient(100deg, rgba(197,211,192,0.95) 0%, rgba(197,211,192,0.82) 22%, rgba(197,211,192,0.55) 42%, rgba(197,211,192,0.18) 62%, transparent 80%);"
       ></div>
+      <!-- Bottom vignette for mobile -->
+      <div class="absolute bottom-0 left-0 right-0 h-40 md:hidden"
+        style="background: linear-gradient(to top, rgba(197,211,192,0.65) 0%, transparent 100%);"></div>
     </div>
-    <div class="relative site-container py-24 w-full">
-      <div class="max-w-[52ch]">
-        <SectionEyebrow text="Free · Every Monday · IST" class="mb-4 !text-gold" />
-        <h1 class="font-display text-4xl md:text-hero text-cream mb-6">
-          A free Monday night call to come home to yourself.
-        </h1>
-        <p class="font-body text-lg text-cream/80 leading-relaxed">
-          A weekly ritual that gently guides you back to awareness. Free, by design.
-        </p>
+
+    <!-- Devanagari watermark left, behind type -->
+    <div class="absolute left-[1%] top-1/2 -translate-y-1/2 pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={480} opacity={0.12} color="#2C5F3F" />
+    </div>
+
+    <!-- Content -->
+    <div class="relative site-container py-32 md:py-44 w-full">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-7">
+          <ScrollReveal>
+            <!-- Save-the-date eyebrow -->
+            <p class="font-script text-gold mb-5 monday-eyebrow" style="font-size:28px;">
+              Every Monday · 8:00 PM IST
+            </p>
+
+            <!-- Headline — word-by-word JS reveal -->
+            <h1
+              class="font-display font-medium text-cream mb-7"
+              style="font-size:clamp(2.8rem, 7vw, 6rem); line-height:1.05;"
+              aria-label="A free Monday night call to come home to yourself."
+            >
+              <span class="mhw">A</span>
+              <span class="mhw"> free</span>
+              <span class="mhw"> Monday</span>
+              <span class="mhw"> night</span>
+              <span class="mhw"> call</span>
+              <span class="mhw"> to</span>
+              <span class="mhw"> come</span>
+              <span class="mhw"> home</span>
+              <span class="mhw"> to</span>
+              <span class="mhw"> <em class="not-italic italic">yourself.</em></span>
+            </h1>
+
+            <!-- Sub -->
+            <p class="font-body mb-10 monday-sub"
+              style="font-size:19px; max-width:52ch; line-height:1.65; color:rgba(251,248,241,0.90);">
+              A weekly ritual that gently guides you back to awareness.
+              Free, by design.
+            </p>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap gap-5 items-center">
+              <a
+                href="#signup"
+                class="font-body font-medium text-forest bg-gold hover:bg-gold-dark transition-colors duration-200"
+                style="padding:16px 32px; font-size:15px; border-radius:9999px; letter-spacing:0.01em;"
+              >
+                Save your seat
+              </a>
+              <a
+                href={site.socials.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-body font-medium text-cream border border-cream/60 hover:border-gold transition-colors duration-200"
+                style="padding:16px 32px; font-size:15px; border-radius:9999px; letter-spacing:0.01em;"
+              >
+                Join via WhatsApp
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Why it's free -->
-  <section class="bg-cream section-pad">
-    <div class="site-container max-w-[700px]">
-      <SectionEyebrow text="Why it's free" class="mb-4" />
-      <h2 class="font-display text-3xl text-forest mb-6">
-        The whole exchange.
-      </h2>
-      <p class="font-body text-base md:text-lg text-ink/80 leading-relaxed">
-        Sree wanted to gift consciousness. Participants 'pay' by becoming more present, more
-        aware humans — so she gets to live in a world of better people. That's the whole exchange.
-      </p>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 2 — "THE WHOLE EXCHANGE" (LIKHITHA'S VOICE)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <Watercolor position="top-right" opacity={0.30} variant={1} />
+
+    <div class="site-container">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-8 md:col-start-3">
+          <ScrollReveal>
+            <!-- Eyebrow -->
+            <p class="font-script text-saffron text-center mb-4" style="font-size:20px; letter-spacing:0.04em;">
+              In her words
+            </p>
+            <!-- Section headline -->
+            <h2 class="font-display font-medium text-forest text-center mb-10"
+              style="font-size:clamp(2rem,4vw,3rem); line-height:1.1;">
+              The whole exchange.
+            </h2>
+
+            <!-- Pull-quote with gold left-rule breaking container -->
+            <div class="max-w-[640px] mx-auto">
+              <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B; margin-left:-24px; padding-left:2rem;">
+                <p class="font-display italic text-forest"
+                  style="font-size:clamp(1.4rem,2.5vw,1.75rem); line-height:1.45; max-width:36ch;">
+                  "I wanted to gift consciousness. You 'pay' by becoming more present, more aware — so I get to live in a world of better people. That's the whole exchange."
+                </p>
+                <footer class="mt-5 text-right">
+                  <cite class="font-script not-italic text-gold" style="font-size:22px;">— Likhitha Sree</cite>
+                </footer>
+              </blockquote>
+            </div>
+
+            <!-- Swash ornament below -->
+            <div class="flex justify-center mt-8">
+              <Ornament name="swash" size={48} color="#C99A4B" class="opacity-80" />
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- What happens -->
-  <section class="bg-sage/20 section-pad">
-    <div class="site-container max-w-[700px]">
-      <SectionEyebrow text="What happens on the call" class="mb-6" />
-      <ul class="flex flex-col gap-4">
-        {callItems.map(item => (
-          <li class="flex items-start gap-4 font-body text-base text-ink/80">
-            <span class="flex-shrink-0 w-2 h-2 rounded-full bg-gold mt-2"></span>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
 
-  <!-- Signup form -->
-  <section class="bg-cream section-pad" id="signup">
-    <div class="site-container max-w-[560px]">
-      <SectionEyebrow text="Save your seat" class="mb-4" />
-      <h2 class="font-display text-3xl text-forest mb-8">Join this Monday.</h2>
+  <!-- ═══════════════════════════════════════════════
+       SECTION 3 — "THE RITUAL" (VERTICAL TIMELINE)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+    <Watercolor position="top-right" opacity={0.35} variant={2} />
 
-      <form
-        name="monday-signup"
-        method="POST"
-        action="/success"
-        class="flex flex-col gap-6"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-      >
-        <input type="hidden" name="form-name" value="monday-signup" />
-        <p class="hidden">
-          <label>Don't fill this: <input name="bot-field" /></label>
+    <div class="site-container">
+      <!-- Eyebrow + headline -->
+      <ScrollReveal>
+        <p class="font-script text-saffron text-center mb-3" style="font-size:20px; letter-spacing:0.04em;">
+          The Ritual
         </p>
+        <h2 class="font-display font-medium text-forest text-center mb-14"
+          style="font-size:clamp(2rem,4vw,3rem); line-height:1.1;">
+          What happens on the call.
+        </h2>
+      </ScrollReveal>
 
-        <div class="flex flex-col gap-2">
-          <label for="name" class="font-body text-sm font-medium text-ink">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            autocomplete="name"
-            class="bg-cream border border-sage rounded px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition"
-            placeholder="Your name"
-          />
-        </div>
+      <!-- Timeline rows -->
+      <div class="ritual-timeline max-w-[720px] mx-auto flex flex-col">
 
-        <div class="flex flex-col gap-2">
-          <label for="contact" class="font-body text-sm font-medium text-ink">
-            Email or WhatsApp number
-          </label>
-          <input
-            id="contact"
-            name="contact"
-            type="text"
-            required
-            class="bg-cream border border-sage rounded px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition"
-            placeholder="hello@email.com or +91…"
-          />
-        </div>
+        <!-- Row 01 -->
+        <ScrollReveal delay={0}>
+          <div class="ritual-row grid grid-cols-12 gap-6 items-start pb-0">
+            <!-- Number + connector col -->
+            <div class="col-span-2 flex flex-col items-center">
+              <span class="font-script text-gold" style="font-size:40px; line-height:1;">01</span>
+              <svg class="ritual-connector" width="2" height="64" viewBox="0 0 2 64" aria-hidden="true">
+                <line x1="1" y1="0" x2="1" y2="64" stroke="#C99A4B" stroke-width="1.5"
+                  stroke-dasharray="3 5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <!-- Ornament col -->
+            <div class="col-span-1 pt-1">
+              <Ornament name="leaf" size={32} color="#C99A4B" />
+            </div>
+            <!-- Content col -->
+            <div class="col-span-9 pb-10">
+              <h3 class="font-display text-forest" style="font-size:1.5rem; line-height:1.2; font-weight:500;">
+                A short opening practice
+              </h3>
+              <p class="font-body text-muted mt-1" style="font-size:1rem;">breath or kriya, 5 minutes</p>
+            </div>
+          </div>
+        </ScrollReveal>
 
-        <div class="flex flex-col gap-2">
-          <label for="reason" class="font-body text-sm font-medium text-ink">
-            What brings you here? <span class="text-muted font-normal">(one line)</span>
-          </label>
-          <input
-            id="reason"
-            name="reason"
-            type="text"
-            class="bg-cream border border-sage rounded px-4 py-3 text-base text-ink placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition"
-            placeholder="Just curious, in pain, sent by a friend…"
-          />
-        </div>
+        <!-- Row 02 -->
+        <ScrollReveal delay={80}>
+          <div class="ritual-row grid grid-cols-12 gap-6 items-start">
+            <div class="col-span-2 flex flex-col items-center">
+              <span class="font-script text-gold" style="font-size:40px; line-height:1;">02</span>
+              <svg class="ritual-connector" width="2" height="64" viewBox="0 0 2 64" aria-hidden="true">
+                <line x1="1" y1="0" x2="1" y2="64" stroke="#C99A4B" stroke-width="1.5"
+                  stroke-dasharray="3 5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="col-span-1 pt-1">
+              <Ornament name="swash" size={32} color="#C99A4B" />
+            </div>
+            <div class="col-span-9 pb-10">
+              <h3 class="font-display text-forest" style="font-size:1.5rem; line-height:1.2; font-weight:500;">
+                A theme for the week
+              </h3>
+              <p class="font-body text-muted mt-1" style="font-size:1rem;">usually something that surfaced in the WhatsApp circle</p>
+            </div>
+          </div>
+        </ScrollReveal>
 
-        <label class="flex items-center gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            name="whatsapp_group"
-            checked
-            class="w-4 h-4 accent-gold"
-          />
-          <span class="font-body text-sm text-ink/80">
-            Add me to the WhatsApp group
-          </span>
-        </label>
+        <!-- Row 03 -->
+        <ScrollReveal delay={160}>
+          <div class="ritual-row grid grid-cols-12 gap-6 items-start">
+            <div class="col-span-2 flex flex-col items-center">
+              <span class="font-script text-gold" style="font-size:40px; line-height:1;">03</span>
+              <svg class="ritual-connector" width="2" height="64" viewBox="0 0 2 64" aria-hidden="true">
+                <line x1="1" y1="0" x2="1" y2="64" stroke="#C99A4B" stroke-width="1.5"
+                  stroke-dasharray="3 5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="col-span-1 pt-1">
+              <Ornament name="lotus" size={32} color="#C99A4B" />
+            </div>
+            <div class="col-span-9 pb-10">
+              <h3 class="font-display text-forest" style="font-size:1.5rem; line-height:1.2; font-weight:500;">
+                Open conversation and questions
+              </h3>
+              <p class="font-body text-muted mt-1" style="font-size:1rem;">you speak, you listen, you stay quiet — all of it counts</p>
+            </div>
+          </div>
+        </ScrollReveal>
 
-        <Button type="submit" variant="primary" class="self-start">
-          Save my seat
-        </Button>
-      </form>
+        <!-- Row 04 (no connector after) -->
+        <ScrollReveal delay={240}>
+          <div class="ritual-row grid grid-cols-12 gap-6 items-start">
+            <div class="col-span-2 flex flex-col items-center">
+              <span class="font-script text-gold" style="font-size:40px; line-height:1;">04</span>
+            </div>
+            <div class="col-span-1 pt-1">
+              <Ornament name="sun" size={32} color="#C99A4B" />
+            </div>
+            <div class="col-span-9">
+              <h3 class="font-display text-forest" style="font-size:1.5rem; line-height:1.2; font-weight:500;">
+                A closing intention
+              </h3>
+              <p class="font-body text-muted mt-1" style="font-size:1rem;">one breath to carry into the week</p>
+            </div>
+          </div>
+        </ScrollReveal>
+
+      </div>
     </div>
   </section>
 
-  <!-- Direct WhatsApp -->
-  <section class="bg-forest section-pad">
-    <div class="site-container text-center">
-      <p class="font-display italic text-2xl text-cream mb-6">
-        "Ask and you shall receive."
-      </p>
-      <a
-        href={site.socials.whatsapp}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 font-body text-sm font-medium text-cream border border-gold rounded-pill px-7 py-3 hover:bg-gold hover:text-ink transition-all"
-      >
-        Join via WhatsApp
-      </a>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 4 — SAVE-THE-DATE PANEL
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <div class="site-container">
+      <ScrollReveal>
+        <div class="save-date-panel mx-auto text-center" style="max-width:640px;">
+          <!-- Lotus ornament on the top border -->
+          <div class="flex justify-center -mt-6 mb-6 relative z-10">
+            <div class="bg-cream px-3">
+              <Ornament name="lotus" size={32} color="#C99A4B" />
+            </div>
+          </div>
+
+          <!-- Eyebrow -->
+          <p class="font-script text-saffron mb-5" style="font-size:18px; letter-spacing:0.06em;">Save the Date</p>
+
+          <!-- Big "Monday" -->
+          <p class="font-display italic text-gold" style="font-size:clamp(4rem,10vw,6rem); line-height:0.95; font-weight:400;">
+            Monday
+          </p>
+
+          <!-- Time -->
+          <p class="font-display text-forest mt-3 mb-5" style="font-size:2.25rem; font-weight:400; line-height:1.1;">
+            8:00 PM IST
+          </p>
+
+          <!-- Gold rule -->
+          <div style="width:48px; height:1px; background:#C99A4B; margin:0 auto 1.5rem;"></div>
+
+          <!-- Zoom note -->
+          <p class="font-body italic text-muted" style="font-size:18px;">
+            We meet weekly on Zoom — the link drops in your inbox each Sunday.
+          </p>
+        </div>
+      </ScrollReveal>
     </div>
   </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 5 — SIGNUP FORM
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden section-pad" id="signup" style="background:#EFF3ED;">
+    <Watercolor position="top-left" opacity={0.35} variant={2} />
+
+    <div class="site-container relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
+
+        <!-- Form — cols 1–7 -->
+        <div class="lg:col-span-7">
+          <ScrollReveal>
+            <p class="font-script text-gold mb-3" style="font-size:20px; letter-spacing:0.04em;">Save your seat</p>
+            <h2 class="font-display font-medium text-forest mb-4" style="font-size:clamp(2.2rem,4vw,3.5rem); line-height:1.1;">
+              Join this Monday.
+            </h2>
+            <p class="font-body text-ink/75 leading-relaxed mb-10" style="font-size:1.06rem; max-width:52ch;">
+              Your name, where to find you, and one line on what brings you here. That's it.
+            </p>
+
+            <form
+              name="monday-signup"
+              method="POST"
+              action="/success"
+              class="flex flex-col gap-7"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="monday-signup" />
+              <p class="hidden" aria-hidden="true">
+                <label>Don't fill this: <input name="bot-field" /></label>
+              </p>
+
+              <!-- Name -->
+              <div class="flex flex-col gap-2">
+                <label for="name" class="form-label" id="name-label">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  aria-labelledby="name-label"
+                  aria-describedby="name-hint"
+                  class="form-input"
+                  placeholder="Your name"
+                />
+                <span id="name-hint" class="form-hint sr-only">Enter your full name</span>
+              </div>
+
+              <!-- Contact -->
+              <div class="flex flex-col gap-2">
+                <label for="contact" class="form-label" id="contact-label">
+                  Email or WhatsApp number
+                </label>
+                <input
+                  id="contact"
+                  name="contact"
+                  type="text"
+                  required
+                  aria-labelledby="contact-label"
+                  aria-describedby="contact-hint"
+                  class="form-input"
+                  placeholder="hello@email.com or +91…"
+                />
+                <span id="contact-hint" class="form-hint sr-only">Enter your email address or WhatsApp number</span>
+              </div>
+
+              <!-- Reason -->
+              <div class="flex flex-col gap-2">
+                <label for="reason" class="form-label" id="reason-label">
+                  What brings you here? <span class="form-label-optional">(one line)</span>
+                </label>
+                <input
+                  id="reason"
+                  name="reason"
+                  type="text"
+                  aria-labelledby="reason-label"
+                  aria-describedby="reason-hint"
+                  class="form-input"
+                  placeholder="Just curious, in pain, sent by a friend…"
+                />
+                <span id="reason-hint" class="form-hint sr-only">Optional: share what brought you to this page</span>
+              </div>
+
+              <!-- WhatsApp checkbox -->
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  name="whatsapp_group"
+                  checked
+                  class="form-checkbox"
+                  aria-label="Add me to the WhatsApp circle"
+                />
+                <span class="font-body text-ink/80" style="font-size:1rem;">
+                  Add me to the WhatsApp circle
+                </span>
+              </label>
+
+              <!-- Submit -->
+              <div>
+                <button
+                  type="submit"
+                  class="group inline-flex items-center gap-3 font-body font-medium text-forest bg-gold hover:bg-gold-dark transition-colors duration-200"
+                  style="padding:16px 32px; font-size:15px; border-radius:9999px; letter-spacing:0.01em;"
+                >
+                  Save my seat
+                  <Ornament name="swash" size={16} color="#2C5F3F" class="group-hover:translate-x-1 transition-transform duration-200" />
+                </button>
+                <p class="font-body italic text-muted mt-4" style="font-size:14px;">
+                  Likhitha responds personally within 48 hours.
+                </p>
+              </div>
+            </form>
+          </ScrollReveal>
+        </div>
+
+        <!-- Visual companion — cols 8–12 -->
+        <div class="lg:col-span-5">
+          <ScrollReveal delay={80}>
+            <TreatedPhoto
+              src="/images/yoga-poses/05_meditation_red_boulders_golden_hour.jpeg"
+              alt="Likhitha seated in meditation against red boulders at golden hour, eyes closed, hands in mudra"
+              framed
+              width={500}
+              height={640}
+              class="w-full"
+            />
+            <p class="font-script text-forest text-center mt-5" style="font-size:22px;">
+              Just come listen. That's enough.
+            </p>
+          </ScrollReveal>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 6 — THE WHATSAPP CIRCLE
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <div class="site-container">
+      <ScrollReveal>
+        <div class="text-center max-w-[600px] mx-auto">
+          <p class="font-script text-saffron mb-3" style="font-size:20px; letter-spacing:0.04em;">
+            The WhatsApp Circle
+          </p>
+          <h2 class="font-display font-medium text-forest mb-5"
+            style="font-size:clamp(1.8rem,3.5vw,3rem); line-height:1.1; max-width:28ch; margin-inline:auto;">
+            A small circle, all week long.
+          </h2>
+          <p class="font-body text-ink/75 leading-relaxed mb-10" style="font-size:17px; max-width:56ch;">
+            Between calls, the WhatsApp group is where reflections, prompts, and small
+            kindnesses get shared. Optional — but most people join.
+          </p>
+
+          <!-- Hand-drawn ring of dots with lotus center -->
+          <div class="wa-ring-wrap mx-auto mb-8" aria-hidden="true">
+            <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- 10 dots arranged in a circle, r=96 -->
+              <circle cx="120" cy="24"  r="5" fill="#C99A4B" opacity="0.70"/>
+              <circle cx="180" cy="45"  r="4" fill="#C99A4B" opacity="0.55"/>
+              <circle cx="216" cy="100" r="5" fill="#C99A4B" opacity="0.70"/>
+              <circle cx="210" cy="163" r="4" fill="#C99A4B" opacity="0.55"/>
+              <circle cx="163" cy="207" r="5" fill="#C99A4B" opacity="0.70"/>
+              <circle cx="100" cy="215" r="4" fill="#C99A4B" opacity="0.55"/>
+              <circle cx="44"  cy="185" r="5" fill="#C99A4B" opacity="0.70"/>
+              <circle cx="18"  cy="130" r="4" fill="#C99A4B" opacity="0.55"/>
+              <circle cx="30"  cy="68"  r="5" fill="#C99A4B" opacity="0.70"/>
+              <circle cx="78"  cy="30"  r="4" fill="#C99A4B" opacity="0.55"/>
+              <!-- Thin ring path -->
+              <circle cx="120" cy="120" r="90" stroke="#C99A4B" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.35"/>
+            </svg>
+            <!-- Lotus overlaid at center -->
+            <div class="wa-ring-lotus">
+              <Ornament name="lotus" size={48} color="#C99A4B" />
+            </div>
+          </div>
+
+          <a
+            href={site.socials.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold underline decoration-gold underline-offset-4 transition-colors duration-200"
+          >
+            Join the WhatsApp circle
+            <Ornament name="swash" size={18} color="#C99A4B" class="group-hover:translate-x-1 transition-transform duration-200" />
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 7 — CLOSING BAND
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-forest overflow-hidden" style="padding-top:8rem; padding-bottom:8rem;">
+    <!-- Devanagari watermark centered -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={600} opacity={0.10} color="#C99A4B" />
+    </div>
+
+    <div class="relative z-10 site-container text-center">
+      <ScrollReveal>
+        <p class="font-script text-gold mb-5" style="font-size:22px; letter-spacing:0.03em;">— a closing thought</p>
+        <h2 class="font-display italic font-medium text-cream mb-6"
+          style="font-size:clamp(2.8rem,7vw,4.5rem); line-height:1.1;">
+          Ask and you shall receive.
+        </h2>
+        <p class="font-body leading-relaxed mb-12 mx-auto"
+          style="font-size:17px; color:rgba(251,248,241,0.80); max-width:52ch;">
+          Whatever else is on your mind, send it. There's no wrong question.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-6">
+          <a
+            href="#signup"
+            class="font-body font-medium text-forest bg-gold hover:bg-gold-dark transition-colors duration-200"
+            style="padding:16px 32px; font-size:15px; border-radius:9999px; letter-spacing:0.01em;"
+          >
+            Save your seat
+          </a>
+          <Ornament name="lotus" size={40} color="#C99A4B" class="opacity-70" />
+          <a
+            href="/contact"
+            class="font-body font-medium text-cream border border-cream/60 hover:border-gold hover:text-gold transition-colors duration-200"
+            style="padding:16px 32px; font-size:15px; border-radius:9999px; letter-spacing:0.01em;"
+          >
+            Write to Likhitha
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
 </Base>
+
+
+<style>
+  /* ─── Hero word reveal ───────────────────────── */
+  .mhw {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  /* ─── Form elements ──────────────────────────── */
+  .form-label {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    font-variant: small-caps;
+    color: rgba(31,42,36,0.85);
+  }
+  .form-label-optional {
+    font-variant: normal;
+    font-size: 13px;
+    color: #5C6B62;
+    letter-spacing: 0;
+  }
+  .form-hint {
+    font-size: 12px;
+    color: #5C6B62;
+  }
+  .form-input {
+    background: #FBF8F1;
+    border: 1px solid #C5D3C0;
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 17px;
+    color: #1F2A24;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+  }
+  .form-input::placeholder {
+    color: rgba(92,107,98,0.55);
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: #C99A4B;
+    box-shadow: 0 0 0 3px rgba(201,154,75,0.20);
+  }
+  .form-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #C99A4B;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ─── Save-the-date panel ────────────────────── */
+  .save-date-panel {
+    border: 2px solid #C99A4B;
+    border-radius: 12px;
+    background: #FBF8F1;
+    padding: 3rem 2.5rem;
+    position: relative;
+  }
+
+  /* ─── WhatsApp ring ──────────────────────────── */
+  .wa-ring-wrap {
+    position: relative;
+    width: 240px;
+    height: 240px;
+  }
+  .wa-ring-lotus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.mhw').forEach((el, i) => {
+    if (reduced) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      return;
+    }
+    el.style.transition = `opacity 0.55s ease ${100 + i * 70}ms, transform 0.55s ease ${100 + i * 70}ms`;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }));
+  });
+</script>
