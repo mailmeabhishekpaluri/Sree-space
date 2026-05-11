@@ -151,12 +151,15 @@ import { site } from '../data/site';
           </a>
         </ScrollReveal>
 
-        <!-- Right: tree image, bleeds off right -->
+        <!-- Right: yoga tree illustration, bleeds off right edge -->
         <div class="order-1 md:order-2 relative flex justify-end md:-mr-8">
+          <!-- Watercolor wash behind the image -->
+          <Watercolor position="bottom-left" opacity={0.5} variant={2} class="absolute inset-0 pointer-events-none" />
           <img
-            src="/images/branding/yoga_tree_design.png"
-            alt="Yoga as a whole tree — Hatha, Yin, Ashtanga, Kriya, Pranayama, Kundalini"
-            class="w-full max-w-[440px] md:max-w-[520px] object-contain drop-shadow-sm relative z-10"
+            src="/images/references/yoga_tree_design.png"
+            alt="Hand-drawn yoga tree illustration showing branches of practice: Hatha, Yin/Restorative, Ashtanga Vinyasa, Kriya, Pranayama, Kundalini"
+            class="w-full h-auto relative z-10"
+            style="max-width:520px;"
             loading="lazy"
             decoding="async"
           />
