@@ -1,90 +1,353 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionEyebrow from '../components/SectionEyebrow.astro';
+import Watercolor from '../components/Watercolor.astro';
+import Ornament from '../components/Ornament.astro';
+import DevanagariMark from '../components/DevanagariMark.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
-import MondayCTA from '../components/MondayCTA.astro';
-import { testimonials, type Offering } from '../data/testimonials';
+import { testimonials } from '../data/testimonials';
 
-const filters: { label: string; value: Offering | 'all' }[] = [
-  { label: 'All',          value: 'all' },
-  { label: 'Yoga',         value: 'yoga' },
-  { label: 'Hands-on',     value: 'hands-on' },
-  { label: 'Talk',         value: 'talk' },
-  { label: 'Consultation', value: 'consultation' },
-];
+const yash         = testimonials.find(t => t.id === 'yash')!;
+const pragathi     = testimonials.find(t => t.id === 'pragathi')!;
+const nagavamsi    = testimonials.find(t => t.id === 'nagavamsi')!;
+const anonYoga     = testimonials.find(t => t.id === 'anonymous-yoga')!;
+const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 ---
 
 <Base
   title="Testimonials"
   description="Words from students of Sree Space — yoga, energy work, and consciousness practices with Likhitha Sree."
 >
-  <!-- Header -->
-  <section class="bg-sage/20 section-pad">
-    <div class="site-container max-w-[60ch]">
-      <SectionEyebrow text="What students say" class="mb-4" />
-      <h1 class="font-display text-4xl md:text-hero text-forest">
-        Their words, unedited.
-      </h1>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden" style="padding-top:7rem; padding-bottom:5rem;">
+    <div class="absolute right-[-4%] top-1/2 -translate-y-1/2 pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={540} opacity={0.10} color="#2C5F3F" />
+    </div>
+
+    <div class="site-container">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-8">
+          <ScrollReveal>
+            <p class="font-script text-saffron mb-5" style="font-size:22px; letter-spacing:0.04em;">
+              What students say
+            </p>
+            <h1
+              class="font-display italic font-medium text-forest mb-6"
+              style="font-size:clamp(2.8rem,7vw,6rem); line-height:1.05;"
+              aria-label="Their words, unedited."
+            >
+              <span class="tw">Their</span>
+              <span class="tw"> words,</span>
+              <span class="tw"> <em class="not-italic">unedited.</em></span>
+            </h1>
+            <p class="font-body text-ink/75 mb-5" style="font-size:19px; max-width:56ch; line-height:1.65;">
+              Five real students. Their actual messages, lightly tidied for length. The substance is theirs.
+            </p>
+            <p class="font-script text-gold" style="font-size:18px; letter-spacing:0.04em;">
+              5 voices · 1 anonymous
+            </p>
+          </ScrollReveal>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Grid with filter -->
-  <section class="bg-cream section-pad">
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 2 — FILTER CHIPS
+  ══════════════════════════════════════════════════ -->
+  <section class="bg-cream" style="padding-top:1.5rem; padding-bottom:2rem;">
     <div class="site-container">
-      <!-- Filter chips -->
+      <p class="font-script text-saffron mb-4" style="font-size:16px; letter-spacing:0.08em;">
+        Filter by offering
+      </p>
       <div
-        class="flex flex-wrap gap-3 mb-10"
+        class="flex flex-wrap gap-x-8 gap-y-3"
         role="group"
         aria-label="Filter testimonials by offering"
       >
-        {filters.map(f => (
+        {[
+          { label: 'All',          value: 'all' },
+          { label: 'Yoga',         value: 'yoga' },
+          { label: 'Hands-on',     value: 'hands-on' },
+          { label: 'Talk',         value: 'talk' },
+          { label: 'Consultation', value: 'consultation' },
+        ].map(f => (
           <button
             data-filter={f.value}
-            class:list={[
-              'filter-chip font-body text-sm font-medium rounded-pill px-5 py-2 border transition-all duration-150',
-              f.value === 'all'
-                ? 'bg-forest text-cream border-forest'
-                : 'bg-transparent text-forest border-forest/40 hover:border-forest',
-            ]}
+            class="filter-chip font-script"
+            style="font-size:22px; background:none; border:none; cursor:pointer; padding:0.25rem 0; color:rgba(31,42,36,0.75); position:relative;"
             aria-pressed={f.value === 'all' ? 'true' : 'false'}
           >
             {f.label}
           </button>
         ))}
       </div>
+    </div>
+  </section>
 
-      <!-- Masonry-style grid -->
-      <div
-        id="testimonials-grid"
-        class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
-      >
-        {testimonials.map(t => (
-          <div
-            class="testimonial-item break-inside-avoid"
-            data-offerings={t.offerings.join(',')}
-          >
-            <TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 3 — YASH FEATURED STORY
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <Watercolor position="bottom-right" opacity={0.28} variant={3} />
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+      <DevanagariMark size={420} opacity={0.05} color="#2C5F3F" />
+    </div>
+
+    <div class="site-container relative z-10">
+      <ScrollReveal>
+        <p class="font-script text-saffron text-center mb-10" style="font-size:20px; letter-spacing:0.04em;">
+          The deepest story
+        </p>
+        <div
+          class="testimonial-item"
+          data-offerings="hands-on"
+        >
+          <TestimonialCard
+            featured
+            photo="/images/healing-sessions/06_post_session_smile_with_friend.jpeg"
+            photoAlt="Likhitha and a student sharing a warm post-session smile together"
+            tag="ON ACCESS BARS"
+            quote={yash.quote}
+            attribution="Yash, climbing instructor"
+          />
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 4 — "ON SREE'S TEACHING" (Pragathi + Nagavamsi)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+    <Watercolor position="top-left" opacity={0.30} variant={2} />
+
+    <div class="site-container relative z-10">
+      <ScrollReveal>
+        <p class="font-script text-gold text-center mb-12" style="font-size:20px; letter-spacing:0.04em;">
+          On Sree's teaching
+        </p>
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ScrollReveal delay={0}>
+          <div class="testimonial-item" data-offerings="talk,consultation">
+            <TestimonialCard
+              initials="P"
+              tag="ON CONSULTATION"
+              quote={pragathi.quote}
+              attribution="Pragathi, teacher"
+            />
           </div>
-        ))}
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <div class="testimonial-item" data-offerings="talk,consultation">
+            <TestimonialCard
+              initials="N"
+              tag="ON CONVERSATIONS"
+              quote={nagavamsi.quote}
+              attribution="Nagavamsi"
+            />
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   </section>
 
-  <!-- Companion image -->
-  <div class="h-64 md:h-96 overflow-hidden">
-    <img
-      src="/images/healing-sessions/06_post_session_smile_with_friend.jpeg"
-      alt="Post-session moment of warmth"
-      class="w-full h-full object-cover object-center"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
 
-  <MondayCTA />
+  <!-- ═══════════════════════════════════════════════
+       SECTION 5 — "ON YOGA AS PRACTICE"
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <Watercolor position="bottom-right" opacity={0.25} variant={1} />
+
+    <div class="site-container relative z-10">
+      <ScrollReveal>
+        <p class="font-script text-gold text-center mb-12" style="font-size:20px; letter-spacing:0.04em;">
+          On yoga as practice
+        </p>
+      </ScrollReveal>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ScrollReveal delay={0}>
+          <div class="testimonial-item" data-offerings="yoga,hands-on">
+            <TestimonialCard
+              initials="—"
+              tag="ON YOGA"
+              quote={anonYoga.quote}
+              attribution="A long-time student"
+            />
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={100}>
+          <div class="testimonial-item" data-offerings="yoga,hands-on">
+            <TestimonialCard
+              initials="L"
+              tag="ON PREGNANCY & POSTPARTUM YOGA"
+              quote={likhithaFin.quote}
+              attribution="Likhitha (finance)"
+            />
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 6 — CLOSING WORD FROM LIKHITHA
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden" style="padding-top:6rem; padding-bottom:6rem;">
+    <div class="site-container">
+      <ScrollReveal>
+        <div class="max-w-[56ch] mx-auto text-center">
+          <p class="font-script text-saffron mb-6" style="font-size:20px; letter-spacing:0.04em;">From Likhitha</p>
+
+          <!-- Pull-quote with centered gold left-rule -->
+          <div class="inline-block text-left">
+            <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B;">
+              <p class="font-display italic text-forest" style="font-size:clamp(1.3rem,2.2vw,1.625rem); line-height:1.5;">
+                "Thank you, deeply. Sharing your words is what makes the next person feel safe to come."
+              </p>
+              <footer class="mt-5 text-center">
+                <cite class="font-script not-italic text-gold" style="font-size:22px;">— Likhitha</cite>
+              </footer>
+            </blockquote>
+          </div>
+
+          <div class="flex justify-center mt-8">
+            <Ornament name="lotus" size={48} color="#C99A4B" class="opacity-80" />
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 7 — "HAVE SOMETHING TO ADD?"
+  ══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+    <div class="site-container">
+      <ScrollReveal>
+        <div class="text-center max-w-[640px] mx-auto">
+          <p class="font-script text-saffron mb-4" style="font-size:20px; letter-spacing:0.04em;">
+            Have something to add?
+          </p>
+          <h2 class="font-display font-medium text-forest mb-5"
+            style="font-size:clamp(2rem,4vw,3rem); line-height:1.1; max-width:28ch; margin-inline:auto;">
+            Your words are welcome here too.
+          </h2>
+          <p class="font-body text-ink/75 leading-relaxed mb-10"
+            style="font-size:17px; max-width:56ch; margin-inline:auto;">
+            If a session moved something — or didn't — Likhitha wants to hear it. There's no
+            template; just write.
+          </p>
+          <a
+            href="/contact"
+            class="font-body font-medium text-forest border border-forest hover:bg-gold hover:border-gold hover:text-forest transition-all duration-200"
+            style="padding:14px 32px; font-size:15px; border-radius:9999px; display:inline-block;"
+          >
+            Write to Likhitha
+          </a>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 8 — MONDAY CTA STRIP
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-forest overflow-hidden" style="padding-top:5rem; padding-bottom:5rem;">
+    <div class="absolute bottom-6 right-8 pointer-events-none select-none" aria-hidden="true">
+      <Ornament name="lotus" size={64} color="#C99A4B" strokeWidth={1.2} class="opacity-[0.08]" />
+    </div>
+    <div class="relative site-container text-center">
+      <ScrollReveal>
+        <p class="font-script text-gold mb-4" style="font-size:22px; letter-spacing:0.03em;">
+          Every Monday · 8 PM IST
+        </p>
+        <h2 class="font-display font-medium text-cream mb-5"
+          style="font-size:clamp(2rem,4vw,3.5rem); line-height:1.1;">
+          Words land where they land.<br class="hidden md:inline" /> Come hear it yourself.
+        </h2>
+        <p class="font-body leading-relaxed mb-10 mx-auto"
+          style="font-size:17px; color:rgba(251,248,241,0.88); max-width:52ch;">
+          A weekly free call. Pay by becoming more present.
+        </p>
+        <a
+          href="/monday"
+          class="group inline-flex items-center gap-3 font-body font-medium text-forest bg-gold hover:bg-gold-dark transition-colors duration-200"
+          style="padding:16px 36px; font-size:15px; border-radius:9999px;"
+        >
+          Save your seat
+          <Ornament name="swash" size={18} color="#2C5F3F" class="group-hover:translate-x-1 transition-transform duration-200" />
+        </a>
+      </ScrollReveal>
+    </div>
+  </section>
+
 </Base>
 
+
+<style>
+  /* ─── Hero word reveal ───────────────────────── */
+  .tw {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  /* ─── Filter chips ───────────────────────────── */
+  .filter-chip::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #C99A4B;
+    transition: width 0.25s ease;
+    border-radius: 1px;
+  }
+  .filter-chip:hover {
+    color: #2C5F3F !important;
+  }
+  .filter-chip:hover::after {
+    width: 100%;
+    opacity: 0.5;
+  }
+  .filter-chip[aria-pressed="true"] {
+    color: #2C5F3F !important;
+  }
+  .filter-chip[aria-pressed="true"]::after {
+    width: 100%;
+    opacity: 1;
+  }
+</style>
+
+
 <script>
+  // ── Hero word reveal ──
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.tw').forEach((el, i) => {
+    if (reduced) { el.style.opacity = '1'; el.style.transform = 'none'; return; }
+    el.style.transition = `opacity 0.55s ease ${100 + i * 90}ms, transform 0.55s ease ${100 + i * 90}ms`;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }));
+  });
+
+  // ── Filter chips ──
   const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
   const items = document.querySelectorAll<HTMLElement>('.testimonial-item');
 
@@ -92,21 +355,31 @@ const filters: { label: string; value: Offering | 'all' }[] = [
     chip.addEventListener('click', () => {
       const filter = chip.dataset.filter!;
 
-      chips.forEach(c => {
-        const active = c === chip;
-        c.setAttribute('aria-pressed', String(active));
-        c.classList.toggle('bg-forest', active);
-        c.classList.toggle('text-cream', active);
-        c.classList.toggle('border-forest', active);
-        c.classList.toggle('bg-transparent', !active);
-        c.classList.toggle('text-forest', !active);
-        c.classList.toggle('border-forest/40', !active);
+      // Update aria-pressed
+      chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+
+      // Show / hide sections that contain only certain offerings
+      // For sections with multiple cards, show the section if ANY card matches
+      const sections = document.querySelectorAll<HTMLElement>('[data-section-offerings]');
+      sections.forEach(sec => {
+        if (filter === 'all') { sec.style.display = ''; return; }
+        const tags = sec.dataset.sectionOfferings?.split(',') ?? [];
+        sec.style.display = tags.includes(filter) ? '' : 'none';
       });
 
+      // Within visible sections, show/hide individual items
       items.forEach(item => {
+        if (filter === 'all') { item.style.display = ''; return; }
         const offerings = item.dataset.offerings?.split(',') ?? [];
-        const show = filter === 'all' || offerings.includes(filter);
-        item.style.display = show ? '' : 'none';
+        item.style.display = offerings.includes(filter) ? '' : 'none';
+      });
+
+      // If a section has no visible items, hide the whole section wrapper
+      document.querySelectorAll<HTMLElement>('.filterable-section').forEach(sec => {
+        if (filter === 'all') { sec.style.display = ''; return; }
+        const visibleItems = sec.querySelectorAll<HTMLElement>('.testimonial-item');
+        const anyVisible = Array.from(visibleItems).some(i => i.style.display !== 'none');
+        sec.style.display = anyVisible ? '' : 'none';
       });
     });
   });

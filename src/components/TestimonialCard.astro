@@ -1,30 +1,122 @@
 ---
+import InitialCircle from './InitialCircle.astro';
+import TreatedPhoto from './TreatedPhoto.astro';
+
 interface Props {
   quote: string;
-  name: string;
-  role?: string;
+  attribution: string;
+  tag?: string;
+  initials?: string;
+  photo?: string;
+  photoAlt?: string;
+  featured?: boolean;
   class?: string;
+  /* legacy props still accepted so existing pages don't break */
+  name?: string;
+  role?: string;
 }
-const { quote, name, role, class: cls = '' } = Astro.props;
+const {
+  quote,
+  attribution,
+  tag,
+  initials,
+  photo,
+  photoAlt = '',
+  featured = false,
+  class: cls = '',
+  name,
+  role,
+} = Astro.props;
+
+/* resolve attribution from legacy name/role if new prop not given */
+const resolvedAttribution = attribution ?? (name ? (role ? `${name}, ${role}` : name) : '');
 ---
 
-<article class:list={[
-  'bg-sage/40 rounded-lg p-8 md:p-10 flex flex-col gap-5 relative',
-  cls,
-]}>
-  <!-- Large decorative quote mark -->
-  <span
-    aria-hidden="true"
-    class="absolute top-4 left-6 font-display text-7xl leading-none text-gold/30 select-none pointer-events-none"
-  >
-    "
-  </span>
+{featured ? (
+  /* ── Featured mode: full-width editorial two-column ── */
+  <div class:list={['tc-featured grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center', cls]}>
+    {photo && (
+      <div class="tc-featured-photo">
+        <TreatedPhoto
+          src={photo}
+          alt={photoAlt}
+          framed
+          width={580}
+          height={720}
+          class="w-full"
+        />
+      </div>
+    )}
+    <div class="tc-featured-content">
+      {tag && (
+        <p class="font-script text-saffron mb-4" style="font-size:16px; letter-spacing:0.06em;">{tag}</p>
+      )}
+      <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B;">
+        <p class="font-display italic text-forest" style="font-size:clamp(1.3rem,2.3vw,2rem); line-height:1.5;">
+          "{quote}"
+        </p>
+        <footer class="mt-6">
+          <cite class="font-script not-italic text-gold" style="font-size:22px;">— {resolvedAttribution}</cite>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+) : (
+  /* ── Default mode: card ── */
+  <div class:list={['tc-card group relative overflow-visible', cls]}
+    style="background:#FBF8F1; border:1px solid rgba(197,211,192,0.70); border-radius:12px; padding:2.5rem;">
 
-  <blockquote class="font-display italic text-lg md:text-xl text-forest leading-relaxed pt-6">
-    "{quote}"
-  </blockquote>
+    <!-- Oversized faded opening-quote glyph -->
+    <span
+      class="absolute font-display text-gold pointer-events-none select-none"
+      style="font-size:96px; line-height:1; opacity:0.18; top:-0.08em; left:0.3rem;"
+      aria-hidden="true"
+    >"</span>
 
-  <footer class="font-body text-sm text-muted">
-    — {name}{role && `, ${role}`}
-  </footer>
-</article>
+    <!-- Top row: tag left, avatar right -->
+    <div class="flex items-start justify-between gap-4 mb-5 relative z-10">
+      {tag
+        ? <p class="font-script text-saffron" style="font-size:14px; letter-spacing:0.06em;">{tag}</p>
+        : <span></span>
+      }
+      {photo
+        ? <TreatedPhoto src={photo} alt={photoAlt} width={56} height={56}
+            class="w-14 h-14 rounded-full object-cover flex-shrink-0" />
+        : initials
+          ? <InitialCircle initials={initials} size={56} />
+          : null
+      }
+    </div>
+
+    <!-- Quote -->
+    <blockquote class="relative z-10">
+      <p class="font-display italic text-ink" style="font-size:1.1875rem; line-height:1.6;">
+        "{quote}"
+      </p>
+      <footer class="mt-5">
+        <div class="tc-card-rule mb-2" aria-hidden="true"></div>
+        <cite class="font-script not-italic text-gold" style="font-size:18px;">— {resolvedAttribution}</cite>
+      </footer>
+    </blockquote>
+  </div>
+)}
+
+<style>
+  .tc-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .tc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -12px rgba(31,42,36,0.14);
+  }
+  .tc-card-rule {
+    width: 0;
+    height: 2px;
+    background: #C99A4B;
+    border-radius: 1px;
+    transition: width 0.3s ease;
+  }
+  .tc-card:hover .tc-card-rule {
+    width: 5rem;
+  }
+</style>
