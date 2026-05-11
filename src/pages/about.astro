@@ -1,25 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionEyebrow from '../components/SectionEyebrow.astro';
-import PullQuote from '../components/PullQuote.astro';
-import TestimonialCard from '../components/TestimonialCard.astro';
 import Button from '../components/Button.astro';
-import { testimonials } from '../data/testimonials';
-
-const yash = testimonials.find(t => t.id === 'yash')!;
+import Watercolor from '../components/Watercolor.astro';
+import Ornament from '../components/Ornament.astro';
+import DevanagariMark from '../components/DevanagariMark.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import SectionEyebrow from '../components/SectionEyebrow.astro';
 
 const modalities = [
   {
+    ornament: 'tree' as const,
     title: 'Yoga',
-    body: 'Multi-style (agility, strength, conditioning, flexibility) · Therapy yoga · Kundalini practices. 1:1 starts wherever your body is; group works all planes with a grounding approach; kundalini begins with in-person initiation plus group support.',
+    body: 'Multi-style, therapy, kundalini practices. Sessions begin wherever your body is today.',
   },
   {
+    ornament: 'hands' as const,
     title: 'Hands-on Therapy',
-    body: 'Access Bars · Body Process · Energetic Face Lift. Sessions are quiet and gentle. You arrive, you receive, you leave lighter.',
+    body: "Access Bars, Body Process, Energetic Face Lift. Quiet sessions that release what words can't.",
   },
   {
+    ornament: 'lotus' as const,
     title: 'Energetic Consultation',
-    body: 'Ease in life · Relationship issues · Emotional clarity · Getting over traumas · A different approach to mental illness · Relationship with food · Positive body image.',
+    body: 'Ease in life, relationships, emotional clarity, relationship with food, positive body image.',
   },
 ];
 
@@ -34,168 +36,626 @@ const credentials = [
   title="About"
   description="With over a decade of dedicated practice, Likhitha Sree guides yoga, hands-on energy work, and consciousness practices in an unconventional, tailored approach."
 >
-  <!-- Hero -->
-  <section class="relative min-h-[70vh] flex items-end overflow-hidden">
-    <div class="absolute inset-0">
+
+  <!-- ═══════════════════════════════════════════════
+       HERO — split layout, cream left / photo right
+  ══════════════════════════════════════════════════ -->
+  <section class="about-hero relative flex flex-col md:flex-row min-h-screen">
+
+    <!-- Left panel: cream + watermark + type -->
+    <div class="relative flex-1 bg-cream flex items-center overflow-hidden">
+      <!-- Paper grain already on body; DevanagariMark watermark centered behind type -->
+      <div aria-hidden="true" class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <DevanagariMark size={480} opacity={0.10} />
+      </div>
+
+      <!-- Type content -->
+      <div class="relative z-10 px-8 py-20 md:px-14 lg:px-20 xl:px-28 w-full">
+        <ScrollReveal>
+          <p class="font-script text-gold hero-eyebrow mb-5" aria-label="Founder">FOUNDER</p>
+          <h1 class="font-display font-medium text-forest hero-headline leading-none tracking-tight">
+            Likhitha&nbsp;Sree
+          </h1>
+          <p class="font-script text-gold hero-signature mt-5">— True empowerment as key.</p>
+        </ScrollReveal>
+      </div>
+    </div>
+
+    <!-- Right panel: full-height portrait photo -->
+    <div class="relative flex-1 min-h-[70vw] md:min-h-screen">
+      <!-- Sage watercolor wash bleeding from top-left corner over the photo edge -->
+      <Watercolor position="top-left" opacity={0.60} scale={1.4} class="z-10" />
       <img
         src="/images/portraits/04_peaceful_closeup_temple_backdrop.jpeg"
-        alt="Likhitha Sree"
-        class="w-full h-full object-cover object-top"
+        alt="Likhitha Sree in quiet meditation, soft smile, temple and mountain backdrop in Sri Lanka"
+        class="absolute inset-0 w-full h-full object-cover object-center"
         loading="eager"
         fetchpriority="high"
         decoding="async"
+        width="900"
+        height="1200"
       />
-      <div
-        class="absolute inset-0"
-        style="background: linear-gradient(to bottom, transparent 30%, rgba(251,248,241,0.95) 100%);"
-        aria-hidden="true"
-      ></div>
-    </div>
-    <div class="relative site-container pb-16 md:pb-24 w-full">
-      <SectionEyebrow text="Founder" class="mb-3" />
-      <h1 class="font-display text-4xl md:text-hero text-forest">Likhitha Sree</h1>
-      <p class="font-body text-lg text-muted mt-2 italic">True empowerment as key.</p>
     </div>
   </section>
 
-  <!-- Bio -->
-  <section class="bg-cream section-pad">
-    <div class="site-container grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-      <div class="prose-region">
-        <p class="font-body text-base text-ink/85 leading-relaxed mb-6">
-          With over a decade of dedicated practice and 5 years of teaching, Sree brings a unique
-          blend of ancient wisdom and modern consciousness techniques. Her journey began with a deep
-          yearning for authentic transformation — not just physical flexibility, but true inner freedom.
-        </p>
-        <p class="font-body text-base text-ink/85 leading-relaxed mb-6">
-          She works with an unconventional and tailored approach that integrates yoga, access
-          consciousness, energy healing, breathing, meditation, and kriyas. Each modality serves as
-          a doorway to greater awareness and presence.
-        </p>
 
-        <PullQuote
-          quote="Every session is an invitation to come home to yourself."
-        />
+  <!-- ═══════════════════════════════════════════════
+       BIO — 12-col grid, dropcap, pull-quote
+  ══════════════════════════════════════════════════ -->
+  <section class="bg-cream section-pad overflow-hidden">
+    <div class="site-container">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-x-14 gap-y-10 items-start">
 
-        <p class="font-body text-base text-ink/85 leading-relaxed">
-          What sets her practice apart is the focus on awareness — not just as a technique but an
-          approach. Every session is an invitation to come home to yourself, to discover the
-          stillness and power that already lives within you.
-        </p>
-      </div>
-
-      <div class="flex flex-col gap-8">
-        <img
-          src="/images/portraits/01_hillstation_selfie_daisy_white_tee.jpeg"
-          alt="Likhitha Sree"
-          class="rounded-lg w-full object-cover shadow-soft"
-          loading="lazy"
-          decoding="async"
-        />
-        <!-- Credentials strip -->
-        <div class="bg-sage/30 rounded-lg p-6 flex flex-col gap-3">
-          <p class="font-body text-xs uppercase tracking-[0.06em] text-gold font-medium mb-1">
-            Credentials
-          </p>
-          {credentials.map(c => (
-            <p class="font-body text-sm text-ink/80 flex items-start gap-2">
-              <span class="text-gold mt-0.5">✦</span>
-              {c}
-            </p>
-          ))}
-        </div>
-        <img
-          src="/images/credentials/01_access_3day_body_class_certificate.jpeg"
-          alt="Access Consciousness 3 Day Body Class Certificate"
-          class="rounded border border-rule w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- Modalities -->
-  <section class="bg-sage/20 section-pad">
-    <div class="site-container max-w-[800px]">
-      <SectionEyebrow text="Modalities" class="mb-4" />
-      <h2 class="font-display text-3xl md:text-4xl text-forest mb-10">
-        Every doorway leads inward.
-      </h2>
-      <div class="flex flex-col gap-6" id="modalities-accordion">
-        {modalities.map((m, idx) => (
-          <div class="border-l-4 border-gold bg-cream rounded-lg overflow-hidden">
-            <button
-              class="w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
-              aria-expanded={idx === 0 ? 'true' : 'false'}
-              data-accordion-toggle
-            >
-              <h3 class="font-display text-xl text-forest group-hover:text-gold transition-colors">
-                {m.title}
-              </h3>
-              <svg
-                width="20" height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                class="flex-shrink-0 text-gold transition-transform duration-200 accordion-icon"
-                style={idx === 0 ? 'transform: rotate(180deg)' : ''}
-              >
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-            </button>
-            <div
-              class="accordion-body px-6 pb-6 text-base text-ink/80 leading-relaxed"
-              style={idx === 0 ? '' : 'display:none'}
-            >
-              {m.body}
+        <!-- Text: cols 1–7 -->
+        <div class="md:col-span-7">
+          <ScrollReveal>
+            <div class="bio-text">
+              <p>
+                With over a decade of dedicated practice and 5 years of teaching, Sree brings a
+                unique blend of ancient wisdom and modern consciousness techniques. Her journey
+                began with a deep yearning for authentic transformation — not just physical
+                flexibility, but true inner freedom.
+              </p>
+              <p class="mt-6">
+                She works with an unconventional and tailored approach that integrates yoga, access
+                consciousness, energy healing, breathing, meditation, and kriyas. Each modality
+                serves as a doorway to greater awareness and presence.
+              </p>
             </div>
+          </ScrollReveal>
+        </div>
+
+        <!-- Portrait: cols 8–12 (spans both paragraph rows) -->
+        <div class="md:col-span-5 md:row-span-2 relative flex justify-center md:justify-end pt-0 md:-mt-4">
+          <div class="relative inline-block">
+            <!-- Watercolor wash offset behind the photo -->
+            <div class="absolute" style="top:24px; left:-24px; z-index:0;" aria-hidden="true">
+              <Watercolor position="center-left" opacity={0.55} scale={1.1} />
+            </div>
+            <!-- Leaf ornament top-right of photo -->
+            <div class="absolute -top-5 -right-5 z-20" aria-hidden="true">
+              <Ornament name="leaf" size={64} color="#C99A4B" />
+            </div>
+            <img
+              src="/images/yoga-poses/06_lotus_meditation_on_rock_outdoors.jpeg"
+              alt="Likhitha Sree in Padmasana lotus meditation on a flat rock under a tree outdoors"
+              class="relative z-10 w-full max-w-sm md:max-w-none rounded-lg object-cover shadow-soft"
+              loading="lazy"
+              decoding="async"
+              width="520"
+              height="680"
+            />
+          </div>
+        </div>
+
+        <!-- Pull-quote row (col 1–7 only, bleeds past container via negative margin) -->
+        <div class="md:col-span-7">
+          <ScrollReveal>
+            <div class="pull-quote-bleed">
+              <blockquote class="bio-pull-quote">
+                "Every session is an invitation to come home to yourself."
+              </blockquote>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+
+      <!-- Para 3 — separate row so pull-quote can break between it and para 2 -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-x-14 mt-10">
+        <div class="md:col-span-7">
+          <ScrollReveal>
+            <div class="bio-text">
+              <p>
+                What sets her practice apart is the focus on awareness — not just as a technique but
+                an approach. Every session is an invitation to come home to yourself, to discover
+                the stillness and power that already lives within you.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       JOURNEY STRIP — sage-mist BG, three milestones
+  ══════════════════════════════════════════════════ -->
+  <section class="journey-section section-pad" style="background: rgba(197,211,192,0.28);">
+    <div class="site-container">
+      <ScrollReveal>
+        <p class="font-script text-gold text-center mb-12" style="font-size:22px; letter-spacing:0.04em;">THE JOURNEY</p>
+      </ScrollReveal>
+
+      <div class="journey-grid">
+        <!-- Milestone 1 -->
+        <ScrollReveal delay={120}>
+          <div class="journey-milestone">
+            <p class="font-script text-gold text-center mb-3" style="font-size:18px;">Since 2012</p>
+            <div class="journey-img-wrap mx-auto">
+              <img
+                src="/images/portraits/05_mossy_waterfall_beanie_outdoor.jpeg"
+                alt="Likhitha crouched by a mossy waterfall in the mountains, wearing a beanie — early practice years"
+                class="journey-img"
+                loading="lazy"
+                decoding="async"
+                width="280"
+                height="320"
+              />
+            </div>
+            <h3 class="font-display text-forest text-center mt-5" style="font-size:2rem; line-height:1.1;">12+ Years<br/>of Practice</h3>
+          </div>
+        </ScrollReveal>
+
+        <!-- Connecting line 1→2 -->
+        <div class="journey-connector" aria-hidden="true">
+          <svg viewBox="0 0 120 20" preserveAspectRatio="none" width="100%" height="20">
+            <path d="M0 10 Q20 4 40 10 Q60 16 80 10 Q100 4 120 10"
+              stroke="#C99A4B" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Milestone 2 -->
+        <ScrollReveal delay={240}>
+          <div class="journey-milestone">
+            <p class="font-script text-gold text-center mb-3" style="font-size:18px;">Since 2019</p>
+            <div class="journey-img-wrap mx-auto">
+              <img
+                src="/images/classes-in-session/02_teaching_two_students_studio_moon_poster.jpeg"
+                alt="Likhitha guiding two seated students in the studio beneath a moon art print — in-session teaching"
+                class="journey-img"
+                loading="lazy"
+                decoding="async"
+                width="280"
+                height="320"
+              />
+            </div>
+            <h3 class="font-display text-forest text-center mt-5" style="font-size:2rem; line-height:1.1;">5 Years<br/>Teaching</h3>
+          </div>
+        </ScrollReveal>
+
+        <!-- Connecting line 2→3 -->
+        <div class="journey-connector" aria-hidden="true">
+          <svg viewBox="0 0 120 20" preserveAspectRatio="none" width="100%" height="20">
+            <path d="M0 10 Q20 16 40 10 Q60 4 80 10 Q100 16 120 10"
+              stroke="#C99A4B" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Milestone 3 -->
+        <ScrollReveal delay={360}>
+          <div class="journey-milestone">
+            <p class="font-script text-gold text-center mb-3" style="font-size:18px;">Certified</p>
+            <div class="journey-img-wrap mx-auto">
+              <img
+                src="/images/credentials/01_access_3day_body_class_certificate.jpeg"
+                alt="Likhitha Sree holding her Access Consciousness 3 Day Body Class certificate with her certifying facilitators"
+                class="journey-img"
+                loading="lazy"
+                decoding="async"
+                width="280"
+                height="320"
+              />
+            </div>
+            <h3 class="font-display text-forest text-center mt-5" style="font-size:2rem; line-height:1.1;">Access Bars<br/>Practitioner</h3>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       MODALITIES — three cards with ornaments
+  ══════════════════════════════════════════════════ -->
+  <section class="bg-cream section-pad">
+    <div class="site-container">
+      <ScrollReveal>
+        <p class="font-script text-gold text-center mb-3" style="font-size:22px;">MODALITIES</p>
+        <h2 class="font-display font-medium text-forest text-center mb-14"
+            style="font-size:clamp(2.5rem, 5vw, 4rem); line-height:1.1;">
+          Every doorway leads inward.
+        </h2>
+      </ScrollReveal>
+
+      <div class="modalities-grid">
+        {modalities.map((m) => (
+          <div class="modality-card group">
+            <div class="modality-ornament-wrap">
+              <Ornament name={m.ornament} size={48} color="#C99A4B" class="modality-ornament transition-transform duration-500 group-hover:rotate-6" />
+            </div>
+            <div class="card-rule-wrap">
+              <div class="card-rule" aria-hidden="true"></div>
+            </div>
+            <h3 class="font-display text-forest" style="font-size:1.6rem; line-height:1.2; margin-bottom:0.75rem;">{m.title}</h3>
+            <p class="font-body text-ink/80" style="font-size:1.05rem; line-height:1.65;">{m.body}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Featured story -->
-  <section class="bg-cream section-pad">
-    <div class="site-container max-w-[800px]">
-      <SectionEyebrow text="A student's story" class="mb-8" />
-      <TestimonialCard quote={yash.quote} name={yash.name} role={yash.role} />
-    </div>
-  </section>
 
-  <!-- Closing CTA -->
-  <section class="bg-forest section-pad">
-    <div class="site-container text-center">
-      <h2 class="font-display text-3xl text-cream mb-10">Ready to begin?</h2>
-      <div class="flex flex-wrap justify-center gap-6">
-        <Button href="/monday" variant="primary">Start with the Monday Night Call</Button>
-        <Button
-          href="/contact"
-          class="border-cream text-cream hover:border-gold"
-          variant="secondary"
-        >
-          Book a 1:1
-        </Button>
+  <!-- ═══════════════════════════════════════════════
+       YASH FEATURED STORY — biggest visual moment
+  ══════════════════════════════════════════════════ -->
+  <section class="yash-section relative bg-cream section-pad overflow-hidden">
+    <!-- DevanagariMark watermark behind everything -->
+    <div aria-hidden="true" class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+      <DevanagariMark size={360} opacity={0.05} />
+    </div>
+
+    <!-- Floating photos (desktop only, hidden mobile) -->
+    <div aria-hidden="true" class="yash-photo-left hidden md:block">
+      <div class="relative inline-block">
+        <div class="absolute inset-0 -translate-x-4 translate-y-4 z-0" style="left:-20px; top:16px;">
+          <Watercolor position="center-left" opacity={0.45} scale={0.9} />
+        </div>
+        <img
+          src="/images/healing-sessions/02_beach_shavasana_head_touch.jpeg"
+          alt="Overhead view of a student in shavasana on sand, receiving gentle scalp work from Likhitha — an Access Bars session"
+          class="relative z-10 rounded-lg shadow-soft object-cover"
+          loading="lazy"
+          decoding="async"
+          width="380"
+          height="480"
+          style="width:340px; height:420px;"
+        />
+      </div>
+    </div>
+
+    <div aria-hidden="true" class="yash-photo-right hidden md:block">
+      <div class="relative inline-block">
+        <div class="absolute" style="right:-20px; top:-16px; z-index:0;">
+          <Watercolor position="top-right" opacity={0.40} scale={0.85} />
+        </div>
+        <img
+          src="/images/healing-sessions/04_access_face_touch_joyful_duo.jpeg"
+          alt="Likhitha and a client sharing a joyful moment during an energetic face-work session"
+          class="relative z-10 rounded-lg shadow-soft object-cover"
+          loading="lazy"
+          decoding="async"
+          width="340"
+          height="440"
+          style="width:300px; height:380px;"
+        />
+      </div>
+    </div>
+
+    <!-- Centered text -->
+    <div class="relative z-10 site-container">
+      <div class="yash-text-wrap mx-auto">
+        <ScrollReveal>
+          <p class="font-script text-gold text-center mb-4" style="font-size:22px;">A STUDENT'S STORY</p>
+          <h2 class="font-display font-medium text-forest text-center mb-10"
+              style="font-size:clamp(2.2rem, 5vw, 4rem); line-height:1.1;">
+            Yash drove home quieter<br class="hidden md:inline" /> than he came.
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={80}>
+          <div class="yash-body">
+            <p>
+              On the drive back from the Bars session it was a lot quieter than before. I had this
+              positive reinforcement, this subtle energy that was telling me it's all gonna be okay
+              soon. I've come a long way from that day — so many good things are constantly
+              happening that now it's hard to believe it's all for real. Thank you, Likhitha. It
+              had a huge part in where I am today.
+            </p>
+            <p class="font-body italic text-muted mt-6" style="font-size:1rem;">— Yash, climbing instructor</p>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CREDENTIALS BLOCK — gold-bordered feature panel
+  ══════════════════════════════════════════════════ -->
+  <section class="bg-cream section-pad">
+    <div class="site-container">
+      <ScrollReveal>
+        <div class="credentials-panel">
+          <div class="mb-6">
+            <p class="font-script text-gold mb-2" style="font-size:20px;">CERTIFIED</p>
+            <h2 class="font-display font-medium text-forest" style="font-size:2.25rem; line-height:1.15;">
+              Training &amp; Certifications
+            </h2>
+          </div>
+
+          <div class="credentials-inner">
+            <!-- Certificate image with gold frame -->
+            <div class="cert-img-wrap">
+              <img
+                src="/images/credentials/01_access_3day_body_class_certificate.jpeg"
+                alt="Likhitha holding her Access Consciousness 3 Day Body Class certificate alongside certifying facilitators Connor Hill and Chandana Bawa"
+                class="w-full object-cover rounded-sm"
+                loading="lazy"
+                decoding="async"
+                width="500"
+                height="380"
+              />
+            </div>
+
+            <!-- Credential list -->
+            <ul class="credentials-list" role="list">
+              {credentials.map((c) => (
+                <li class="credential-item">
+                  <span class="flex-shrink-0 mt-1" aria-hidden="true">
+                    <Ornament name="leaf" size={14} color="#C99A4B" />
+                  </span>
+                  <span class="font-body text-ink/85" style="font-size:1.05rem; line-height:1.55;">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CLOSING CTA — forest BG, "Ready to begin?"
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-forest section-pad overflow-hidden">
+    <!-- Large DevanagariMark watermark centered -->
+    <div aria-hidden="true" class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+      <DevanagariMark size={600} opacity={0.10} color="#C99A4B" />
+    </div>
+
+    <div class="relative z-10 site-container text-center">
+      <ScrollReveal>
+        <p class="font-script text-gold mb-4" style="font-size:22px;">— with quiet welcome</p>
+        <h2 class="font-display font-medium text-cream mb-12" style="font-size:clamp(3rem, 6vw, 4.5rem); line-height:1.05;">
+          Ready to begin?
+        </h2>
+        <div class="flex flex-wrap items-center justify-center gap-6">
+          <Button href="/monday" variant="primary" class="cta-btn-primary">
+            Join the Monday Night Call
+          </Button>
+          <Ornament name="lotus" size={56} color="#C99A4B" class="opacity-70" />
+          <Button href="/contact" variant="secondary" class="cta-btn-secondary">
+            Book a 1:1 session
+          </Button>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
 </Base>
 
-<script>
-  document.querySelectorAll('[data-accordion-toggle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      const body = btn.nextElementSibling as HTMLElement;
-      const icon = btn.querySelector('.accordion-icon') as HTMLElement;
 
-      btn.setAttribute('aria-expanded', String(!expanded));
-      body.style.display = expanded ? 'none' : 'block';
-      icon.style.transform = expanded ? '' : 'rotate(180deg)';
-    });
-  });
-</script>
+<style>
+  /* ─── Hero typography ─────────────────────────── */
+  .hero-eyebrow {
+    font-size: 22px;
+    display: inline-block;
+    transform: rotate(-2deg);
+    letter-spacing: 0.03em;
+  }
+  .hero-headline {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 1;
+  }
+  .hero-signature {
+    font-size: 28px;
+  }
+
+  /* ─── Bio dropcap ─────────────────────────────── */
+  .bio-text p:first-child::first-letter {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 5rem;
+    font-weight: 500;
+    color: #C99A4B;
+    float: left;
+    line-height: 0.78;
+    margin-right: 0.12em;
+    margin-top: 0.06em;
+  }
+  .bio-text p {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(31,42,36,0.85);
+  }
+
+  /* ─── Bio pull-quote ──────────────────────────── */
+  .pull-quote-bleed {
+    margin-left: -2rem;
+    padding-left: 2rem;
+  }
+  .bio-pull-quote {
+    border-left: 4px solid #C99A4B;
+    padding-left: 1.5rem;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    color: #2C5F3F;
+    margin: 1.5rem 0;
+  }
+
+  /* ─── Journey strip ───────────────────────────── */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  @media (max-width: 767px) {
+    .journey-grid {
+      grid-template-columns: 1fr;
+    }
+    .journey-connector { display: none; }
+  }
+  .journey-milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .journey-connector {
+    width: 80px;
+    opacity: 0.8;
+    align-self: center;
+    margin-top: -40px; /* align with image midpoint */
+  }
+  .journey-img-wrap {
+    width: 220px;
+    height: 260px;
+    overflow: hidden;
+    clip-path: polygon(6% 0%, 94% 2%, 100% 90%, 88% 100%, 12% 96%, 0% 8%);
+  }
+  .journey-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ─── Modalities cards ────────────────────────── */
+  .modalities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .modality-card {
+    background: #FBF8F1;
+    border: 1px solid #C5D3C0;
+    border-radius: 12px;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .modality-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -12px rgba(31,42,36,0.14);
+  }
+  .modality-ornament-wrap {
+    margin-bottom: 1.25rem;
+  }
+  .card-rule-wrap {
+    margin-bottom: 0.75rem;
+  }
+  .card-rule {
+    width: 0;
+    height: 3px;
+    background: #C99A4B;
+    transition: width 0.35s ease;
+    border-radius: 2px;
+  }
+  .modality-card:hover .card-rule {
+    width: 3rem;
+  }
+  .modality-ornament {
+    transition: transform 0.45s ease;
+  }
+  .modality-card:hover .modality-ornament {
+    transform: rotate(6deg);
+  }
+
+  /* ─── Yash section ────────────────────────────── */
+  .yash-photo-left {
+    position: absolute;
+    left: 2rem;
+    top: 4rem;
+    transform: rotate(-3deg);
+    z-index: 1;
+  }
+  .yash-photo-right {
+    position: absolute;
+    right: 2rem;
+    top: calc(4rem + 200px);
+    transform: rotate(2deg);
+    z-index: 1;
+  }
+  .yash-text-wrap {
+    max-width: 60ch;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .yash-text-wrap {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+  .yash-body p:first-child::first-letter {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 5rem;
+    font-weight: 500;
+    color: #C99A4B;
+    float: left;
+    line-height: 0.78;
+    margin-right: 0.12em;
+    margin-top: 0.06em;
+  }
+  .yash-body p {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 1.1875rem;
+    line-height: 1.75;
+    color: rgba(31,42,36,0.85);
+  }
+
+  /* ─── Credentials panel ───────────────────────── */
+  .credentials-panel {
+    border: 2px solid #C99A4B;
+    border-radius: 12px;
+    background: #FBF8F1;
+    padding: 3rem 3.5rem;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+  .credentials-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+  @media (max-width: 767px) {
+    .credentials-inner { grid-template-columns: 1fr; }
+    .credentials-panel { padding: 2rem 1.5rem; }
+  }
+  .cert-img-wrap {
+    padding: 8px;
+    border: 1px solid #C99A4B;
+    border-radius: 4px;
+    background: #FBF8F1;
+  }
+  .credentials-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .credential-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  /* ─── CTA buttons ─────────────────────────────── */
+  .cta-btn-primary {
+    background: #C99A4B !important;
+    color: #2C5F3F !important;
+    border-color: #C99A4B !important;
+  }
+  .cta-btn-primary:hover {
+    background: #b8893e !important;
+  }
+  .cta-btn-secondary {
+    border-color: #FBF8F1 !important;
+    color: #FBF8F1 !important;
+  }
+  .cta-btn-secondary:hover {
+    border-color: #C99A4B !important;
+  }
+</style>
