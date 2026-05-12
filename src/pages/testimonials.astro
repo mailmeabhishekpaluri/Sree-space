@@ -79,7 +79,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
           <button
             data-filter={f.value}
             class="filter-chip font-script"
-            style="font-size:22px; background:none; border:none; cursor:pointer; padding:0.25rem 0; color:rgba(31,42,36,0.75); position:relative;"
+            style="font-size:22px; background:none; border:none; cursor:pointer; padding:0.25rem 0; color:rgba(var(--color-ink-rgb),0.75); position:relative;"
             aria-pressed={f.value === 'all' ? 'true' : 'false'}
           >
             {f.label}
@@ -125,7 +125,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
   <!-- ═══════════════════════════════════════════════
        SECTION 4 — "ON SREE'S TEACHING" (Pragathi + Nagavamsi)
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash">
     <Watercolor position="top-left" opacity={0.30} variant={2} />
 
     <div class="site-container relative z-10">
@@ -211,7 +211,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
           <!-- Pull-quote with centered gold left-rule -->
           <div class="inline-block text-left">
-            <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B;">
+            <blockquote class="relative pl-8 gold-border-l">
               <p class="font-display italic text-forest" style="font-size:clamp(1.3rem,2.2vw,1.625rem); line-height:1.5;">
                 "Thank you, deeply. Sharing your words is what makes the next person feel safe to come."
               </p>
@@ -233,7 +233,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
   <!-- ═══════════════════════════════════════════════
        SECTION 7 — "HAVE SOMETHING TO ADD?"
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash">
     <div class="site-container">
       <ScrollReveal>
         <div class="text-center max-w-[640px] mx-auto">
@@ -278,8 +278,8 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
           style="font-size:clamp(2rem,4vw,3.5rem); line-height:1.1;">
           Words land where they land.<br class="hidden md:inline" /> Come hear it yourself.
         </h2>
-        <p class="font-body leading-relaxed mb-10 mx-auto"
-          style="font-size:17px; color:rgba(251,248,241,0.88); max-width:52ch;">
+        <p class="font-body leading-relaxed mb-10 mx-auto text-cream/[0.88]"
+          style="font-size:17px; max-width:52ch;">
           A weekly free call. Pay by becoming more present.
         </p>
         <a

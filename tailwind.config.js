@@ -6,7 +6,7 @@ export default {
       colors: {
         gold:   { DEFAULT: '#C99A4B', dark: '#A37A30' },
         forest: { DEFAULT: '#2C5F3F', soft: '#4D7A5C' },
-        sage:   { DEFAULT: '#C5D3C0', deep: '#9CB098' },
+        sage:   { DEFAULT: '#C5D3C0', deep: '#9CB098', wash: '#EFF3ED' },
         cream:  '#FBF8F1',
         saffron:'#E07B2C',
         earth:  '#7A5A3E',

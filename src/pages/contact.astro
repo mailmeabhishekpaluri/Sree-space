@@ -63,7 +63,7 @@ const faqs = [
       <!-- Sage → transparent from left where type sits -->
       <div
         class="absolute inset-0"
-        style="background: linear-gradient(95deg, rgba(197,211,192,0.96) 0%, rgba(197,211,192,0.85) 20%, rgba(197,211,192,0.55) 40%, rgba(197,211,192,0.15) 60%, transparent 78%);"
+        style="background: linear-gradient(95deg, rgba(var(--color-sage-rgb),0.96) 0%, rgba(var(--color-sage-rgb),0.85) 20%, rgba(var(--color-sage-rgb),0.55) 40%, rgba(var(--color-sage-rgb),0.15) 60%, transparent 78%);"
       ></div>
     </div>
 
@@ -89,8 +89,8 @@ const faqs = [
               <span class="chw"> the</span>
               <span class="chw"> practice.</span>
             </h1>
-            <p class="font-body mb-6"
-              style="font-size:19px; max-width:56ch; line-height:1.65; color:rgba(251,248,241,0.90);">
+            <p class="font-body mb-6 text-cream/90"
+              style="font-size:19px; max-width:56ch; line-height:1.65;">
               Whatever you're carrying, send it. There's no wrong door.
             </p>
             <p class="font-script italic text-gold" style="font-size:20px;">
@@ -106,7 +106,7 @@ const faqs = [
   <!-- ═══════════════════════════════════════════════
        SECTION 2 — FORM
   ══════════════════════════════════════════════════ -->
-  <section id="contact-form" class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section id="contact-form" class="relative overflow-hidden section-pad bg-sage-wash">
     <Watercolor position="top-left" opacity={0.35} variant={2} />
 
     <div class="site-container relative z-10">
@@ -190,7 +190,7 @@ const faqs = [
                       data-value={opt.value}
                       aria-pressed="false"
                       class="interest-btn font-script"
-                      style="font-size:20px; background:none; border:none; cursor:pointer; padding:0.25rem 0; color:rgba(31,42,36,0.75); position:relative;"
+                      style="font-size:20px; background:none; border:none; cursor:pointer; padding:0.25rem 0; color:rgba(var(--color-ink-rgb),0.75); position:relative;"
                     >
                       {opt.label}
                     </button>
@@ -333,7 +333,7 @@ const faqs = [
   <!-- ═══════════════════════════════════════════════
        SECTION 4 — FAQ
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash">
     <Watercolor position="top-right" opacity={0.30} variant={1} />
 
     <div class="site-container relative z-10">
@@ -401,8 +401,8 @@ const faqs = [
           style="font-size:clamp(2.8rem,7vw,4.5rem); line-height:1.1; max-width:24ch; margin-inline:auto;">
           Ask and you shall receive.
         </h2>
-        <p class="font-body leading-relaxed mb-12 mx-auto"
-          style="font-size:17px; color:rgba(251,248,241,0.80); max-width:40ch;">
+        <p class="font-body leading-relaxed mb-12 mx-auto text-cream/80"
+          style="font-size:17px; max-width:40ch;">
           It's a brand promise. Test it.
         </p>
         <a

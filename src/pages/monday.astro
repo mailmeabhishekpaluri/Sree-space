@@ -31,11 +31,11 @@ import { site } from '../data/site';
       <!-- Sage gradient: heavy left where type sits, fades right -->
       <div
         class="absolute inset-0"
-        style="background: linear-gradient(100deg, rgba(197,211,192,0.95) 0%, rgba(197,211,192,0.82) 22%, rgba(197,211,192,0.55) 42%, rgba(197,211,192,0.18) 62%, transparent 80%);"
+        style="background: linear-gradient(100deg, rgba(var(--color-sage-rgb),0.95) 0%, rgba(var(--color-sage-rgb),0.82) 22%, rgba(var(--color-sage-rgb),0.55) 42%, rgba(var(--color-sage-rgb),0.18) 62%, transparent 80%);"
       ></div>
       <!-- Bottom vignette for mobile -->
       <div class="absolute bottom-0 left-0 right-0 h-40 md:hidden"
-        style="background: linear-gradient(to top, rgba(197,211,192,0.65) 0%, transparent 100%);"></div>
+        style="background: linear-gradient(to top, rgba(var(--color-sage-rgb),0.65) 0%, transparent 100%);"></div>
     </div>
 
     <!-- Devanagari watermark left, behind type -->
@@ -72,8 +72,8 @@ import { site } from '../data/site';
             </h1>
 
             <!-- Sub -->
-            <p class="font-body mb-10 monday-sub"
-              style="font-size:19px; max-width:52ch; line-height:1.65; color:rgba(251,248,241,0.90);">
+            <p class="font-body mb-10 monday-sub text-cream/90"
+              style="font-size:19px; max-width:52ch; line-height:1.65;">
               A weekly ritual that gently guides you back to awareness.
               Free, by design.
             </p>
@@ -126,7 +126,7 @@ import { site } from '../data/site';
 
             <!-- Pull-quote with gold left-rule breaking container -->
             <div class="max-w-[640px] mx-auto">
-              <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B; margin-left:-24px; padding-left:2rem;">
+              <blockquote class="relative pl-8 gold-border-l" style="margin-left:-24px; padding-left:2rem;">
                 <p class="font-display italic text-forest"
                   style="font-size:clamp(1.4rem,2.5vw,1.75rem); line-height:1.45; max-width:36ch;">
                   "I wanted to gift consciousness. You 'pay' by becoming more present, more aware — so I get to live in a world of better people. That's the whole exchange."
@@ -151,7 +151,7 @@ import { site } from '../data/site';
   <!-- ═══════════════════════════════════════════════
        SECTION 3 — "THE RITUAL" (VERTICAL TIMELINE)
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash">
     <Watercolor position="top-right" opacity={0.35} variant={2} />
 
     <div class="site-container">
@@ -289,7 +289,7 @@ import { site } from '../data/site';
           </p>
 
           <!-- Gold rule -->
-          <div style="width:48px; height:1px; background:#C99A4B; margin:0 auto 1.5rem;"></div>
+          <div style="width:48px; height:1px; background:var(--color-gold); margin:0 auto 1.5rem;"></div>
 
           <!-- Zoom note -->
           <p class="font-body italic text-muted" style="font-size:18px;">
@@ -304,7 +304,7 @@ import { site } from '../data/site';
   <!-- ═══════════════════════════════════════════════
        SECTION 5 — SIGNUP FORM
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" id="signup" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash" id="signup">
     <Watercolor position="top-left" opacity={0.35} variant={2} />
 
     <div class="site-container relative z-10">
@@ -513,8 +513,8 @@ import { site } from '../data/site';
           style="font-size:clamp(2.8rem,7vw,4.5rem); line-height:1.1;">
           Ask and you shall receive.
         </h2>
-        <p class="font-body leading-relaxed mb-12 mx-auto"
-          style="font-size:17px; color:rgba(251,248,241,0.80); max-width:52ch;">
+        <p class="font-body leading-relaxed mb-12 mx-auto text-cream/80"
+          style="font-size:17px; max-width:52ch;">
           Whatever else is on your mind, send it. There's no wrong question.
         </p>
         <div class="flex flex-wrap items-center justify-center gap-6">

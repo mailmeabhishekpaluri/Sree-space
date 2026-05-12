@@ -51,7 +51,7 @@ const resolvedAttribution = attribution ?? (name ? (role ? `${name}, ${role}` : 
       {tag && (
         <p class="font-script text-saffron mb-4" style="font-size:16px; letter-spacing:0.06em;">{tag}</p>
       )}
-      <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B;">
+      <blockquote class="relative pl-8 gold-border-l">
         <p class="font-display italic text-forest" style="font-size:clamp(1.3rem,2.3vw,2rem); line-height:1.5;">
           "{quote}"
         </p>
@@ -64,7 +64,7 @@ const resolvedAttribution = attribution ?? (name ? (role ? `${name}, ${role}` : 
 ) : (
   /* ── Default mode: card ── */
   <div class:list={['tc-card group relative overflow-visible', cls]}
-    style="background:#FBF8F1; border:1px solid rgba(197,211,192,0.70); border-radius:12px; padding:2.5rem;">
+    style="background:var(--color-cream); border:1px solid rgba(var(--color-sage-rgb),0.70); border-radius:12px; padding:2.5rem;">
 
     <!-- Oversized faded opening-quote glyph -->
     <span

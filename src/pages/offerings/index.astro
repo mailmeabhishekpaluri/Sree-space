@@ -53,7 +53,7 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
 
             <!-- Gold thin rule + chapter counter -->
             <div class="flex items-center gap-5">
-              <div style="width:64px; height:1px; background:#C99A4B;" aria-hidden="true"></div>
+              <div style="width:64px; height:1px; background:var(--color-gold);" aria-hidden="true"></div>
               <span class="font-script text-gold" style="font-size:20px; letter-spacing:0.06em;">01 — 04</span>
             </div>
           </ScrollReveal>
@@ -120,7 +120,7 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
   <!-- ═══════════════════════════════════════════════
        SECTION 3 — HANDS-ON THERAPY (ALTERNATING, IMAGE RIGHT)
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash">
     <Watercolor position="top-left" opacity={0.30} variant={1} />
 
     <div class="site-container">
@@ -175,7 +175,7 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
   <!-- ═══════════════════════════════════════════════
        SECTION 4 — MID-PAGE PULL-QUOTE (PRAGATHI)
   ══════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden section-pad" style="background:#EFF3ED;">
+  <section class="relative overflow-hidden section-pad bg-sage-wash">
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
       <DevanagariMark size={420} opacity={0.06} color="#2C5F3F" />
     </div>
@@ -186,7 +186,7 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
           A student's words
         </p>
         <div class="max-w-[720px] mx-auto">
-          <blockquote class="relative pl-8" style="border-left:4px solid #C99A4B; margin-left:-24px; padding-left:2rem;">
+          <blockquote class="relative pl-8 gold-border-l" style="margin-left:-24px; padding-left:2rem;">
             <p class="font-display italic text-forest" style="font-size:clamp(1.6rem,3.5vw,2.625rem); line-height:1.35; max-width:36ch;">
               "Her questions don't bind me with the set answers — they set me free to find the answers for myself."
             </p>
@@ -326,7 +326,7 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
         <h2 class="font-display font-medium text-cream mb-5" style="font-size:clamp(2.4rem,5vw,4rem); line-height:1.1;">
           Or just come listen for an hour.
         </h2>
-        <p class="font-body leading-relaxed mb-10 mx-auto" style="font-size:17px; color:rgba(251,248,241,0.88); max-width:52ch;">
+        <p class="font-body leading-relaxed mb-10 mx-auto text-cream/[0.88]" style="font-size:17px; max-width:52ch;">
           A weekly ritual, free by design. Pay by becoming more present.
         </p>
         <a
@@ -356,7 +356,7 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
   /* ─── Paired offering cards ──────────────────── */
   .paired-card {
     background: #FBF8F1;
-    border: 1px solid rgba(197,211,192,0.7);
+    border: 1px solid rgba(var(--color-sage-rgb),0.7);
     border-radius: 12px;
     padding: 2.5rem;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
