@@ -38,17 +38,25 @@ const {
 
     if (reduced) return; // skip animation entirely for a11y
 
+    // Brand easing: strong deceleration, long quiet tail (matches --ease-brand in globals.css)
+    const easing = 'cubic-bezier(0.22, 0.58, 0.16, 1)';
+
     targets.forEach((el, i) => {
+      const d = delay * i;
       (el as HTMLElement).style.cssText +=
-        `opacity:0; transform:translateY(${yOffset}px); transition:opacity ${duration}ms ease ${delay * i}ms, transform ${duration}ms ease ${delay * i}ms;`;
+        `opacity:0; transform:translateY(${yOffset}px); filter:blur(3px);` +
+        `transition:opacity ${duration}ms ${easing} ${d}ms,` +
+        ` transform ${duration}ms ${easing} ${d}ms,` +
+        ` filter ${duration}ms ${easing} ${d}ms;`;
     });
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         targets.forEach(el => {
-          (el as HTMLElement).style.opacity = '1';
+          (el as HTMLElement).style.opacity   = '1';
           (el as HTMLElement).style.transform = 'translateY(0)';
+          (el as HTMLElement).style.filter    = 'blur(0px)';
         });
         io.unobserve(entry.target);
       });

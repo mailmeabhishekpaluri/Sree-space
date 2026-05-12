@@ -34,6 +34,11 @@
   --radius:      12px;
   --shadow-soft: 0 10px 30px -12px rgba(31,42,36,0.10);
 
+  /* Brand easing: strong initial deceleration, long quiet tail */
+  --ease-brand: cubic-bezier(0.22, 0.58, 0.16, 1);
+  /* Slightly snappier for hover/interactive states */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+
   --text-xs:   0.78rem;
   --text-sm:   0.93rem;
   --text-base: 1.06rem;
@@ -47,6 +52,17 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
+}
+
+/* Belt-and-suspenders: collapse all motion for users who prefer it.
+   Preserves final states (no broken layouts) while eliminating movement. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
 }
 
 html {

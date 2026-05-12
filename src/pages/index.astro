@@ -67,10 +67,11 @@ import { site } from '../data/site';
           <span class="hero-word"> <em class="not-italic italic">yourself</em></span><span class="hero-word">.</span>
         </h1>
 
-        <!-- Hand-drawn gold underline under "yourself" -->
+        <!-- Hand-drawn gold underline under "yourself" — draws on after the word reveals -->
         <div class="mb-8 -mt-4 ml-[calc(3ch)]" aria-hidden="true">
           <svg width="200" height="14" viewBox="0 0 200 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 9 C30 4 55 13 85 7 C115 2 138 11 165 6 C178 4 190 8 197 6"
+            <path class="hero-underline-path"
+              d="M3 9 C30 4 55 13 85 7 C115 2 138 11 165 6 C178 4 190 8 197 6"
               stroke="#C99A4B" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
         </div>
@@ -153,8 +154,8 @@ import { site } from '../data/site';
           </a>
         </ScrollReveal>
 
-        <!-- Right: yoga tree illustration, bleeds off right edge -->
-        <div class="order-1 md:order-2 relative flex justify-end md:-mr-8">
+        <!-- Right: yoga tree illustration — fades up after the text column settles -->
+        <ScrollReveal duration={900} delay={120} class="order-1 md:order-2 relative flex justify-end md:-mr-8">
           <!-- Watercolor wash behind the image -->
           <Watercolor position="bottom-left" opacity={0.5} variant={2} class="absolute inset-0 pointer-events-none" />
           <img
@@ -165,7 +166,7 @@ import { site } from '../data/site';
             loading="lazy"
             decoding="async"
           />
-        </div>
+        </ScrollReveal>
 
       </div>
     </div>
@@ -310,10 +311,10 @@ import { site } from '../data/site';
     <div class="site-container">
       <div class="grid grid-cols-12 gap-6 items-start">
 
-        <!-- Left: giant श्री -->
-        <div class="col-span-3 flex justify-end pt-2 select-none" aria-hidden="true">
+        <!-- Left: giant श्री — slow pure fade, no vertical drift (it's floating, not landing) -->
+        <ScrollReveal duration={1000} y={0} class="col-span-3 flex justify-end pt-2 select-none" aria-hidden="true">
           <DevanagariMark size={320} opacity={0.60} color="#C99A4B" />
-        </div>
+        </ScrollReveal>
 
         <!-- Right: content -->
         <ScrollReveal class="col-span-9 md:col-span-8 md:col-start-4">
@@ -345,6 +346,26 @@ import { site } from '../data/site';
 </Base>
 
 <style>
+  /* ─── Hero underline draw-on ─────────────────────────── */
+  /* pathLength≈210 measured from the cubic-bezier path */
+  .hero-underline-path {
+    stroke-dasharray:  210;
+    stroke-dashoffset: 210;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-underline-path {
+      /* Start after the last hero word finishes (~820ms total) */
+      animation: heroUnderlineDraw 650ms cubic-bezier(0.22, 0.58, 0.16, 1) 820ms forwards;
+    }
+  }
+  /* Reduced-motion: show the line immediately, fully drawn */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-underline-path { stroke-dashoffset: 0; }
+  }
+  @keyframes heroUnderlineDraw {
+    to { stroke-dashoffset: 0; }
+  }
+
   /* ─── Offerings section ───────────────────────────────── */
   .offerings-header {
     display: flex;
