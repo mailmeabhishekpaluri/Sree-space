@@ -1,47 +1,268 @@
 ---
+/**
+ * OfferingCard — homepage conversion tile.
+ * Illustration is derived from slug; no image needed.
+ * index: "01" | "02" | "03" | "04"
+ */
 interface Props {
   title: string;
   short: string;
   slug: string;
-  image?: string;
+  index: string;
 }
-const { title, short, slug, image } = Astro.props;
+
+const { title, short, slug, index } = Astro.props;
+
+type Slug = 'yoga' | 'hands-on-therapy' | 'talk-energy-clearance' | 'consultation';
+const illusSlug = slug as Slug;
 ---
 
-<article class="group bg-cream rounded border border-sage/60 overflow-hidden flex flex-col shadow-soft hover:shadow-md transition-shadow duration-200">
-  {image && (
-    <div class="aspect-[4/3] overflow-hidden">
-      <img
-        src={image}
-        alt={title}
-        class="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  )}
-  <div class="p-6 md:p-8 flex flex-col flex-1">
-    <h3 class="font-display text-2xl text-forest mb-3">{title}</h3>
-    <p class="font-body text-base text-muted leading-relaxed flex-1">{short}</p>
-    <a
-      href={`/offerings/${slug}`}
-      class="mt-6 inline-flex items-center gap-2 font-body text-sm font-medium text-forest hover:text-gold transition-colors group/link"
-      aria-label={`Learn more about ${title}`}
-    >
-      Learn more
-      <svg
-        width="16" height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-        class="group-hover/link:translate-x-1 transition-transform duration-150"
-      >
-        <path d="M5 12h14M12 5l7 7-7 7"/>
+<a href={`/offerings/${slug}`} class="offering-card group" aria-label={`Explore ${title}`}>
+
+  <!-- Illustration -->
+  <div class="card-icon" aria-hidden="true">
+    {illusSlug === 'yoga' && (
+      /* Lotus in bloom — yoga, union, stillness */
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- outer petals, lighter -->
+        <path d="M26 27 C23 18 22 10 26 5 C30 10 29 18 26 27" stroke-width="1.1" opacity="0.4"/>
+        <path d="M26 27 C35 22 43 18 47 13 C44 22 40 28 26 27" stroke-width="1.1" opacity="0.4"/>
+        <path d="M26 27 C37 31 43 39 42 46 C36 44 30 38 26 27" stroke-width="1.1" opacity="0.4"/>
+        <path d="M26 27 C23 36 22 44 26 49 C30 44 29 36 26 27" stroke-width="1.1" opacity="0.4"/>
+        <path d="M26 27 C15 31 9 39 10 46 C16 44 22 38 26 27" stroke-width="1.1" opacity="0.4"/>
+        <path d="M26 27 C17 22 9 18 5 13 C8 22 12 28 26 27" stroke-width="1.1" opacity="0.4"/>
+        <!-- inner petals -->
+        <path d="M26 27 C23 20 22 14 26 9 C30 14 29 20 26 27" stroke-width="1.5"/>
+        <path d="M26 27 C33 22 39 19 43 15 C41 23 37 27 26 27" stroke-width="1.5"/>
+        <path d="M26 27 C33 32 36 39 34 45 C29 42 26 37 26 27" stroke-width="1.5"/>
+        <path d="M26 27 C19 32 16 39 18 45 C23 42 26 37 26 27" stroke-width="1.5"/>
+        <path d="M26 27 C19 22 13 19 9 15 C11 23 15 27 26 27" stroke-width="1.5"/>
+        <!-- center -->
+        <circle cx="26" cy="27" r="3" fill="currentColor" stroke="none"/>
       </svg>
-    </a>
+    )}
+    {illusSlug === 'hands-on-therapy' && (
+      /* Open hands receiving — touch, presence, access bars */
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- left hand — fingers -->
+        <path d="M8 42 C8 34 10 24 11 17" stroke-width="1.4"/>
+        <path d="M13 42 C13 32 14 22 15 15" stroke-width="1.4"/>
+        <path d="M18 42 C18 32 18 22 18 15" stroke-width="1.4"/>
+        <path d="M23 42 C23 33 23 25 22 19" stroke-width="1.4"/>
+        <!-- left palm -->
+        <path d="M8 42 C7 46 9 49 13 49 C17 49 20 46 22 43 C23 40 23 38 22 36 C20 38 18 40 13 40 C10 40 8 41 8 42 Z" stroke-width="1.4"/>
+        <!-- right hand — fingers -->
+        <path d="M44 42 C44 34 42 24 41 17" stroke-width="1.4"/>
+        <path d="M39 42 C39 32 38 22 37 15" stroke-width="1.4"/>
+        <path d="M34 42 C34 32 34 22 34 15" stroke-width="1.4"/>
+        <path d="M29 42 C29 33 29 25 30 19" stroke-width="1.4"/>
+        <!-- right palm -->
+        <path d="M44 42 C45 46 43 49 39 49 C35 49 32 46 30 43 C29 40 29 38 30 36 C32 38 34 40 39 40 C42 40 44 41 44 42 Z" stroke-width="1.4"/>
+        <!-- energy dots above center -->
+        <circle cx="26" cy="10" r="1.5" fill="currentColor" stroke="none"/>
+        <circle cx="22" cy="6"  r="1"   fill="currentColor" stroke="none" opacity="0.55"/>
+        <circle cx="30" cy="6"  r="1"   fill="currentColor" stroke="none" opacity="0.55"/>
+      </svg>
+    )}
+    {illusSlug === 'talk-energy-clearance' && (
+      /* Speech bubble with inner wave — conversation as energy work */
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- bubble outline -->
+        <path d="M6 8 C6 5 9 3 12 3 L40 3 C43 3 46 5 46 8 L46 30 C46 33 43 35 40 35 L18 35 L9 45 L11 35 L12 35 C9 35 6 33 6 30 Z" stroke-width="1.5"/>
+        <!-- inner energy waves -->
+        <path d="M14 15 C16 13 18 17 20 15 C22 13 24 17 26 15 C28 13 30 17 32 15 C34 13 36 17 38 15" stroke-width="1.3"/>
+        <path d="M14 22 C17 20 19 24 22 22 C25 20 27 24 30 22 C33 20 35 24 38 22" stroke-width="1.3" opacity="0.55"/>
+      </svg>
+    )}
+    {illusSlug === 'consultation' && (
+      /* Compass rose — navigation, tailor-made path */
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- outer ring -->
+        <circle cx="26" cy="26" r="20" stroke-width="1.1" opacity="0.35"/>
+        <!-- 4 cardinal diamond points -->
+        <path d="M26 6 L29 22 L26 26 L23 22 Z" stroke-width="1.3"/>
+        <path d="M46 26 L30 29 L26 26 L30 23 Z" stroke-width="1.3"/>
+        <path d="M26 46 L23 30 L26 26 L29 30 Z" stroke-width="1.3"/>
+        <path d="M6 26 L22 23 L26 26 L22 29 Z" stroke-width="1.3"/>
+        <!-- 4 diagonal short ticks -->
+        <path d="M40 12 L29 23" stroke-width="1" opacity="0.5"/>
+        <path d="M40 40 L29 29" stroke-width="1" opacity="0.5"/>
+        <path d="M12 40 L23 29" stroke-width="1" opacity="0.5"/>
+        <path d="M12 12 L23 23" stroke-width="1" opacity="0.5"/>
+        <!-- center -->
+        <circle cx="26" cy="26" r="3" fill="currentColor" stroke="none"/>
+      </svg>
+    )}
   </div>
-</article>
+
+  <!-- Index + rule -->
+  <div class="card-meta">
+    <span class="card-index font-script" aria-hidden="true">{index}</span>
+    <span class="card-rule-line" aria-hidden="true"></span>
+  </div>
+
+  <!-- Text -->
+  <h3 class="card-title font-display">{title}</h3>
+  <p class="card-body font-body">{short}</p>
+
+  <!-- CTA -->
+  <div class="card-cta" aria-hidden="true">
+    <span class="cta-label font-body">Explore offering</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" class="cta-arrow">
+      <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+</a>
+
+<style>
+  .offering-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 2.5rem;
+    background: var(--color-cream);
+    border: 1px solid rgba(var(--color-sage-rgb), 0.55);
+    border-radius: 16px;
+    min-height: 360px;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+      background 0.35s ease,
+      border-color 0.35s ease,
+      transform 0.3s ease;
+  }
+
+  .offering-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: var(--color-sage-wash);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .offering-card:hover {
+    border-color: rgba(201, 154, 75, 0.38);
+    transform: translateY(-4px);
+  }
+
+  .offering-card:hover::before {
+    opacity: 1;
+  }
+
+  /* All children sit above the ::before overlay */
+  .offering-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Icon */
+  .card-icon {
+    color: var(--color-forest);
+    margin-bottom: 1.75rem;
+    transition: color 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .offering-card:hover .card-icon {
+    color: var(--color-gold);
+  }
+
+  /* Index + rule */
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-index {
+    font-size: 16px;
+    color: rgba(var(--color-ink-rgb), 0.35);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .card-rule-line {
+    display: block;
+    height: 1px;
+    width: 2rem;
+    background: var(--color-gold);
+    opacity: 0.55;
+    transition: width 0.3s ease, opacity 0.3s ease;
+  }
+
+  .offering-card:hover .card-rule-line {
+    width: 3rem;
+    opacity: 0.9;
+  }
+
+  /* Title */
+  .card-title {
+    font-size: clamp(1.6rem, 2.5vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-forest);
+    margin-bottom: 0.875rem;
+    transition: color 0.25s ease;
+  }
+
+  /* Body */
+  .card-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba(var(--color-ink-rgb), 0.72);
+    flex: 1;
+    margin-bottom: 1.75rem;
+  }
+
+  /* CTA */
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-forest);
+    transition: color 0.2s ease;
+    margin-top: auto;
+  }
+
+  .offering-card:hover .card-cta {
+    color: var(--color-gold);
+  }
+
+  .cta-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .cta-arrow {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .offering-card:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .offering-card,
+    .offering-card::before,
+    .card-icon,
+    .card-rule-line,
+    .card-cta,
+    .cta-arrow {
+      transition: none;
+    }
+    .offering-card:hover {
+      transform: none;
+    }
+  }
+</style>
