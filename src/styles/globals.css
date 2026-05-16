@@ -21,6 +21,7 @@
   --color-rule:        #D9D2C7;
 
   /* RGB channels — enables rgba(var(--color-*-rgb), opacity) patterns */
+  --color-gold-rgb:    201, 154, 75;
   --color-sage-rgb:    197, 211, 192;
   --color-forest-rgb:  44, 95, 63;
   --color-ink-rgb:     31, 42, 36;
@@ -164,22 +165,6 @@ a {
 .nav-transparent #site-nav.scrolled button:not(.btn-cta) {
   color: var(--color-ink);
 }
-
-/* Offering card hover gold rule */
-.offering-card .card-rule {
-  width: 0;
-  height: 2px;
-  background: var(--color-gold);
-  transition: width 0.35s ease;
-}
-.offering-card:hover .card-rule { width: 3rem; }
-
-/* Offering card arrow slide */
-.offering-card .card-arrow {
-  transform: translateX(0);
-  transition: transform 0.25s ease;
-}
-.offering-card:hover .card-arrow { transform: translateX(6px); }
 
 /* Gold rule divider */
 .gold-rule {

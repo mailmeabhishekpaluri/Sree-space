@@ -22,7 +22,7 @@ function initial(name: string): string {
 }
 ---
 
-<section class="tsl-section relative overflow-hidden bg-sage-wash section-pad" aria-label="Student testimonials">
+<section class="tsl-section relative overflow-hidden bg-sage-wash section-pad" aria-label="Testimonials">
 
   <!-- Ambient textures -->
   <Watercolor position="top-left"    opacity={0.28} variant={2} />
@@ -35,8 +35,8 @@ function initial(name: string): string {
 
     <!-- Section eyebrow + headline -->
     <div class="tsl-header">
-      <p class="font-script text-saffron" style="font-size:20px; letter-spacing:0.04em;">What students say</p>
-      <h2 class="font-display text-forest tsl-headline" style="font-size:clamp(2.2rem,4.5vw,3.2rem); line-height:1.1; font-weight:500;">
+      <p class="font-script text-saffron" style="font-size:20px; letter-spacing:0.04em;">What people say</p>
+      <h2 class="font-display text-forest" style="font-size:clamp(2.2rem,4.5vw,3.2rem); line-height:1.1; font-weight:500;">
         Their words, unedited.
       </h2>
     </div>
@@ -47,7 +47,6 @@ function initial(name: string): string {
       {testimonials.map((t, i) => {
         const photo = photoMap[t.id];
         const tag   = offeringLabel[t.offerings[0]];
-        const isAnon = t.id === 'anonymous-yoga';
         return (
           <div
             class={`tsl-item${i === 0 ? ' is-active' : ''}`}
@@ -95,7 +94,7 @@ function initial(name: string): string {
         </svg>
       </button>
 
-      <div class="tsl-dots" role="tablist" aria-label="Testimonial selector">
+      <div class="tsl-dots" role="tablist" aria-label="Testimonial selector" id="tsl-dots">
         {testimonials.map((t, i) => (
           <button
             class={`tsl-dot${i === 0 ? ' active' : ''}`}
@@ -105,6 +104,7 @@ function initial(name: string): string {
             aria-label={`View testimonial from ${t.id === 'anonymous-yoga' ? 'anonymous student' : t.name}`}
             data-dot={i}
             type="button"
+            tabindex={i === 0 ? '0' : '-1'}
           ></button>
         ))}
       </div>
@@ -161,7 +161,7 @@ function initial(name: string): string {
   }
 
   .tsl-item.is-entering {
-    animation: tslFadeIn 550ms cubic-bezier(0.22, 0.58, 0.16, 1) forwards;
+    animation: tslFadeIn 550ms var(--ease-brand) forwards;
   }
 
   @keyframes tslFadeIn {
@@ -314,15 +314,19 @@ function initial(name: string): string {
     background: rgba(var(--color-forest-rgb), 0.22);
     border: none;
     border-radius: 9999px;
+    /* Visual dot is 6×6px but click target is padded to ≥24×24px (WCAG 2.5.5) */
     width: 6px;
     height: 6px;
-    padding: 0;
+    padding: 9px 3px;
     cursor: pointer;
-    transition: width 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+    transition: width 0.3s ease, background 0.3s ease;
+    background-clip: content-box;
+    box-sizing: content-box;
   }
 
   .tsl-dot.active {
     background: var(--color-gold);
+    background-clip: content-box;
     width: 22px;
   }
 
@@ -353,28 +357,30 @@ function initial(name: string): string {
     const prev   = document.getElementById('tsl-prev') as HTMLButtonElement | null;
     const next   = document.getElementById('tsl-next') as HTMLButtonElement | null;
 
-    function goTo(index: number) {
+    const dotsContainer = document.getElementById('tsl-dots');
+
+    function goTo(index: number, moveFocus = false) {
       if (index === current) return;
 
-      // Hide current
+      // Deactivate current
       const outgoing = items[current];
       outgoing.classList.remove('is-active', 'is-entering');
       outgoing.setAttribute('aria-hidden', 'true');
       dots[current].classList.remove('active');
       dots[current].setAttribute('aria-selected', 'false');
+      dots[current].setAttribute('tabindex', '-1');
 
       current = (index + TOTAL) % TOTAL;
 
-      // Show new
+      // Activate new
       const incoming = items[current];
       incoming.classList.add('is-active');
       incoming.setAttribute('aria-hidden', 'false');
-      // Trigger animation on next frame so display:block has settled
-      requestAnimationFrame(() => {
-        incoming.classList.add('is-entering');
-      });
+      requestAnimationFrame(() => incoming.classList.add('is-entering'));
       dots[current].classList.add('active');
       dots[current].setAttribute('aria-selected', 'true');
+      dots[current].setAttribute('tabindex', '0');
+      if (moveFocus) dots[current].focus();
     }
 
     // Dot clicks
@@ -385,15 +391,15 @@ function initial(name: string): string {
       });
     });
 
-    // Arrow clicks
+    // Arrow-key navigation within the tablist (ARIA tablist pattern)
+    dotsContainer?.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft')  { goTo(current - 1, true); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1, true); e.preventDefault(); }
+    });
+
+    // Prev / next arrow buttons
     prev?.addEventListener('click', () => goTo(current - 1));
     next?.addEventListener('click', () => goTo(current + 1));
-
-    // Keyboard: left/right within the section
-    stage.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft')  { goTo(current - 1); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { goTo(current + 1); e.preventDefault(); }
-    });
 
     // Touch / swipe
     let touchStartX = 0;
