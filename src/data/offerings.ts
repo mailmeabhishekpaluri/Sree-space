@@ -105,7 +105,7 @@ export const offerings: Offering[] = [
       image: '/images/portraits/07_blue_floral_kurta_workshop_context.jpeg',
     },
     howItWorks: [
-      'Free 15-min intro call (often the Monday Night Call counts).',
+      'Free 15-min intro call (often the Awareness Circle counts).',
       'Sree builds a tailor-made plan or short program for you.',
       'You practice. Check-ins as you go.',
     ],
