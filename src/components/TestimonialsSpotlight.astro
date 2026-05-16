@@ -10,22 +10,22 @@ const offeringLabel: Record<string, string> = {
   consultation: 'Consultation',
 };
 
-// Only confirmed personal photos — keyed by testimonial id
 const photoMap: Record<string, string> = {
   'pragathi': '/images/testimonials/01_pragathi_whatsapp_digeesha_relaxation.jpeg',
 };
 
-// Derive a 1–2 char initial for the avatar fallback
 function initial(name: string): string {
   if (name.startsWith('A long')) return '—';
   return name.charAt(0).toUpperCase();
 }
+
+const TOTAL = testimonials.length;
 ---
 
 <section class="tsl-section relative overflow-hidden bg-sage-wash section-pad" aria-label="Testimonials">
 
   <!-- Ambient textures -->
-  <Watercolor position="top-left"    opacity={0.28} variant={2} />
+  <Watercolor position="top-left"     opacity={0.28} variant={2} />
   <Watercolor position="bottom-right" opacity={0.22} variant={1} />
   <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
     <DevanagariMark size={540} opacity={0.04} color="#2C5F3F" />
@@ -33,7 +33,7 @@ function initial(name: string): string {
 
   <div class="site-container relative z-10">
 
-    <!-- Section eyebrow + headline -->
+    <!-- Header -->
     <div class="tsl-header">
       <p class="font-script text-saffron" style="font-size:20px; letter-spacing:0.04em;">What people say</p>
       <h2 class="font-display text-forest" style="font-size:clamp(2.2rem,4.5vw,3.2rem); line-height:1.1; font-weight:500;">
@@ -41,7 +41,7 @@ function initial(name: string): string {
       </h2>
     </div>
 
-    <!-- Spotlight stage -->
+    <!-- Stage — single card on mobile, 2-card side-by-side on desktop -->
     <div class="tsl-stage" id="tsl-stage" aria-live="polite" aria-atomic="false">
 
       {testimonials.map((t, i) => {
@@ -49,37 +49,42 @@ function initial(name: string): string {
         const tag   = offeringLabel[t.offerings[0]];
         return (
           <div
-            class={`tsl-item${i === 0 ? ' is-active' : ''}`}
+            class={`tsl-item${i === 0 ? ' is-active is-main' : ''}`}
             id={`tsl-item-${i}`}
             aria-hidden={i !== 0 ? 'true' : 'false'}
             data-index={i}
           >
-            <!-- Decorative opening quote mark -->
-            <div class="tsl-quotemarks font-display" aria-hidden="true">"</div>
+            <!-- Card shell -->
+            <div class="tsl-card">
 
-            <!-- The quote -->
-            <blockquote class="tsl-quote font-display">
-              <p>{t.quote}</p>
-            </blockquote>
+              <!-- Decorative quote mark -->
+              <div class="tsl-quotemarks font-display" aria-hidden="true">"</div>
 
-            <!-- Thin gold rule -->
-            <div class="tsl-rule" aria-hidden="true"></div>
+              <!-- Quote -->
+              <blockquote class="tsl-quote font-display">
+                <p>{t.quote}</p>
+              </blockquote>
 
-            <!-- Attribution row -->
-            <footer class="tsl-attr">
-              <div class="tsl-avatar" aria-hidden="true">
-                {photo
-                  ? <img src={photo} alt={t.name} class="tsl-avatar-img" loading="lazy" decoding="async" />
-                  : <span class="tsl-avatar-initial font-script">{initial(t.name)}</span>
-                }
-              </div>
-              <div class="tsl-attr-text">
-                <cite class="tsl-name font-script not-italic">
-                  {t.name}{t.role ? `, ${t.role}` : ''}
-                </cite>
-                <span class="tsl-tag font-body">{tag}</span>
-              </div>
-            </footer>
+              <!-- Thin gold rule -->
+              <div class="tsl-rule" aria-hidden="true"></div>
+
+              <!-- Attribution -->
+              <footer class="tsl-attr">
+                <div class="tsl-avatar" aria-hidden="true">
+                  {photo
+                    ? <img src={photo} alt={t.name} class="tsl-avatar-img" loading="lazy" decoding="async" />
+                    : <span class="tsl-avatar-initial font-script">{initial(t.name)}</span>
+                  }
+                </div>
+                <div class="tsl-attr-text">
+                  <cite class="tsl-name font-script not-italic">
+                    {t.name}{t.role ? `, ${t.role}` : ''}
+                  </cite>
+                  <span class="tsl-tag font-body">{tag}</span>
+                </div>
+              </footer>
+
+            </div><!-- /tsl-card -->
           </div>
         );
       })}
@@ -128,9 +133,9 @@ function initial(name: string): string {
 
 
 <style>
-  /* ── Section shell ───────────────────────────────────────── */
+  /* ── Section / layout vars ───────────────────────────────── */
   .tsl-section {
-    --tsl-max: 680px;
+    --tsl-radius: 20px;
   }
 
   /* ── Header ─────────────────────────────────────────────── */
@@ -139,43 +144,103 @@ function initial(name: string): string {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
   }
 
   /* ── Stage ───────────────────────────────────────────────── */
   .tsl-stage {
-    max-width: var(--tsl-max);
-    margin-inline: auto;
-    min-height: 280px; /* prevents layout jump on short quotes */
+    display: flex;
+    gap: 1.25rem;
+    /* single-card viewport clip */
+    overflow: hidden;
     position: relative;
   }
 
-  /* ── Testimonial items ───────────────────────────────────── */
+  /* ── Slide items ─────────────────────────────────────────── */
   .tsl-item {
+    /* hidden by default */
     display: none;
-    text-align: center;
+    flex: 0 0 100%;
+    min-width: 0;
   }
 
-  .tsl-item.is-active {
+  /* Mobile: one card at a time */
+  .tsl-item.is-main {
     display: block;
   }
 
+  /* Desktop: second card visible alongside main */
+  @media (min-width: 900px) {
+    .tsl-stage {
+      overflow: visible; /* let cards show side-by-side */
+      max-width: 960px;
+      margin-inline: auto;
+      align-items: stretch;
+    }
+
+    .tsl-item.is-secondary {
+      display: block;
+      flex: 0 0 calc(50% - 0.625rem);
+    }
+
+    .tsl-item.is-main {
+      flex: 0 0 calc(50% - 0.625rem);
+    }
+  }
+
+  /* Fade-in animation for entering card */
   .tsl-item.is-entering {
-    animation: tslFadeIn 550ms var(--ease-brand) forwards;
+    animation: tslFadeIn 500ms var(--ease-brand) forwards;
   }
 
   @keyframes tslFadeIn {
-    from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
-    to   { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+    from { opacity: 0; transform: translateY(8px); filter: blur(3px); }
+    to   { opacity: 1; transform: translateY(0);   filter: blur(0); }
+  }
+
+  /* ── Card shell ──────────────────────────────────────────── */
+  .tsl-card {
+    background: var(--color-cream);
+    border: 1px solid rgba(var(--color-sage-rgb), 0.55);
+    border-radius: var(--tsl-radius);
+    padding: 2.5rem 2.75rem;
+    box-shadow:
+      0 4px 16px rgba(var(--color-forest-rgb), 0.07),
+      0 1px 4px  rgba(var(--color-forest-rgb), 0.04);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .tsl-item.is-main .tsl-card {
+    /* primary card: gold left accent strip */
+    border-left: 3px solid rgba(var(--color-gold-rgb, 201,154,75), 0.55);
+    box-shadow:
+      0 8px 32px rgba(var(--color-forest-rgb), 0.10),
+      0 2px 8px  rgba(var(--color-forest-rgb), 0.05);
+  }
+
+  .tsl-stage:hover .tsl-card {
+    /* subtle lift on hover to signal pause */
+    box-shadow:
+      0 12px 40px rgba(var(--color-forest-rgb), 0.12),
+      0 2px 8px   rgba(var(--color-forest-rgb), 0.06);
+  }
+
+  /* secondary card: slightly muted */
+  .tsl-item.is-secondary .tsl-card {
+    opacity: 0.72;
   }
 
   /* ── Decorative quote mark ───────────────────────────────── */
   .tsl-quotemarks {
-    font-size: clamp(5rem, 10vw, 8rem);
-    line-height: 0.7;
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    line-height: 0.65;
     color: var(--color-gold);
-    opacity: 0.55;
-    margin-bottom: 0.5rem;
+    opacity: 0.5;
+    margin-bottom: 0.25rem;
     font-style: italic;
     user-select: none;
   }
@@ -184,12 +249,11 @@ function initial(name: string): string {
   .tsl-quote {
     font-style: italic;
     color: var(--color-forest);
-    font-size: clamp(1.2rem, 2.2vw, 1.625rem);
-    line-height: 1.55;
-    margin: 0 0 1.75rem;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
     padding: 0;
-    max-width: 58ch;
-    margin-inline: auto;
+    flex: 1; /* pushes attribution to bottom */
   }
 
   /* ── Gold rule ───────────────────────────────────────────── */
@@ -197,23 +261,24 @@ function initial(name: string): string {
     width: 2rem;
     height: 1px;
     background: var(--color-gold);
-    opacity: 0.65;
-    margin: 0 auto 1.75rem;
+    opacity: 0.6;
+    margin: 0 auto 1.5rem;
+    flex-shrink: 0;
   }
 
   /* ── Attribution ─────────────────────────────────────────── */
   .tsl-attr {
     display: inline-flex;
     align-items: center;
-    gap: 0.875rem;
+    gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
+    flex-shrink: 0;
   }
 
-  /* Avatar circle */
   .tsl-avatar {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid rgba(var(--color-sage-rgb), 0.8);
@@ -233,24 +298,20 @@ function initial(name: string): string {
   }
 
   .tsl-avatar-initial {
-    font-size: 18px;
+    font-size: 17px;
     color: rgba(var(--color-forest-rgb), 0.55);
     line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  /* Name + tag stack */
   .tsl-attr-text {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.3rem;
     text-align: left;
   }
 
   .tsl-name {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--color-gold);
     letter-spacing: 0.02em;
     display: block;
@@ -258,15 +319,15 @@ function initial(name: string): string {
   }
 
   .tsl-tag {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--color-forest);
     background: rgba(var(--color-forest-rgb), 0.07);
-    border: 1px solid rgba(var(--color-forest-rgb), 0.15);
+    border: 1px solid rgba(var(--color-forest-rgb), 0.14);
     border-radius: 9999px;
-    padding: 3px 10px;
+    padding: 3px 9px;
     display: inline-block;
     line-height: 1.6;
   }
@@ -277,10 +338,9 @@ function initial(name: string): string {
     align-items: center;
     justify-content: center;
     gap: 1.25rem;
-    margin-top: 2.75rem;
+    margin-top: 2.25rem;
   }
 
-  /* Arrows */
   .tsl-arrow {
     background: none;
     border: 1px solid rgba(var(--color-sage-rgb), 0.8);
@@ -298,7 +358,7 @@ function initial(name: string): string {
 
   .tsl-arrow:hover {
     border-color: var(--color-gold);
-    background: rgba(var(--color-gold-rgb, 201, 154, 75), 0.08);
+    background: rgba(var(--color-gold-rgb, 201,154,75), 0.08);
     color: var(--color-gold);
   }
 
@@ -314,9 +374,9 @@ function initial(name: string): string {
     background: rgba(var(--color-forest-rgb), 0.22);
     border: none;
     border-radius: 9999px;
-    /* Visual dot is 6×6px but click target is padded to ≥24×24px (WCAG 2.5.5) */
     width: 6px;
     height: 6px;
+    /* WCAG 2.5.5: pad click target to ≥24px without growing visual dot */
     padding: 9px 3px;
     cursor: pointer;
     transition: width 0.3s ease, background 0.3s ease;
@@ -330,16 +390,15 @@ function initial(name: string): string {
     width: 22px;
   }
 
-  /* "Read all" link row */
+  /* "Read all" link */
   .tsl-readall {
-    margin-top: 2rem;
+    margin-top: 1.75rem;
   }
 
   /* ── Reduced motion ──────────────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
-    .tsl-item.is-entering {
-      animation: none;
-    }
+    .tsl-item.is-entering { animation: none; }
+    .tsl-card { transition: none; }
   }
 </style>
 
@@ -347,68 +406,143 @@ function initial(name: string): string {
 <script>
   (() => {
     const TOTAL = 5;
+    const INTERVAL = 5500; // ms between auto-advances
     let current = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
 
-    const stage  = document.getElementById('tsl-stage');
+    const stage        = document.getElementById('tsl-stage');
     if (!stage) return;
 
-    const items  = stage.querySelectorAll<HTMLElement>('.tsl-item');
-    const dots   = document.querySelectorAll<HTMLButtonElement>('.tsl-dot');
-    const prev   = document.getElementById('tsl-prev') as HTMLButtonElement | null;
-    const next   = document.getElementById('tsl-next') as HTMLButtonElement | null;
-
+    const items        = stage.querySelectorAll<HTMLElement>('.tsl-item');
+    const dots         = document.querySelectorAll<HTMLButtonElement>('.tsl-dot');
+    const prevBtn      = document.getElementById('tsl-prev') as HTMLButtonElement | null;
+    const nextBtn      = document.getElementById('tsl-next') as HTMLButtonElement | null;
     const dotsContainer = document.getElementById('tsl-dots');
 
-    function goTo(index: number, moveFocus = false) {
-      if (index === current) return;
+    // ── Determine if desktop 2-card mode is active ──────────
+    const isDesktop = () => window.innerWidth >= 900;
 
-      // Deactivate current
+    // ── Core slide transition ────────────────────────────────
+    function goTo(index: number, moveFocus = false) {
+      const next = (index + TOTAL) % TOTAL;
+      if (next === current) return;
+
+      // Deactivate outgoing
       const outgoing = items[current];
-      outgoing.classList.remove('is-active', 'is-entering');
+      outgoing.classList.remove('is-active', 'is-main', 'is-secondary', 'is-entering');
       outgoing.setAttribute('aria-hidden', 'true');
       dots[current].classList.remove('active');
       dots[current].setAttribute('aria-selected', 'false');
       dots[current].setAttribute('tabindex', '-1');
 
-      current = (index + TOTAL) % TOTAL;
+      // Deactivate previous secondary (if desktop)
+      if (isDesktop()) {
+        const prevSecondary = items[(current + 1) % TOTAL];
+        prevSecondary.classList.remove('is-active', 'is-main', 'is-secondary', 'is-entering');
+        prevSecondary.setAttribute('aria-hidden', 'true');
+      }
 
-      // Activate new
+      current = next;
+
+      // Activate incoming main
       const incoming = items[current];
-      incoming.classList.add('is-active');
+      incoming.classList.add('is-active', 'is-main');
       incoming.setAttribute('aria-hidden', 'false');
       requestAnimationFrame(() => incoming.classList.add('is-entering'));
+
+      // Activate secondary on desktop
+      if (isDesktop()) {
+        const secondary = items[(current + 1) % TOTAL];
+        secondary.classList.add('is-active', 'is-secondary');
+        secondary.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(() => secondary.classList.add('is-entering'));
+      }
+
+      // Update dots
       dots[current].classList.add('active');
       dots[current].setAttribute('aria-selected', 'true');
       dots[current].setAttribute('tabindex', '0');
       if (moveFocus) dots[current].focus();
     }
 
-    // Dot clicks
+    // ── Bootstrap desktop secondary on load ─────────────────
+    function initDesktopSecondary() {
+      if (!isDesktop()) return;
+      const secondary = items[(current + 1) % TOTAL];
+      secondary.classList.add('is-active', 'is-secondary');
+      secondary.setAttribute('aria-hidden', 'false');
+    }
+    initDesktopSecondary();
+
+    // ── Auto-rotation ────────────────────────────────────────
+    function startTimer() {
+      timer = setInterval(() => goTo(current + 1), INTERVAL);
+    }
+    function stopTimer() {
+      if (timer !== null) { clearInterval(timer); timer = null; }
+    }
+
+    startTimer();
+
+    // Pause on hover (entire stage including cards)
+    stage.addEventListener('mouseenter', stopTimer);
+    stage.addEventListener('mouseleave', startTimer);
+
+    // Pause on focus-within (keyboard users navigating inside)
+    stage.addEventListener('focusin',  stopTimer);
+    stage.addEventListener('focusout', (e) => {
+      if (!stage.contains(e.relatedTarget as Node)) startTimer();
+    });
+
+    // ── Dot clicks ───────────────────────────────────────────
     dots.forEach((dot) => {
       dot.addEventListener('click', () => {
-        const idx = parseInt(dot.dataset['dot'] ?? '0', 10);
-        goTo(idx);
+        stopTimer();
+        goTo(parseInt(dot.dataset['dot'] ?? '0', 10));
+        startTimer();
       });
     });
 
-    // Arrow-key navigation within the tablist (ARIA tablist pattern)
+    // ── Arrow-key nav within tablist ─────────────────────────
     dotsContainer?.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft')  { goTo(current - 1, true); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { goTo(current + 1, true); e.preventDefault(); }
+      if (e.key === 'ArrowLeft')  { stopTimer(); goTo(current - 1, true); startTimer(); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { stopTimer(); goTo(current + 1, true); startTimer(); e.preventDefault(); }
     });
 
-    // Prev / next arrow buttons
-    prev?.addEventListener('click', () => goTo(current - 1));
-    next?.addEventListener('click', () => goTo(current + 1));
+    // ── Prev / next buttons ───────────────────────────────────
+    prevBtn?.addEventListener('click', () => { stopTimer(); goTo(current - 1); startTimer(); });
+    nextBtn?.addEventListener('click', () => { stopTimer(); goTo(current + 1); startTimer(); });
 
-    // Touch / swipe
+    // ── Swipe support ─────────────────────────────────────────
     let touchStartX = 0;
     stage.addEventListener('touchstart', (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].clientX;
+      stopTimer();
     }, { passive: true });
     stage.addEventListener('touchend', (e: TouchEvent) => {
       const delta = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(delta) > 40) goTo(delta < 0 ? current + 1 : current - 1);
+      startTimer();
+    }, { passive: true });
+
+    // ── Re-init on resize (desktop ↔ mobile breakpoint) ──────
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Ensure secondary visibility matches current breakpoint
+        items.forEach((item, i) => {
+          if (i === current) return; // leave main alone
+          const shouldBeSecondary = isDesktop() && i === (current + 1) % TOTAL;
+          if (shouldBeSecondary) {
+            item.classList.add('is-active', 'is-secondary');
+            item.setAttribute('aria-hidden', 'false');
+          } else if (!item.classList.contains('is-main')) {
+            item.classList.remove('is-active', 'is-main', 'is-secondary', 'is-entering');
+            item.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }, 150);
     }, { passive: true });
   })();
 </script>
