@@ -111,4 +111,14 @@ export const offerings: Offering[] = [
     ],
     testimonialIds: ['pragathi', 'nagavamsi'],
   },
+  {
+    slug: 'kids-yoga',
+    title: 'Yoga for Kids',
+    short: 'Playful, breath-led sessions that help children build body awareness, focus, and emotional regulation through age-appropriate yoga, mindful games, and breathing practices.',
+    hero: {
+      headline: 'Yoga that speaks the language of play.',
+      sub: 'Breath, movement, and awareness — made joyful and age-appropriate for the little ones in your life.',
+      image: '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
+    },
+  },
 ];

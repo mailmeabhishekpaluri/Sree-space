@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import Button from '../../components/Button.astro';
+import ScrollReveal from '../../components/ScrollReveal.astro';
+import Ornament from '../../components/Ornament.astro';
+import { offerings } from '../../data/offerings';
+
+const offering = offerings.find(o => o.slug === 'kids-yoga')!;
+---
+
+<Base
+  title="Yoga for Kids"
+  description="Playful, breath-led yoga sessions for children — building body awareness, focus, and emotional regulation through age-appropriate movement and mindful games."
+>
+  <Hero
+    headline={offering.hero.headline}
+    sub={offering.hero.sub}
+    image={offering.hero.image}
+    imageAlt="Likhitha Sree leading a playful yoga session"
+    primaryCta={{ label: 'Enquire about Kids Yoga', href: '/contact' }}
+    secondaryCta={{ label: 'Join the free Monday call', href: '/monday' }}
+  />
+
+  <!-- What it is -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[800px]">
+      <ScrollReveal>
+        <SectionEyebrow text="What it is" class="mb-4" />
+        <h2 class="font-display text-forest mb-6" style="font-size:clamp(2rem,4vw,3rem); line-height:1.1; font-weight:500;">
+          Movement as a first language.
+        </h2>
+        <p class="font-body text-ink/80 leading-relaxed mb-5" style="font-size:1.06rem; max-width:60ch;">
+          Playful, breath-led sessions that help children build body awareness, focus, and
+          emotional regulation through age-appropriate yoga, mindful games, and breathing
+          practices.
+        </p>
+        <p class="font-body text-ink/70 leading-relaxed" style="font-size:1rem; max-width:60ch;">
+          Kids learn best through play. These sessions meet them exactly there — weaving
+          movement, breath, and attention into games, stories, and exploration, rather than
+          a structured adult practice in miniature.
+        </p>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- What children take away -->
+  <section class="bg-sage-wash section-pad">
+    <div class="site-container max-w-[800px]">
+      <ScrollReveal>
+        <SectionEyebrow text="What children take away" class="mb-8" />
+        <ul class="flex flex-col gap-6">
+          {[
+            { label: 'Body awareness', body: 'Learning to notice what the body feels like from the inside — its signals, its rhythms, its needs.' },
+            { label: 'Breath as a tool', body: 'Simple breathing practices children can use anywhere: before a test, after a tantrum, during a hard moment.' },
+            { label: 'Focus and stillness', body: 'Short, playful attention exercises that build the capacity to settle — without asking children to simply "sit still."' },
+            { label: 'Emotional vocabulary', body: 'Moving through feelings rather than suppressing them — gentle practices for big emotions.' },
+          ].map(item => (
+            <li class="flex items-start gap-5">
+              <Ornament name="lotus" size={24} color="#C99A4B" class="flex-shrink-0 mt-1 opacity-75" />
+              <div>
+                <p class="font-display text-forest font-medium mb-1" style="font-size:1.15rem;">{item.label}</p>
+                <p class="font-body text-ink/75 leading-relaxed" style="font-size:1rem;">{item.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- Practical info -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[800px]">
+      <ScrollReveal>
+        <SectionEyebrow text="Practical" class="mb-6" />
+        <ul class="flex flex-col gap-3">
+          {[
+            'Sessions are age-appropriate — ask about the right format for your child.',
+            'Available 1:1 or in small groups.',
+            'No prior yoga experience needed — from the very first breath.',
+            'Write to Likhitha to discuss age, needs, and scheduling.',
+          ].map(item => (
+            <li class="flex items-start gap-3 font-body text-ink/80" style="font-size:1rem; line-height:1.65;">
+              <span class="text-gold mt-1 flex-shrink-0" aria-hidden="true">—</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-cream section-pad border-t border-rule">
+    <div class="site-container text-center">
+      <ScrollReveal>
+        <h2 class="font-display text-forest mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); font-weight:500;">
+          Curious about a session?
+        </h2>
+        <p class="font-body text-ink/70 mb-8 mx-auto" style="font-size:1rem; max-width:44ch; line-height:1.65;">
+          Write to Likhitha with your child's age and any specific needs — she'll suggest the best place to begin.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button href="/contact" variant="primary">Enquire about Kids Yoga</Button>
+          <Button href="/monday" variant="secondary">Join the free Monday call</Button>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>
