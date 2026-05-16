@@ -7,7 +7,6 @@ const links = [
   { href: '/offerings',    label: 'Offerings' },
   { href: '/monday',       label: 'Monday Call' },
   { href: '/testimonials', label: 'Testimonials' },
-  { href: '/contact',      label: 'Contact' },
 ];
 
 const current = Astro.url.pathname;
@@ -40,7 +39,7 @@ const current = Astro.url.pathname;
 
     <!-- Desktop CTA -->
     <div class="hidden md:block">
-      <Button href="/monday" variant="primary">Join Monday Night Call</Button>
+      <Button href="/contact" variant="primary">Contact</Button>
     </div>
 
     <!-- Mobile hamburger -->
@@ -82,7 +81,7 @@ const current = Astro.url.pathname;
         </a>
       ))}
     </nav>
-    <Button href="/monday" variant="primary" class="mt-4">Join Monday Night Call</Button>
+    <Button href="/contact" variant="primary" class="mt-4">Contact</Button>
   </div>
 </header>
 
