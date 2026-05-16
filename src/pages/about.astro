@@ -26,8 +26,8 @@ const modalities = [
 ];
 
 const credentials = [
-  '11+ Years of Practice',
-  'Certified Access Bars & Body Process Practitioner',
+  'Certified Access Bars Practitioner',
+  'Certified Access Consciousness Body Process Practitioner',
   'Holistic Wellness Specialist',
 ];
 ---
@@ -247,6 +247,31 @@ const credentials = [
               />
             </div>
             <h3 class="font-display text-forest text-center mt-5" style="font-size:2rem; line-height:1.1;">Access Bars<br/>Practitioner</h3>
+          </div>
+        </ScrollReveal>
+
+        <!-- Connecting line 3→4 -->
+        <div class="journey-connector" aria-hidden="true">
+          <svg viewBox="0 0 120 20" preserveAspectRatio="none" width="100%" height="20">
+            <path d="M0 10 Q20 4 40 10 Q60 16 80 10 Q100 4 120 10"
+              stroke="#C99A4B" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Milestone 4 -->
+        <ScrollReveal delay={480}>
+          <div class="journey-milestone">
+            <p class="font-script text-gold text-center mb-3" style="font-size:18px;">Certified</p>
+            <!-- TODO: add Body Process certificate photo to public/images/credentials/ and replace this placeholder -->
+            <div class="journey-img-wrap journey-img-placeholder mx-auto">
+              <div class="journey-placeholder-inner">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40" aria-hidden="true">
+                  <circle cx="24" cy="18" r="7" stroke="#C99A4B" stroke-width="1.5"/>
+                  <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#C99A4B" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="font-display text-forest text-center mt-5" style="font-size:2rem; line-height:1.1;">Body Process<br/>Practitioner</h3>
           </div>
         </ScrollReveal>
       </div>
@@ -489,13 +514,14 @@ const credentials = [
   /* ─── Journey strip ───────────────────────────── */
   .journey-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
     align-items: center;
     gap: 1.5rem;
   }
   @media (max-width: 767px) {
     .journey-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 1rem;
     }
     .journey-connector { display: none; }
   }
@@ -521,6 +547,21 @@ const credentials = [
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+  .journey-img-placeholder {
+    background: rgba(197,211,192,0.25);
+    border: 1.5px dashed rgba(201,154,75,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .journey-placeholder-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0.65;
   }
 
   /* ─── Modalities cards ────────────────────────── */
