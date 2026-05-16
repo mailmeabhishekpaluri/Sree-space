@@ -2,8 +2,9 @@
 interface Props {
   class?: string;
   size?: 'sm' | 'md' | 'lg';
+  blend?: boolean;
 }
-const { class: cls = '', size = 'md' } = Astro.props;
+const { class: cls = '', size = 'md', blend = false } = Astro.props;
 const sizes = { sm: 'h-10', md: 'h-14', lg: 'h-16' };
 ---
 
@@ -11,7 +12,7 @@ const sizes = { sm: 'h-10', md: 'h-14', lg: 'h-16' };
   <img
     src="/images/branding/logo.png"
     alt="Sree Space"
-    class:list={[sizes[size], 'w-auto object-contain mix-blend-multiply']}
+    class:list={[sizes[size], 'w-auto object-contain', blend && 'mix-blend-multiply']}
     loading="eager"
     decoding="async"
   />
