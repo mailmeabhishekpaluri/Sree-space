@@ -10,18 +10,21 @@ import SectionEyebrow from '../components/SectionEyebrow.astro';
 const modalities = [
   {
     ornament: 'tree' as const,
-    title: 'Yoga',
-    body: 'Multi-style, therapy, kundalini practices. Sessions begin wherever your body is today.',
+    title: 'Movement',
+    body: 'Multi-style yoga, therapy yoga, kundalini, and kids yoga. Sessions adapt to where the body is today — not where a syllabus expects it to be.',
+    href: '/offerings/yoga',
   },
   {
     ornament: 'hands' as const,
-    title: 'Hands-on Therapy',
-    body: "Access Bars, Body Process, Energetic Face Lift. Quiet sessions that release what words can't.",
+    title: 'Hands & Energy',
+    body: 'Access Bars, Body Process, Energetic Face Lift. Bodywork that works without words — quiet, hands-on, and often surprising in what it releases.',
+    href: '/offerings/hands-on-therapy',
   },
   {
     ornament: 'lotus' as const,
-    title: 'Energetic Consultation',
-    body: 'Ease in life, relationships, emotional clarity, relationship with food, positive body image.',
+    title: 'Conversation',
+    body: 'Talk Energy Clearance and Consultation. The spoken session as a form of energetic work — the right question, held carefully, can shift what talking alone cannot.',
+    href: '/offerings/talk-energy-clearance',
   },
 ];
 
@@ -56,7 +59,7 @@ const credentials = [
           <h1 class="font-display font-medium text-forest hero-headline leading-none tracking-tight">
             Likhitha&nbsp;Sree
           </h1>
-          <p class="font-script text-gold hero-signature mt-5">— True empowerment as key.</p>
+          <p class="font-script text-gold hero-signature mt-5">— The body already knows.</p>
         </ScrollReveal>
       </div>
     </div>
@@ -296,7 +299,7 @@ const credentials = [
 
       <div class="modalities-grid">
         {modalities.map((m) => (
-          <div class="modality-card group">
+          <a href={m.href} class="modality-card group" style="text-decoration:none;">
             <div class="modality-ornament-wrap">
               <Ornament name={m.ornament} size={48} color="#C99A4B" class="modality-ornament transition-transform duration-500 group-hover:rotate-6" />
             </div>
@@ -305,8 +308,17 @@ const credentials = [
             </div>
             <h3 class="font-display text-forest" style="font-size:1.6rem; line-height:1.2; margin-bottom:0.75rem;">{m.title}</h3>
             <p class="font-body text-ink/80" style="font-size:1.05rem; line-height:1.65;">{m.body}</p>
-          </div>
+          </a>
         ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/offerings" class="font-body text-forest hover:text-gold transition-colors duration-200 inline-flex items-center gap-2" style="font-size:1rem;">
+          See all offerings
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>

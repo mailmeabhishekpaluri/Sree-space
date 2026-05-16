@@ -1,6 +1,6 @@
 export const site = {
   name: 'Sree Space',
-  tagline: 'True empowerment as key',
+  tagline: 'The body already knows.',
   url: 'https://sreespace.com', // TODO: confirm domain with Likhitha
   description:
     'Yoga, hands-on energy work, and consciousness practices with Likhitha Sree.',
