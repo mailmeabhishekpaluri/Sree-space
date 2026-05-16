@@ -125,7 +125,7 @@ import { site } from '../data/site';
     <Watercolor position="center-right" opacity={0.45} variant={2} />
 
     <div class="site-container">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
         <!-- Left: text -->
         <ScrollReveal class="order-2 md:order-1">
@@ -155,14 +155,14 @@ import { site } from '../data/site';
         </ScrollReveal>
 
         <!-- Right: yoga tree illustration — fades up after the text column settles -->
-        <ScrollReveal duration={900} delay={120} class="order-1 md:order-2 relative flex justify-end md:-mr-8">
+        <ScrollReveal duration={900} delay={120} class="order-1 md:order-2 relative flex justify-center md:justify-end">
           <!-- Watercolor wash behind the image -->
           <Watercolor position="bottom-left" opacity={0.5} variant={2} class="absolute inset-0 pointer-events-none" />
           <img
             src="/images/references/yoga_tree_design.png"
             alt="Hand-drawn yoga tree illustration showing branches of practice: Hatha, Yin/Restorative, Ashtanga Vinyasa, Kriya, Pranayama, Kundalini"
             class="w-full h-auto relative z-10"
-            style="max-width:520px;"
+            style="max-width:520px; border-radius:20px; box-shadow:0 8px 32px rgba(var(--color-forest-rgb),0.10), 0 2px 8px rgba(var(--color-forest-rgb),0.06);"
             loading="lazy"
             decoding="async"
           />
@@ -355,7 +355,7 @@ import { site } from '../data/site';
   @media (prefers-reduced-motion: no-preference) {
     .hero-underline-path {
       /* Start after the last hero word finishes (~820ms total) */
-      animation: heroUnderlineDraw 650ms cubic-bezier(0.22, 0.58, 0.16, 1) 820ms forwards;
+      animation: heroUnderlineDraw 650ms var(--ease-brand) 820ms forwards;
     }
   }
   /* Reduced-motion: show the line immediately, fully drawn */
