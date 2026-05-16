@@ -62,7 +62,7 @@ const credentials = [
     </div>
 
     <!-- Right panel: full-height portrait photo -->
-    <div class="relative flex-1 min-h-[70vw] md:min-h-screen">
+    <div class="relative flex-1 min-h-[70vw] md:min-h-screen overflow-hidden rounded-lg">
       <!-- Sage watercolor wash bleeding from top-left corner over the photo edge -->
       <Watercolor position="top-left" opacity={0.60} scale={1.4} class="z-10" />
       <img
@@ -335,7 +335,7 @@ const credentials = [
           decoding="async"
           width="380"
           height="480"
-          style="width:340px; height:420px;"
+          style="width:320px; height:400px;"
         />
       </div>
     </div>
@@ -353,7 +353,7 @@ const credentials = [
           decoding="async"
           width="340"
           height="440"
-          style="width:300px; height:380px;"
+          style="width:320px; height:400px;"
         />
       </div>
     </div>
@@ -362,11 +362,17 @@ const credentials = [
     <div class="relative z-10 site-container">
       <div class="yash-text-wrap mx-auto">
         <ScrollReveal>
-          <p class="font-script text-gold text-center mb-4" style="font-size:22px;">A CLIENT'S STORY</p>
-          <h2 class="font-display font-medium text-forest text-center mb-10"
-              style="font-size:clamp(2.2rem, 5vw, 4rem); line-height:1.1;">
-            Yash drove home quieter<br class="hidden md:inline" /> than he came.
-          </h2>
+          <div class="relative">
+            <p class="font-script text-gold text-center mb-4" style="font-size:22px;">A CLIENT'S STORY</p>
+            <span
+              aria-hidden="true"
+              class="font-display text-gold select-none pointer-events-none absolute left-1/2 -translate-x-1/2"
+              style="font-size:10rem; line-height:1; opacity:0.13; top:-1rem; z-index:0;"
+            >"</span>
+            <h2 class="font-display font-medium text-forest text-center mb-10 relative" style="font-size:clamp(2.2rem, 5vw, 4rem); line-height:1.1; z-index:1;">
+              Yash drove home quieter<br class="hidden md:inline" /> than he came.
+            </h2>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal delay={80}>
@@ -378,7 +384,9 @@ const credentials = [
               happening that now it's hard to believe it's all for real. Thank you, Likhitha. It
               had a huge part in where I am today.
             </p>
-            <p class="font-body italic text-muted mt-6" style="font-size:1rem;">— Yash, climbing instructor</p>
+            <p class="font-body italic text-muted mt-6" style="font-size:1rem;">
+              — Yash, climbing instructor<span aria-hidden="true" class="text-sage mx-2 not-italic">·</span><span class="text-ink/50 not-italic" style="font-size:0.875rem;">Access Bars client</span>
+            </p>
           </div>
         </ScrollReveal>
       </div>
