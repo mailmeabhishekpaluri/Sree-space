@@ -14,6 +14,7 @@ export const site = {
     timezone: 'IST',
     rsvpUrl: '/monday',
     whatsappGroupUrl: 'https://chat.whatsapp.com/XXXXXXXXXX', // TODO: confirm invite link
+    meetUrl: 'https://meet.google.com/REPLACE-ME',            // TODO: replace with live Google Meet link
   },
   signaturePhrases: [
     'Come home to yourself.',
