@@ -15,7 +15,7 @@ export const testimonials: Testimonial[] = [
     id: 'ritasha-facelift',
     name: 'Ritasha',
     role: 'Yoga teacher',
-    quote: 'TODO: insert pull-quote from video before publishing',
+    quote: 'Within two days I could see my whole personality had changed — the way I was dressing, the way I was feeling, the way my face looked.',
     offerings: ['hands-on'],
     featured: true,
     video: {
