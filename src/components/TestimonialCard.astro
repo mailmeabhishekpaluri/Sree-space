@@ -11,6 +11,7 @@ interface Props {
   photoAlt?: string;
   featured?: boolean;
   class?: string;
+  video?: { src: string; poster: string };
   /* legacy props still accepted so existing pages don't break */
   name?: string;
   role?: string;
@@ -24,18 +25,35 @@ const {
   photoAlt = '',
   featured = false,
   class: cls = '',
+  video,
   name,
   role,
 } = Astro.props;
 
 /* resolve attribution from legacy name/role if new prop not given */
 const resolvedAttribution = attribution ?? (name ? (role ? `${name}, ${role}` : name) : '');
+const videoAriaLabel = `Video testimonial from ${name ?? attribution ?? 'client'}`;
 ---
 
 {featured ? (
   /* ── Featured mode: full-width editorial two-column ── */
   <div class:list={['tc-featured grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center', cls]}>
-    {photo && (
+
+    {video ? (
+      /* Video left column */
+      <div class="aspect-video rounded-2xl overflow-hidden ring-1 ring-gold/40 shadow-lg w-full">
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          poster={video.poster}
+          aria-label={videoAriaLabel}
+          class="w-full h-full object-cover"
+        >
+          <source src={video.src} type="video/mp4" />
+        </video>
+      </div>
+    ) : photo ? (
       <div class="tc-featured-photo">
         <TreatedPhoto
           src={photo}
@@ -46,10 +64,19 @@ const resolvedAttribution = attribution ?? (name ? (role ? `${name}, ${role}` : 
           class="w-full"
         />
       </div>
-    )}
+    ) : null}
+
     <div class="tc-featured-content">
       {tag && (
         <p class="font-script text-saffron mb-4" style="font-size:16px; letter-spacing:0.06em;">{tag}</p>
+      )}
+      {video && name && (
+        <div class="mb-5">
+          <p class="font-display text-forest" style="font-size:clamp(1.5rem,2.4vw,2.25rem); line-height:1.2;">{name}</p>
+          {role && (
+            <p class="font-body text-saffron mt-1" style="font-size:0.875rem; letter-spacing:0.07em; text-transform:uppercase;">{role}</p>
+          )}
+        </div>
       )}
       <blockquote class="relative pl-8 gold-border-l">
         <p class="font-display italic text-forest" style="font-size:clamp(1.3rem,2.3vw,2rem); line-height:1.5;">
@@ -60,37 +87,70 @@ const resolvedAttribution = attribution ?? (name ? (role ? `${name}, ${role}` : 
         </footer>
       </blockquote>
     </div>
+
   </div>
 ) : (
   /* ── Default mode: card ── */
   <div class:list={['tc-card group relative overflow-visible', cls]}
     style="background:var(--color-cream); border:1px solid rgba(var(--color-sage-rgb),0.70); border-radius:12px; padding:2.5rem;">
 
-    <!-- Oversized faded opening-quote glyph -->
-    <span
-      class="absolute font-display text-gold pointer-events-none select-none"
-      style="font-size:96px; line-height:1; opacity:0.18; top:-0.08em; left:0.3rem;"
-      aria-hidden="true"
-    >"</span>
+    <!-- Oversized faded opening-quote glyph (text-only cards) -->
+    {!video && (
+      <span
+        class="absolute font-display text-gold pointer-events-none select-none"
+        style="font-size:96px; line-height:1; opacity:0.18; top:-0.08em; left:0.3rem;"
+        aria-hidden="true"
+      >"</span>
+    )}
 
-    <!-- Top row: tag left, avatar right -->
-    <div class="flex items-start justify-between gap-4 mb-5 relative z-10">
-      {tag
-        ? <p class="font-script text-saffron" style="font-size:14px; letter-spacing:0.06em;">{tag}</p>
-        : <span></span>
-      }
-      {photo
-        ? <TreatedPhoto src={photo} alt={photoAlt} width={56} height={56}
-            class="w-14 h-14 rounded-full object-cover flex-shrink-0" />
-        : initials
-          ? <InitialCircle initials={initials} size={56} />
-          : null
-      }
-    </div>
+    <!-- Video block -->
+    {video && (
+      <div class="aspect-video rounded-2xl overflow-hidden ring-1 ring-gold/40 shadow-md mb-5 -mx-1">
+        <video
+          controls
+          preload="metadata"
+          playsinline
+          poster={video.poster}
+          aria-label={videoAriaLabel}
+          class="w-full h-full object-cover"
+        >
+          <source src={video.src} type="video/mp4" />
+        </video>
+      </div>
+    )}
+
+    <!-- Top row: tag + avatar (text-only cards) -->
+    {!video && (
+      <div class="flex items-start justify-between gap-4 mb-5 relative z-10">
+        {tag
+          ? <p class="font-script text-saffron" style="font-size:14px; letter-spacing:0.06em;">{tag}</p>
+          : <span></span>
+        }
+        {photo
+          ? <TreatedPhoto src={photo} alt={photoAlt} width={56} height={56}
+              class="w-14 h-14 rounded-full object-cover flex-shrink-0" />
+          : initials
+            ? <InitialCircle initials={initials} size={56} />
+            : null
+        }
+      </div>
+    )}
+
+    <!-- Video card: tag + name/role header -->
+    {video && (
+      <div class="mb-4 relative z-10">
+        {tag && (
+          <span class="inline-block font-body text-xs font-medium text-gold/90 border border-gold/40 rounded-full mb-3"
+            style="padding:3px 10px; letter-spacing:0.08em; text-transform:uppercase;">{tag}</span>
+        )}
+        {name && <p class="font-display text-2xl text-forest leading-tight">{name}</p>}
+        {role && <p class="font-body text-saffron mt-0.5" style="font-size:0.8125rem; letter-spacing:0.06em;">{role}</p>}
+      </div>
+    )}
 
     <!-- Quote -->
     <blockquote class="relative z-10">
-      <p class="font-display italic text-ink" style="font-size:1.1875rem; line-height:1.6;">
+      <p class:list={['font-display italic', video ? 'text-ink/70' : 'text-ink']} style="font-size:1.1875rem; line-height:1.6;">
         "{quote}"
       </p>
       <footer class="mt-5">

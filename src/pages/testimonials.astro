@@ -7,6 +7,7 @@ import ScrollReveal from '../components/ScrollReveal.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 import { testimonials } from '../data/testimonials';
 
+const ritasha      = testimonials.find(t => t.id === 'ritasha-facelift')!;
 const yash         = testimonials.find(t => t.id === 'yash')!;
 const pragathi     = testimonials.find(t => t.id === 'pragathi')!;
 const nagavamsi    = testimonials.find(t => t.id === 'nagavamsi')!;
@@ -44,10 +45,10 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
               <span class="tw"> <em class="not-italic">unedited.</em></span>
             </h1>
             <p class="font-body text-ink/75 mb-5" style="font-size:19px; max-width:56ch; line-height:1.65;">
-              Five real voices. Their actual messages, lightly tidied for length. The substance is theirs.
+              Six real voices — including one on video. Their actual messages, lightly tidied for length. The substance is theirs.
             </p>
             <p class="font-script text-gold" style="font-size:18px; letter-spacing:0.04em;">
-              5 voices · 1 anonymous
+              6 voices · 1 on video · 1 anonymous
             </p>
           </ScrollReveal>
         </div>
@@ -91,7 +92,36 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
 
   <!-- ═══════════════════════════════════════════════
-       SECTION 3 — YASH FEATURED STORY
+       SECTION 3 — RITASHA VIDEO TESTIMONIAL (featured first)
+  ══════════════════════════════════════════════════ -->
+  <section class="relative bg-cream overflow-hidden section-pad">
+    <Watercolor position="top-left" opacity={0.22} variant={2} />
+    <div class="site-container relative z-10">
+      <ScrollReveal>
+        <p class="font-script text-saffron text-center mb-10" style="font-size:20px; letter-spacing:0.04em;">
+          Watch · Access Facelift
+        </p>
+        <div
+          class="testimonial-item"
+          data-offerings="hands-on"
+        >
+          <TestimonialCard
+            featured
+            video={ritasha.video}
+            name={ritasha.name}
+            role={ritasha.role}
+            tag="ACCESS FACELIFT"
+            quote={ritasha.quote}
+            attribution={ritasha.name}
+          />
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION 4 — YASH FEATURED STORY
   ══════════════════════════════════════════════════ -->
   <section class="relative bg-cream overflow-hidden section-pad">
     <Watercolor position="bottom-right" opacity={0.28} variant={3} />
@@ -123,7 +153,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
 
   <!-- ═══════════════════════════════════════════════
-       SECTION 4 — "ON SREE'S TEACHING" (Pragathi + Nagavamsi)
+       SECTION 5 — "ON SREE'S TEACHING" (Pragathi + Nagavamsi)
   ══════════════════════════════════════════════════ -->
   <section class="relative overflow-hidden section-pad bg-sage-wash">
     <Watercolor position="top-left" opacity={0.30} variant={2} />
@@ -162,7 +192,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
 
   <!-- ═══════════════════════════════════════════════
-       SECTION 5 — "ON YOGA AS PRACTICE"
+       SECTION 6 — "ON YOGA AS PRACTICE"
   ══════════════════════════════════════════════════ -->
   <section class="relative bg-cream overflow-hidden section-pad">
     <Watercolor position="bottom-right" opacity={0.25} variant={1} />
@@ -201,7 +231,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
 
   <!-- ═══════════════════════════════════════════════
-       SECTION 6 — CLOSING WORD FROM LIKHITHA
+       SECTION 7 — CLOSING WORD FROM LIKHITHA
   ══════════════════════════════════════════════════ -->
   <section class="relative bg-cream overflow-hidden" style="padding-top:6rem; padding-bottom:6rem;">
     <div class="site-container">
@@ -231,7 +261,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
 
   <!-- ═══════════════════════════════════════════════
-       SECTION 7 — "HAVE SOMETHING TO ADD?"
+       SECTION 8 — "HAVE SOMETHING TO ADD?"
   ══════════════════════════════════════════════════ -->
   <section class="relative overflow-hidden section-pad bg-sage-wash">
     <div class="site-container">
@@ -263,7 +293,7 @@ const likhithaFin  = testimonials.find(t => t.id === 'likhitha-finance')!;
 
 
   <!-- ═══════════════════════════════════════════════
-       SECTION 8 — MONDAY CTA STRIP
+       SECTION 9 — MONDAY CTA STRIP
   ══════════════════════════════════════════════════ -->
   <section class="relative bg-forest overflow-hidden" style="padding-top:5rem; padding-bottom:5rem;">
     <div class="absolute bottom-6 right-8 pointer-events-none select-none" aria-hidden="true">

@@ -7,9 +7,22 @@ export type Testimonial = {
   quote: string;
   offerings: Offering[];
   featured?: boolean;
+  video?: { src: string; poster: string };
 };
 
 export const testimonials: Testimonial[] = [
+  {
+    id: 'ritasha-facelift',
+    name: 'Ritasha',
+    role: 'Yoga teacher',
+    quote: 'TODO: insert pull-quote from video before publishing',
+    offerings: ['hands-on'],
+    featured: true,
+    video: {
+      src: '/videos/testimonials/01_ritasha_access_facelift.mp4',
+      poster: '/videos/testimonials/01_ritasha_access_facelift_poster.jpg',
+    },
+  },
   {
     id: 'pragathi',
     name: 'Pragathi',
