@@ -8,19 +8,19 @@ import ScrollReveal from '../../components/ScrollReveal.astro';
 import Ornament from '../../components/Ornament.astro';
 import { offerings } from '../../data/offerings';
 
-const offering = offerings.find(o => o.slug === 'kids-yoga')!;
+const offering = offerings.find(o => o.slug === 'outdoor-immersion')!;
 ---
 
 <Base
-  title="Yoga for Kids"
-  description="Playful, breath-led yoga sessions for children — building body awareness, focus, and emotional regulation through age-appropriate movement and mindful games."
+  title="Outdoor Immersion Programs"
+  description="Nature-based group yoga and breathwork immersions — rivers, forests, hillsides at sunrise. Practice where the setting does the teaching."
 >
   <Hero
     headline={offering.hero.headline}
     sub={offering.hero.sub}
     image={offering.hero.image}
-    imageAlt="Likhitha Sree leading a playful yoga session"
-    primaryCta={{ label: 'Enquire about Kids Yoga', href: '/contact' }}
+    imageAlt="Likhitha Sree in a crescent lunge in a tropical garden — outdoor practice"
+    primaryCta={{ label: 'Enquire about an immersion', href: '/contact' }}
     secondaryCta={{ label: 'Join the Awareness Circle', href: '/monday' }}
   />
 
@@ -30,33 +30,34 @@ const offering = offerings.find(o => o.slug === 'kids-yoga')!;
       <ScrollReveal>
         <SectionEyebrow text="What it is" class="mb-4" />
         <h2 class="font-display text-forest mb-6" style="font-size:clamp(2rem,4vw,3rem); line-height:1.1; font-weight:500;">
-          Movement as a first language.
+          The setting is part of the practice.
         </h2>
         <p class="font-body text-ink/80 leading-relaxed mb-5" style="font-size:1.06rem; max-width:60ch;">
-          Playful, breath-led sessions that help children build body awareness, focus, and
-          emotional regulation through age-appropriate yoga, mindful games, and breathing
-          practices.
+          Outdoor Immersion Programs are group experiences held in natural settings —
+          riverbanks, forest clearings, hillsides at dawn. Yoga, breathwork, and
+          awareness practices taken outside the studio, where the uneven ground,
+          the light, and the ambient sound become part of what you're working with.
         </p>
         <p class="font-body text-ink/70 leading-relaxed" style="font-size:1rem; max-width:60ch;">
-          Kids learn best through play. These sessions meet them exactly there — weaving
-          movement, breath, and attention into games, stories, and exploration, rather than
-          a structured adult practice in miniature.
+          These aren't retreats or tourist experiences. They're practice sessions —
+          held outdoors because nature removes the performance of it. There's nowhere
+          to look good when a river is nearby and your feet are on actual earth.
         </p>
       </ScrollReveal>
     </div>
   </section>
 
-  <!-- What children take away -->
+  <!-- What the setting offers -->
   <section class="bg-sage-wash section-pad">
     <div class="site-container max-w-[800px]">
       <ScrollReveal>
-        <SectionEyebrow text="What children take away" class="mb-8" />
+        <SectionEyebrow text="What shifts outdoors" class="mb-8" />
         <ul class="flex flex-col gap-6">
           {[
-            { label: 'Body awareness', body: 'Learning to notice what the body feels like from the inside — its signals, its rhythms, its needs.' },
-            { label: 'Breath as a tool', body: 'Simple breathing practices children can use anywhere: before a test, after a tantrum, during a hard moment.' },
-            { label: 'Focus and stillness', body: 'Short, playful attention exercises that build the capacity to settle — without asking children to simply "sit still."' },
-            { label: 'Emotional vocabulary', body: 'Moving through feelings rather than suppressing them — gentle practices for big emotions.' },
+            { label: 'Breath lands differently', body: 'Open air, ambient sound, actual wind — pranayama and breathwork find a depth indoors rarely reaches.' },
+            { label: 'The body stops performing', body: "Uneven terrain, natural light, no mirrors. You're in it rather than watching yourself be in it." },
+            { label: 'Attention sharpens', body: 'Nature is the original object of meditation. The practice of noticing transfers immediately to the setting around you.' },
+            { label: 'Group energy settles', body: 'Something quieter happens when a group practices together outside. The usual social static drops away faster.' },
           ].map(item => (
             <li class="flex items-start gap-5">
               <Ornament name="lotus" size={24} color="#C99A4B" class="flex-shrink-0 mt-1 opacity-75" />
@@ -78,10 +79,11 @@ const offering = offerings.find(o => o.slug === 'kids-yoga')!;
         <SectionEyebrow text="Practical" class="mb-6" />
         <ul class="flex flex-col gap-3">
           {[
-            'Sessions are age-appropriate — ask about the right format for your child.',
-            'Available 1:1 or in small groups.',
-            'No prior yoga experience needed — from the very first breath.',
-            'Write to Likhitha to discuss age, needs, and scheduling.',
+            'Group sessions — small groups preferred, usually 4–12 people.',
+            'Locations vary: rivers, forest edges, open hillsides. Ask about current venues.',
+            'No prior yoga experience needed — the outdoors meets every level.',
+            'Bring comfortable clothing, a mat or ground cloth, and water.',
+            'Write to Likhitha to ask about upcoming dates and locations.',
           ].map(item => (
             <li class="flex items-start gap-3 font-body text-ink/80" style="font-size:1rem; line-height:1.65;">
               <span class="text-gold mt-1 flex-shrink-0" aria-hidden="true">—</span>
@@ -98,13 +100,13 @@ const offering = offerings.find(o => o.slug === 'kids-yoga')!;
     <div class="site-container text-center">
       <ScrollReveal>
         <h2 class="font-display text-forest mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); font-weight:500;">
-          Curious about a session?
+          Curious about the next session?
         </h2>
         <p class="font-body text-ink/70 mb-8 mx-auto" style="font-size:1rem; max-width:44ch; line-height:1.65;">
-          Write to Likhitha with your child's age and any specific needs — she'll suggest the best place to begin.
+          Write to Likhitha with where you are and what you're drawn to — she'll let you know what's coming up.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <Button href="/contact" variant="primary">Enquire about Kids Yoga</Button>
+          <Button href="/contact" variant="primary">Enquire about an immersion</Button>
           <Button href="/monday" variant="secondary">Join the Awareness Circle</Button>
         </div>
       </ScrollReveal>

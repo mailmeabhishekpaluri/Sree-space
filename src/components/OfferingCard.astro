@@ -13,7 +13,7 @@ interface Props {
 
 const { title, short, slug, index } = Astro.props;
 
-type Slug = 'yoga' | 'hands-on-therapy' | 'talk-energy-clearance' | 'consultation' | 'kids-yoga';
+type Slug = 'yoga' | 'hands-on-therapy' | 'talk-energy-clearance' | 'consultation' | 'outdoor-immersion';
 const illusSlug = slug as Slug;
 ---
 
@@ -93,23 +93,21 @@ const illusSlug = slug as Slug;
         <circle cx="26" cy="26" r="3" fill="currentColor" stroke="none"/>
       </svg>
     )}
-    {illusSlug === 'kids-yoga' && (
-      /* Sun with breath waves — childhood warmth + pranayama */
+    {illusSlug === 'outdoor-immersion' && (
+      /* Mountain + horizon line — nature immersion */
       <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <!-- sun circle -->
-        <circle cx="26" cy="18" r="7" stroke-width="1.4"/>
-        <!-- 8 rays: cardinal full-opacity, diagonal faded -->
-        <line x1="26" y1="8"  x2="26" y2="5"  stroke-width="1.2"/>
-        <line x1="35" y1="17" x2="38" y2="17" stroke-width="1.2"/>
-        <line x1="26" y1="28" x2="26" y2="31" stroke-width="1.2" opacity="0.4"/>
-        <line x1="17" y1="17" x2="14" y2="17" stroke-width="1.2"/>
-        <line x1="32" y1="10" x2="34" y2="8"  stroke-width="1.2" opacity="0.65"/>
-        <line x1="32" y1="25" x2="35" y2="27" stroke-width="1.2" opacity="0.35"/>
-        <line x1="20" y1="25" x2="17" y2="27" stroke-width="1.2" opacity="0.35"/>
-        <line x1="20" y1="10" x2="17" y2="8"  stroke-width="1.2" opacity="0.65"/>
-        <!-- breath waves below sun -->
-        <path d="M10 37 C13 34 15 40 18 37 C21 34 23 40 26 37 C29 34 31 40 34 37 C37 34 39 40 42 37" stroke-width="1.3"/>
-        <path d="M14 45 C17 42 19 48 22 45 C25 42 27 48 30 45 C33 42 35 48 38 45" stroke-width="1.3" opacity="0.45"/>
+        <!-- mountain peak left -->
+        <path d="M6 40 L18 18 L30 40" stroke-width="1.4"/>
+        <!-- mountain peak right (taller) -->
+        <path d="M22 40 L34 10 L46 40" stroke-width="1.4"/>
+        <!-- horizon / ground line -->
+        <line x1="4" y1="40" x2="48" y2="40" stroke-width="1.2" opacity="0.5"/>
+        <!-- sunrise arc above right peak -->
+        <path d="M28 10 C30 5 38 5 40 10" stroke-width="1.1" opacity="0.6"/>
+        <!-- sun rays -->
+        <line x1="34" y1="4" x2="34" y2="2" stroke-width="1" opacity="0.55"/>
+        <line x1="40" y1="7" x2="42" y2="5" stroke-width="1" opacity="0.55"/>
+        <line x1="28" y1="7" x2="26" y2="5" stroke-width="1" opacity="0.55"/>
       </svg>
     )}
   </div>

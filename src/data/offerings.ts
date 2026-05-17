@@ -112,12 +112,12 @@ export const offerings: Offering[] = [
     testimonialIds: ['pragathi', 'nagavamsi'],
   },
   {
-    slug: 'kids-yoga',
-    title: 'Yoga for Kids',
-    short: 'Playful, breath-led sessions that help children build body awareness, focus, and emotional regulation through age-appropriate yoga, mindful games, and breathing practices.',
+    slug: 'outdoor-immersion',
+    title: 'Outdoor Immersion Programs',
+    short: 'Nature-based group experiences — rivers, forests, sunrise sessions. Movement, breath, and awareness practiced where the ground is uneven and the air is real.',
     hero: {
-      headline: 'Yoga that speaks the language of play.',
-      sub: 'Breath, movement, and awareness — made joyful and age-appropriate for the little ones in your life.',
+      headline: 'Practice where the ground is uneven.',
+      sub: 'Group immersions in nature — rivers, forests, hillsides at sunrise. The practice changes when the setting does.',
       image: '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
     },
   },
