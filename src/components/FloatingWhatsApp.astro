@@ -368,13 +368,24 @@ import { WHATSAPP_OPTIONS, WHATSAPP_NUMBER } from '../data/contact';
   }
 
   // ── Open / close ────────────────────────────────
-  function openPanel() {
+  function openPanel(option) {
     panel.setAttribute('aria-hidden', 'false');
     trigger.setAttribute('aria-expanded', 'true');
     backdrop.classList.add('is-open');
     document.addEventListener('keydown', trapFocus);
-    // Focus first focusable element after transition
-    setTimeout(() => getFocusable()[0]?.focus(), 50);
+
+    if (option) {
+      const target = Array.from(chips).find(c => c.dataset.option === option);
+      if (target) target.setAttribute('aria-pressed', 'true');
+    }
+
+    setTimeout(() => {
+      if (!nameInput.value.trim()) {
+        nameInput.focus();
+      } else {
+        form.querySelector('.wa-submit')?.focus();
+      }
+    }, 50);
   }
 
   function closePanel() {
@@ -461,6 +472,21 @@ import { WHATSAPP_OPTIONS, WHATSAPP_NUMBER } from '../data/contact';
     if (nameInput.value.trim()) {
       nameInput.classList.remove('is-invalid');
       nameError.hidden = true;
+    }
+  });
+
+  // ── Programmatic API ────────────────────────────
+  window.openWhatsApp = function(option) {
+    window.dispatchEvent(new CustomEvent('open-whatsapp', { detail: { option: option } }));
+  };
+
+  window.addEventListener('open-whatsapp', function(e) {
+    const opt = e.detail && e.detail.option;
+    if (panel.getAttribute('aria-hidden') !== 'false') {
+      openPanel(opt);
+    } else if (opt) {
+      const target = Array.from(chips).find(c => c.dataset.option === opt);
+      if (target) target.setAttribute('aria-pressed', 'true');
     }
   });
 </script>

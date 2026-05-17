@@ -23,7 +23,7 @@ const offeringTestimonials = offering.testimonialIds!.map(
     sub={offering.hero.sub}
     image={offering.hero.image}
     imageAlt="A calm conversation session at a hilltop café"
-    primaryCta={{ label: 'Book a session', href: '/contact' }}
+    primaryCta={{ label: 'Book a session', onclick: "window.openWhatsApp('Talk + energy clearance')" }}
     secondaryCta={{ label: 'Join the Awareness Circle', href: '/monday' }}
   />
 
@@ -73,7 +73,7 @@ const offeringTestimonials = offering.testimonialIds!.map(
         The conversation starts when you say so.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <Button href="/contact" variant="primary">Book a session</Button>
+        <Button onclick="window.openWhatsApp('Talk + energy clearance')" variant="primary">Book a session</Button>
         <Button href="/monday" variant="secondary">Join the Awareness Circle</Button>
       </div>
     </div>

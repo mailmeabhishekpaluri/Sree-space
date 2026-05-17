@@ -23,7 +23,7 @@ const offeringTestimonials = offering.testimonialIds!.map(
     sub={offering.hero.sub}
     image={offering.hero.image}
     imageAlt="Likhitha Sree in workshop setting"
-    primaryCta={{ label: 'Book a consultation', href: '/contact' }}
+    primaryCta={{ label: 'Book a consultation', onclick: "window.openWhatsApp('One-on-one consultation')" }}
     secondaryCta={{ label: 'Join the Awareness Circle', href: '/monday' }}
   />
 
@@ -68,7 +68,7 @@ const offeringTestimonials = offering.testimonialIds!.map(
     <div class="site-container text-center">
       <h2 class="font-display text-3xl text-forest mb-6">Ready to ask?</h2>
       <div class="flex flex-wrap justify-center gap-4">
-        <Button href="/contact" variant="primary">Book a consultation</Button>
+        <Button onclick="window.openWhatsApp('One-on-one consultation')" variant="primary">Book a consultation</Button>
         <Button href="/monday" variant="secondary">Join the Awareness Circle</Button>
       </div>
     </div>

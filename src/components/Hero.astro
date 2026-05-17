@@ -4,7 +4,7 @@ interface Props {
   headline: string;
   headlineAccent?: string;
   sub: string;
-  primaryCta?: { label: string; href: string };
+  primaryCta?: { label: string; href?: string; onclick?: string };
   secondaryCta?: { label: string; href: string };
   image: string;
   imageAlt?: string;
@@ -73,13 +73,24 @@ const {
       {(primaryCta || secondaryCta) && (
         <div class="flex flex-wrap gap-4 items-center">
           {primaryCta && (
-            <a
-              href={primaryCta.href}
-              class="inline-block font-body font-medium text-forest bg-gold hover:bg-gold-dark rounded-pill transition-colors duration-200"
-              style="padding:14px 28px; font-size:15px;"
-            >
-              {primaryCta.label}
-            </a>
+            primaryCta.onclick ? (
+              <button
+                type="button"
+                onclick={primaryCta.onclick}
+                class="inline-block font-body font-medium text-forest bg-gold hover:bg-gold-dark rounded-pill transition-colors duration-200"
+                style="padding:14px 28px; font-size:15px; cursor:pointer; border:none;"
+              >
+                {primaryCta.label}
+              </button>
+            ) : (
+              <a
+                href={primaryCta.href}
+                class="inline-block font-body font-medium text-forest bg-gold hover:bg-gold-dark rounded-pill transition-colors duration-200"
+                style="padding:14px 28px; font-size:15px;"
+              >
+                {primaryCta.label}
+              </a>
+            )
           )}
           {secondaryCta && (
             <a

@@ -20,7 +20,7 @@ const offering = offerings.find(o => o.slug === 'outdoor-immersion')!;
     sub={offering.hero.sub}
     image={offering.hero.image}
     imageAlt="Likhitha Sree in a crescent lunge in a tropical garden — outdoor practice"
-    primaryCta={{ label: 'Enquire about an immersion', href: '/contact' }}
+    primaryCta={{ label: 'Enquire about an immersion', onclick: "window.openWhatsApp('Outdoor immersion programs')" }}
     secondaryCta={{ label: 'Join the Awareness Circle', href: '/monday' }}
   />
 
@@ -106,7 +106,7 @@ const offering = offerings.find(o => o.slug === 'outdoor-immersion')!;
           Write to Likhitha with where you are and what you're drawn to — she'll let you know what's coming up.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <Button href="/contact" variant="primary">Enquire about an immersion</Button>
+          <Button onclick="window.openWhatsApp('Outdoor immersion programs')" variant="primary">Enquire about an immersion</Button>
           <Button href="/monday" variant="secondary">Join the Awareness Circle</Button>
         </div>
       </ScrollReveal>
