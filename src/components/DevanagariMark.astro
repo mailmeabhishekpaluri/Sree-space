@@ -2,21 +2,23 @@
 interface Props {
   size?: number;
   opacity?: number;
+  /** Kept for API compatibility — image carries its own gold colour */
   color?: string;
   class?: string;
 }
 const {
   size = 240,
   opacity = 0.08,
-  color = '#C99A4B',
   class: cls = '',
 } = Astro.props;
 ---
 
-<span
+<img
+  src="/images/branding/sree-mark.png"
+  alt=""
   aria-hidden="true"
-  class:list={['font-devanagari pointer-events-none select-none leading-none', cls]}
-  style={`font-size:${size}px; opacity:${opacity}; color:${color}; line-height:1;`}
->
-  श्री
-</span>
+  class:list={['pointer-events-none select-none', cls]}
+  style={`height:${size}px; width:auto; opacity:${opacity}; display:block;`}
+  loading="lazy"
+  decoding="async"
+/>
