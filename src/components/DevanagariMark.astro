@@ -4,11 +4,14 @@ interface Props {
   opacity?: number;
   /** Kept for API compatibility — image carries its own gold colour */
   color?: string;
+  /** Set false on dark (bg-forest) sections so multiply doesn't kill the mark */
+  blend?: boolean;
   class?: string;
 }
 const {
   size = 240,
   opacity = 0.08,
+  blend = true,
   class: cls = '',
 } = Astro.props;
 ---
@@ -18,7 +21,7 @@ const {
   alt=""
   aria-hidden="true"
   class:list={['pointer-events-none select-none', cls]}
-  style={`height:${size}px; width:auto; opacity:${opacity}; display:block;`}
+  style={`height:${size}px; width:auto; opacity:${opacity}; display:block;${blend ? ' mix-blend-mode:multiply;' : ''}`}
   loading="lazy"
   decoding="async"
 />
