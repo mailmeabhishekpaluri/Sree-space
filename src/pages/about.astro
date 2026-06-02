@@ -53,7 +53,7 @@ const credentials = [
       </div>
 
       <!-- Type content -->
-      <div class="relative z-10 px-8 py-20 md:px-14 lg:px-20 xl:px-28 w-full">
+      <div class="relative z-10 px-8 py-14 md:py-20 md:px-14 lg:px-20 xl:px-28 w-full">
         <ScrollReveal>
           <p class="font-script text-gold hero-eyebrow mb-5" aria-label="Founder">FOUNDER</p>
           <h1 class="font-display font-medium text-forest hero-headline leading-none tracking-tight">
@@ -65,7 +65,7 @@ const credentials = [
     </div>
 
     <!-- Right panel: full-height portrait photo -->
-    <div class="relative flex-1 min-h-[70vw] md:min-h-screen overflow-hidden rounded-lg">
+    <div class="relative flex-1 min-h-[80vw] md:min-h-screen overflow-hidden rounded-lg">
       <!-- Sage watercolor wash bleeding from top-left corner over the photo edge -->
       <Watercolor position="top-left" opacity={0.60} scale={1.4} class="z-10" />
       <img
@@ -471,7 +471,7 @@ const credentials = [
           <Button href="/contact" variant="primary" class="cta-btn-primary">
             Get in Touch
           </Button>
-          <Ornament name="lotus" size={56} color="#C99A4B" class="opacity-70" />
+          <Ornament name="lotus" size={56} color="#C99A4B" class="opacity-70 hidden md:block" />
           <Button href="/contact" variant="secondary" class="cta-btn-secondary">
             Book a 1:1 session
           </Button>
@@ -502,13 +502,16 @@ const credentials = [
   /* ─── Bio dropcap ─────────────────────────────── */
   .bio-text p:first-child::first-letter {
     font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: 5rem;
+    font-size: 3.25rem;
     font-weight: 500;
     color: #C99A4B;
     float: left;
     line-height: 0.78;
     margin-right: 0.12em;
     margin-top: 0.06em;
+  }
+  @media (min-width: 768px) {
+    .bio-text p:first-child::first-letter { font-size: 5rem; }
   }
   .bio-text p {
     font-family: Inter, system-ui, sans-serif;
@@ -519,8 +522,14 @@ const credentials = [
 
   /* ─── Bio pull-quote ──────────────────────────── */
   .pull-quote-bleed {
-    margin-left: -2rem;
-    padding-left: 2rem;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  @media (min-width: 768px) {
+    .pull-quote-bleed {
+      margin-left: -2rem;
+      padding-left: 2rem;
+    }
   }
   .bio-pull-quote {
     border-left: 4px solid var(--color-gold);
@@ -543,9 +552,10 @@ const credentials = [
   @media (max-width: 767px) {
     .journey-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 2rem 1rem;
+      gap: 2rem 0.75rem;
     }
     .journey-connector { display: none; }
+    .journey-milestone h3 { font-size: 1.25rem !important; }
   }
   .journey-milestone {
     display: flex;
@@ -559,10 +569,16 @@ const credentials = [
     margin-top: -40px; /* align with image midpoint */
   }
   .journey-img-wrap {
-    width: 220px;
-    height: 260px;
+    width: 130px;
+    height: 156px;
     overflow: hidden;
     clip-path: polygon(6% 0%, 94% 2%, 100% 90%, 88% 100%, 12% 96%, 0% 8%);
+  }
+  @media (min-width: 480px) {
+    .journey-img-wrap { width: 170px; height: 204px; }
+  }
+  @media (min-width: 768px) {
+    .journey-img-wrap { width: 220px; height: 260px; }
   }
   .journey-img {
     width: 100%;
@@ -596,13 +612,16 @@ const credentials = [
     background: #FBF8F1;
     border: 1px solid #C5D3C0;
     border-radius: 12px;
-    padding: 3rem 2.5rem;
+    padding: 2rem 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 0;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     position: relative;
     overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .modality-card { padding: 3rem 2.5rem; }
   }
   .modality-card:hover {
     transform: translateY(-4px);
@@ -659,13 +678,16 @@ const credentials = [
   }
   .yash-body p:first-child::first-letter {
     font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: 5rem;
+    font-size: 3.25rem;
     font-weight: 500;
     color: #C99A4B;
     float: left;
     line-height: 0.78;
     margin-right: 0.12em;
     margin-top: 0.06em;
+  }
+  @media (min-width: 768px) {
+    .yash-body p:first-child::first-letter { font-size: 5rem; }
   }
   .yash-body p {
     font-family: Inter, system-ui, sans-serif;

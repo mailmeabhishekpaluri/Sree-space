@@ -66,12 +66,12 @@ const {
         )}
       </h1>
 
-      <p class="font-body text-base md:text-lg text-ink mb-8 max-w-[48ch]">
+      <p class="font-body text-base text-ink mb-8 max-w-[48ch] leading-relaxed">
         {sub}
       </p>
 
       {(primaryCta || secondaryCta) && (
-        <div class="flex flex-wrap gap-4 items-center">
+        <div class="flex flex-wrap gap-3 md:gap-4 items-center">
           {primaryCta && (
             primaryCta.onclick ? (
               <button

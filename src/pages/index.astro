@@ -78,8 +78,8 @@ import { site } from '../data/site';
 
         <!-- Sub -->
         <p
-          class="font-body text-cream/90 mb-10 hero-sub"
-          style="font-size:19px; max-width:52ch; opacity:0; transform:translateY(10px); transition:opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s;"
+          class="font-body text-cream/90 mb-8 md:mb-10 hero-sub"
+          style="font-size:clamp(16px,4.2vw,19px); max-width:52ch; opacity:0; transform:translateY(10px); transition:opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s;"
         >
           Yoga, hands-on energy work, and consciousness practices —
           guided by Likhitha Sree.
@@ -87,14 +87,14 @@ import { site } from '../data/site';
 
         <!-- CTAs -->
         <div
-          class="flex flex-wrap gap-5 items-center hero-ctas"
+          class="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 items-start sm:items-center hero-ctas"
           style="opacity:0; transform:translateY(10px); transition:opacity 0.7s ease 0.75s, transform 0.7s ease 0.75s;"
         >
           <!-- Primary: gold fill, forest text, pill -->
           <a
             href="/monday"
             class="font-body font-medium text-forest bg-gold rounded-pill transition-all duration-200 hover:bg-gold-dark"
-            style="padding:16px 32px; font-size:15px; letter-spacing:0.01em;"
+            style="padding:14px 28px; font-size:15px; letter-spacing:0.01em;"
           >
             Join the Awareness Circle
           </a>
@@ -228,7 +228,7 @@ import { site } from '../data/site';
           />
         </ScrollReveal>
         <ScrollReveal delay={320} class="md:col-span-2">
-          <div style="max-width:calc(50% - 0.75rem); margin-inline:auto;">
+          <div class="md:max-w-[calc(50%-0.75rem)] md:mx-auto">
             <OfferingCard
               title="Outdoor Immersion Programs"
               short="Nature-based group experiences — rivers, forests, sunrise sessions. Movement, breath, and awareness practiced where the ground is uneven and the air is real."
@@ -319,15 +319,15 @@ import { site } from '../data/site';
     <Watercolor position="top-right" opacity={0.35} variant={1} />
 
     <div class="site-container">
-      <div class="grid grid-cols-12 gap-6 items-start">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 
-        <!-- Left: giant श्री — slow pure fade, no vertical drift (it's floating, not landing) -->
-        <ScrollReveal duration={1000} y={0} class="col-span-3 flex justify-end pt-2 select-none" aria-hidden="true">
+        <!-- Left: giant श्री — hidden on mobile (no room in narrow layout) -->
+        <ScrollReveal duration={1000} y={0} class="hidden md:flex md:col-span-3 justify-end pt-2 select-none" aria-hidden="true">
           <DevanagariMark size={320} opacity={0.65} />
         </ScrollReveal>
 
-        <!-- Right: content -->
-        <ScrollReveal class="col-span-9 md:col-span-8 md:col-start-4">
+        <!-- Right: content — full-width on mobile -->
+        <ScrollReveal class="col-span-12 md:col-span-8 md:col-start-4">
           <!-- Eyebrow -->
           <p class="font-script text-saffron mb-4" style="font-size:20px; letter-spacing:0.04em;">
             What is Sree Space?
