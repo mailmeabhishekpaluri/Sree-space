@@ -343,9 +343,15 @@ import { site } from '../data/site';
     <div class="site-container">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 
-        <!-- Left: giant श्री — hidden on mobile (no room in narrow layout) -->
-        <ScrollReveal duration={1000} y={0} class="hidden md:flex md:col-span-3 justify-end pt-2 select-none" aria-hidden="true">
-          <DevanagariMark size={320} opacity={0.65} />
+        <!-- Left: final logo -->
+        <ScrollReveal duration={1000} y={0} class="hidden md:flex md:col-span-3 justify-end pt-2 select-none">
+          <img
+            src="/images/branding/final-logo.png"
+            alt="Sree Space logo"
+            style="height:320px; width:auto; object-fit:contain;"
+            loading="lazy"
+            decoding="async"
+          />
         </ScrollReveal>
 
         <!-- Right: content — full-width on mobile -->
@@ -359,9 +365,6 @@ import { site } from '../data/site';
           <h2 class="font-display text-forest mb-4" style="font-size:clamp(2.4rem,5vw,3.5rem); line-height:1.1; font-weight:500;">
             A space where you find your own light.
           </h2>
-
-          <!-- Swash ornament -->
-          <Ornament name="swash" size={56} color="#C99A4B" class="mb-6 opacity-90" />
 
           <!-- Body copy -->
           <p class="font-body text-ink/80 leading-relaxed max-w-prose" style="font-size:1.06rem;">
