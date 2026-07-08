@@ -7,7 +7,7 @@
 :root {
   --color-gold:        #C99A4B;
   --color-gold-dark:   #A37A30;
-  --color-forest:      #2C5F3F;
+  --color-forest:      #4D7A5C;
   --color-forest-soft: #4D7A5C;
   --color-sage:        #C5D3C0;
   --color-sage-deep:   #9CB098;
@@ -23,7 +23,7 @@
   /* RGB channels — enables rgba(var(--color-*-rgb), opacity) patterns */
   --color-gold-rgb:    201, 154, 75;
   --color-sage-rgb:    197, 211, 192;
-  --color-forest-rgb:  44, 95, 63;
+  --color-forest-rgb:  77, 122, 92;
   --color-ink-rgb:     31, 42, 36;
   --color-cream-rgb:   251, 248, 241;
 
