@@ -128,7 +128,7 @@ export const offerings: Offering[] = [
     hero: {
       headline: 'Every child deserves to feel at home in themselves.',
       sub: 'Gentle, age-appropriate support for children navigating exam pressure, social difficulty, emotional overwhelm, and developmental challenges.',
-      image: '/images/community-outdoor/04_workshop_group_under_tree.jpeg',
+      image: '/images/community-outdoor/02_selfie_with_kids_by_stream.jpeg',
     },
     whatFor: [
       'Exam stress and performance anxiety',

@@ -272,15 +272,24 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
         <!-- Card 05: Outdoor Immersion -->
         <ScrollReveal delay={80}>
           <div class="paired-card group">
-            <div class="relative mb-6">
-              <TreatedPhoto
-                src="/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg"
-                alt="Likhitha Sree in crescent lunge in a tropical garden — outdoor immersion"
-                framed
-                width={600}
-                height={400}
-                class="w-full"
-              />
+            <div class="relative mb-6 overflow-hidden rounded-lg" style="height:260px;">
+              <div class="grid h-full gap-0.5" style="grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;">
+                <img
+                  src="/images/community-outdoor/03_empty_forest_trail_atmospheric.jpeg"
+                  alt="" class="w-full h-full object-cover" style="grid-row:1/3;"
+                  loading="lazy" decoding="async"
+                />
+                <img
+                  src="/images/community-outdoor/04_workshop_group_under_tree.jpeg"
+                  alt="" class="w-full h-full object-cover"
+                  loading="lazy" decoding="async"
+                />
+                <img
+                  src="/images/community-outdoor/05_large_training_cohort_outdoor.jpeg"
+                  alt="" class="w-full h-full object-cover"
+                  loading="lazy" decoding="async"
+                />
+              </div>
               <div class="absolute -top-4 -left-4 z-20 transition-transform duration-500 group-hover:rotate-6" aria-hidden="true">
                 <Ornament name="swash" size={48} color="#C99A4B" />
               </div>
@@ -303,8 +312,8 @@ import TreatedPhoto from '../../components/TreatedPhoto.astro';
           <div class="paired-card group">
             <div class="relative mb-6">
               <TreatedPhoto
-                src="/images/community-outdoor/01_kids_in_tree_outdoor_play.jpeg"
-                alt="Children playing outdoors in a tree — kids therapy"
+                src="/images/community-outdoor/02_selfie_with_kids_by_stream.jpeg"
+                alt="Likhitha with kids by a stream — kids therapy"
                 framed
                 width={600}
                 height={400}

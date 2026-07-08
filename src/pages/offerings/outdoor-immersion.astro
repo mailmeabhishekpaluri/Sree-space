@@ -1,6 +1,5 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Hero from '../../components/Hero.astro';
 import SectionEyebrow from '../../components/SectionEyebrow.astro';
 import MondayCTA from '../../components/MondayCTA.astro';
 import Button from '../../components/Button.astro';
@@ -15,15 +14,85 @@ const offering = offerings.find(o => o.slug === 'outdoor-immersion')!;
   title="Outdoor Immersion Programs"
   description="Nature-based group yoga and breathwork immersions — rivers, forests, hillsides at sunrise. Practice where the setting does the teaching."
 >
-  <Hero
-    eyebrow={offering.hero.headline}
-    headline={offering.title}
-    sub={offering.hero.sub}
-    image={offering.hero.image}
-    imageAlt="Likhitha Sree in a crescent lunge in a tropical garden — outdoor practice"
-    primaryCta={{ label: 'Enquire about an immersion', onclick: "window.openWhatsApp('Outdoor immersion programs')" }}
-    secondaryCta={{ label: 'Join the Awareness Circle', href: '/monday' }}
-  />
+  <!-- Collage hero -->
+  <section class="relative min-h-[90vh] flex items-end md:items-center overflow-hidden">
+    <!-- Photo collage — right portion -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 md:left-[42%]" style="display:grid; grid-template-rows:45% 55%; gap:2px;">
+        <img
+          src="/images/community-outdoor/03_empty_forest_trail_atmospheric.jpeg"
+          alt=""
+          class="w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+          <img
+            src="/images/community-outdoor/04_workshop_group_under_tree.jpeg"
+            alt=""
+            class="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <img
+            src="/images/community-outdoor/05_large_training_cohort_outdoor.jpeg"
+            alt=""
+            class="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+      <!-- Cream scrim — opaque left, fades right -->
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(105deg, rgba(var(--color-cream-rgb),0.97) 0%, rgba(var(--color-cream-rgb),0.93) 30%, rgba(var(--color-cream-rgb),0.60) 50%, rgba(var(--color-cream-rgb),0.10) 68%, transparent 82%);"
+        aria-hidden="true"
+      ></div>
+      <!-- Mobile bottom fade -->
+      <div
+        class="absolute bottom-0 left-0 right-0 h-40 md:hidden"
+        style="background: linear-gradient(to top, rgba(var(--color-cream-rgb),0.92) 0%, transparent 100%);"
+        aria-hidden="true"
+      ></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative site-container py-24 md:py-32 w-full">
+      <div class="max-w-[52ch]">
+        <p class="font-script text-saffron mb-4" style="font-size:20px; letter-spacing:0.04em;">
+          {offering.hero.headline}
+        </p>
+        <h1 class="font-display text-4xl md:text-hero font-medium leading-tight text-forest mb-6">
+          {offering.title}
+        </h1>
+        <p class="font-body text-base text-ink mb-8 max-w-[48ch] leading-relaxed">
+          {offering.hero.sub}
+        </p>
+        <div class="flex flex-wrap gap-3 md:gap-4 items-center">
+          <button
+            type="button"
+            onclick="window.openWhatsApp('Outdoor immersion programs')"
+            class="inline-block font-body font-medium text-forest bg-gold hover:bg-gold-dark rounded-pill transition-colors duration-200"
+            style="padding:14px 28px; font-size:15px; cursor:pointer; border:none;"
+          >
+            Enquire about an immersion
+          </button>
+          <a
+            href="/monday"
+            class="inline-flex items-center gap-2 font-body font-medium text-forest hover:text-gold transition-colors duration-200"
+            style="font-size:15px;"
+          >
+            Join the Awareness Circle
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- What it is -->
   <section class="bg-cream section-pad">
