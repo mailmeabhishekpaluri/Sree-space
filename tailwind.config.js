@@ -5,14 +5,14 @@ export default {
     extend: {
       colors: {
         gold:   { DEFAULT: '#C99A4B', dark: '#A37A30' },
-        forest: { DEFAULT: '#2C5F3F', soft: '#4D7A5C', deep: '#1F4A30' },
-        sage:   { DEFAULT: '#C5D3C0', deep: '#9CB098', wash: '#EFF3ED' },
+        forest: { DEFAULT: '#629153', soft: '#86ae79', deep: '#4b733f' },
+        sage:   { DEFAULT: '#d2dccf', deep: '#bbcdb6', wash: '#e6eae5' },
         cream:  '#FBF8F1',
         saffron:'#E07B2C',
         earth:  '#7A5A3E',
         lotus:  '#B86F8A',
-        ink:    '#1F2A24',
-        muted:  '#5C6B62',
+        ink:    '#35532b',
+        muted:  '#86ae79',
         rule:   '#D9D2C7',
       },
       fontFamily: {
