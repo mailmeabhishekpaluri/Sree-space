@@ -5,9 +5,9 @@ export const site = {
   description:
     'Yoga, hands-on energy work, and consciousness practices with Likhitha Sree.',
   socials: {
-    instagram: 'https://instagram.com/sreespace', // TODO: confirm handle
+    instagram: 'https://instagram.com/sree_space_',
     whatsapp: 'https://wa.me/91XXXXXXXXXX',       // TODO: confirm number
-    email: 'hello@sreespace.com',                  // TODO: confirm email
+    email: 'sree.spacebylikhitha@gmail.com',
   },
   mondayCall: {
     day: 'Monday',
