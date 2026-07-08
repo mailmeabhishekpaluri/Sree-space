@@ -102,7 +102,7 @@ export const offerings: Offering[] = [
     hero: {
       headline: 'Small problem. Simple solution.',
       sub: 'A consultation to map your situation and prescribe a tailor-made plan drawing on yoga, mudra, kriya, and energy work.',
-      image: '/images/portraits/07_blue_floral_kurta_workshop_context.jpeg',
+      image: '/images/studio-spaces/02_seated_meditation_studio_indoor_plants.jpeg',
     },
     howItWorks: [
       'Free 15-min intro call (often the Awareness Circle counts).',
