@@ -10,6 +10,7 @@ interface Props {
   photo?: string;
   photoAlt?: string;
   featured?: boolean;
+  videoPortrait?: boolean;
   class?: string;
   video?: { src: string; poster: string };
   /* legacy props still accepted so existing pages don't break */
@@ -24,6 +25,7 @@ const {
   photo,
   photoAlt = '',
   featured = false,
+  videoPortrait = false,
   class: cls = '',
   video,
   name,
@@ -41,14 +43,17 @@ const videoAriaLabel = `Video testimonial from ${name ?? attribution ?? 'client'
 
     {video ? (
       /* Video left column */
-      <div class="aspect-video rounded-2xl overflow-hidden ring-1 ring-gold/40 shadow-lg w-full">
+      <div class:list={[
+        'rounded-2xl overflow-hidden ring-1 ring-gold/40 shadow-lg',
+        videoPortrait ? 'aspect-[9/16] max-w-[320px] mx-auto' : 'aspect-video w-full'
+      ]}>
         <video
           controls
           preload="metadata"
           playsinline
           poster={video.poster}
           aria-label={videoAriaLabel}
-          class="w-full h-full object-cover object-top"
+          class="w-full h-full object-cover object-center"
         >
           <source src={video.src} type="video/mp4" />
         </video>

@@ -64,39 +64,6 @@ const anupaSon     = testimonials.find(t => t.id === 'anupa-son')!;
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
-       SECTION 2 — FILTER CHIPS
-  ══════════════════════════════════════════════════ -->
-  <section class="bg-cream" style="padding-top:1.5rem; padding-bottom:2rem;">
-    <div class="site-container">
-      <p class="font-script text-saffron mb-4" style="font-size:16px; letter-spacing:0.08em;">
-        Filter by offering
-      </p>
-      <div
-        class="flex flex-wrap gap-x-8 gap-y-3"
-        role="group"
-        aria-label="Filter testimonials by offering"
-      >
-        {[
-          { label: 'All',           value: 'all' },
-          { label: 'Yoga',          value: 'yoga' },
-          { label: 'Hands-on',      value: 'hands-on' },
-          { label: 'Talk',          value: 'talk' },
-          { label: 'Consultation',  value: 'consultation' },
-          { label: 'Kids Therapy',  value: 'kids-therapy' },
-        ].map(f => (
-          <button
-            data-filter={f.value}
-            class="filter-chip font-script"
-            style="font-size:22px; background:none; border:none; cursor:pointer; padding:0.25rem 0; color:rgba(var(--color-ink-rgb),0.75); position:relative;"
-            aria-pressed={f.value === 'all' ? 'true' : 'false'}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  </section>
 
 
   <!-- ═══════════════════════════════════════════════
@@ -115,6 +82,7 @@ const anupaSon     = testimonials.find(t => t.id === 'anupa-son')!;
         >
           <TestimonialCard
             featured
+            videoPortrait
             video={ritasha.video}
             name={ritasha.name}
             role={ritasha.role}
