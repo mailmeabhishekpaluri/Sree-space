@@ -170,10 +170,6 @@ a {
 .nav-transparent #site-nav button:not(.btn-cta) {
   color: var(--color-cream);
 }
-/* Logo stays visible on dark hero background */
-.nav-transparent #site-nav:not(.scrolled) .nav-logo img {
-  filter: brightness(0) invert(1);
-}
 .nav-transparent #site-nav.scrolled {
   background: var(--color-cream);
 }

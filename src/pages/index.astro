@@ -16,7 +16,7 @@ import { site } from '../data/site';
     <!-- Ken Burns photo -->
     <div class="absolute inset-0 overflow-hidden">
       <img
-        src="/images/yoga-poses/03_riverside_sunset_prayer_patchwork_dress.jpeg"
+        src="/images/yoga-poses/03-final.png"
         alt="Likhitha Sree in prayer pose at riverside sunset, wearing a patchwork dress"
         class="kenburns w-full h-full object-cover object-center"
         loading="eager"
@@ -426,17 +426,6 @@ import { site } from '../data/site';
 
 <!-- ─── SCRIPTS ────────────────────────────────────────────────── -->
 <script define:vars={{ phrases: site.signaturePhrases }}>
-  // ── Nav transparent until scroll ──
-  document.body.classList.add('nav-transparent');
-  const nav = document.getElementById('site-nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      nav?.classList.add('scrolled');
-    } else {
-      nav?.classList.remove('scrolled');
-    }
-  }, { passive: true });
-
   // ── Word-by-word hero reveal (stagger 80ms) ──
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
