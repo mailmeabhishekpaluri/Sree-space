@@ -52,7 +52,7 @@ export const offerings: Offering[] = [
     hero: {
       headline: "Quiet sessions for what words can't reach.",
       sub: 'Access Bars · Body Process · Energetic Face Lift. You arrive, you receive, you leave lighter.',
-      image: '/images/healing-sessions/02_beach_shavasana_head_touch.jpeg',
+      image: '/images/healing-sessions/03_access_bars_session_purple_light.jpeg',
     },
     modalities: [
       {
@@ -70,7 +70,7 @@ export const offerings: Offering[] = [
     ],
     practicalInfo: [
       'Sessions are typically 60–90 minutes.',
-      'Bring loose, comfortable clothing.',
+      'Come in loose and comfortable clothing.',
       'Most people feel the effects across the next 24–72 hours.',
     ],
     testimonialIds: ['yash', 'likhitha-finance'],
