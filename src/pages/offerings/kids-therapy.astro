@@ -16,7 +16,8 @@ const offering = offerings.find(o => o.slug === 'kids-therapy')!;
   description="Gentle, age-appropriate support for children navigating exam stress, bullying, social anxiety, and developmental challenges."
 >
   <Hero
-    headline={offering.hero.headline}
+    eyebrow={offering.hero.headline}
+    headline={offering.title}
     sub={offering.hero.sub}
     image={offering.hero.image}
     imageAlt="Children in a calm, nature-based group setting"

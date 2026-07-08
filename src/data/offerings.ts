@@ -82,7 +82,7 @@ export const offerings: Offering[] = [
     hero: {
       headline: 'A conversation that moves something.',
       sub: 'Sometimes the knot loosens with the right question. This is energy work, in the form of a talk.',
-      image: '/images/healing-sessions/05_session_balcony_hillstation_cafe.jpeg',
+      image: '/images/portraits/01_hillstation_selfie_daisy_white_tee.jpeg',
     },
     whatFor: [
       'Relationship issues',
