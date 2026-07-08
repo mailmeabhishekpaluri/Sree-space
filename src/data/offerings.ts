@@ -121,4 +121,22 @@ export const offerings: Offering[] = [
       image: '/images/yoga-poses/04_crescent_lunge_tropical_garden.jpeg',
     },
   },
+  {
+    slug: 'kids-therapy',
+    title: 'Kids Therapy',
+    short: 'Exam stress, bullying, social anxiety, and developmental challenges — met with gentleness. Building emotional intelligence and resilience from the inside out.',
+    hero: {
+      headline: 'Every child deserves to feel at home in themselves.',
+      sub: 'Gentle, age-appropriate support for children navigating exam pressure, social difficulty, emotional overwhelm, and developmental challenges.',
+      image: '/images/community-outdoor/04_workshop_group_under_tree.jpeg',
+    },
+    whatFor: [
+      'Exam stress and performance anxiety',
+      'Bullying — as the child experiencing it or the child acting out',
+      'Social and emotional learning (SEL)',
+      'Developmental challenges and sensory sensitivity',
+      'Emotional regulation and confidence building',
+      'Separation anxiety and school adjustment',
+    ],
+  },
 ];

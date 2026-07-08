@@ -13,7 +13,7 @@ interface Props {
 
 const { title, short, slug, index } = Astro.props;
 
-type Slug = 'yoga' | 'hands-on-therapy' | 'talk-energy-clearance' | 'consultation' | 'outdoor-immersion';
+type Slug = 'yoga' | 'hands-on-therapy' | 'talk-energy-clearance' | 'consultation' | 'outdoor-immersion' | 'kids-therapy';
 const illusSlug = slug as Slug;
 ---
 
@@ -91,6 +91,26 @@ const illusSlug = slug as Slug;
         <path d="M12 12 L23 23" stroke-width="1" opacity="0.5"/>
         <!-- center -->
         <circle cx="26" cy="26" r="3" fill="currentColor" stroke="none"/>
+      </svg>
+    )}
+    {illusSlug === 'kids-therapy' && (
+      /* Child figure + rising star — gentle growth, emotional safety */
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- child head -->
+        <circle cx="26" cy="10" r="5.5" stroke-width="1.4"/>
+        <!-- body -->
+        <path d="M26 16 L26 32" stroke-width="1.4"/>
+        <!-- arms open wide — welcoming, safe -->
+        <path d="M26 22 L16 27" stroke-width="1.4"/>
+        <path d="M26 22 L36 27" stroke-width="1.4"/>
+        <!-- legs -->
+        <path d="M26 32 L20 44" stroke-width="1.4"/>
+        <path d="M26 32 L32 44" stroke-width="1.4"/>
+        <!-- small star above right — hope, brightness -->
+        <path d="M40 8 L41.2 11.5 L45 11.5 L42.2 13.8 L43.4 17.5 L40 15.2 L36.6 17.5 L37.8 13.8 L35 11.5 L38.8 11.5 Z" stroke-width="1.1" opacity="0.7"/>
+        <!-- gentle dots left — warmth -->
+        <circle cx="13" cy="14" r="1.2" fill="currentColor" stroke="none" opacity="0.45"/>
+        <circle cx="10" cy="19" r="0.9" fill="currentColor" stroke="none" opacity="0.3"/>
       </svg>
     )}
     {illusSlug === 'outdoor-immersion' && (

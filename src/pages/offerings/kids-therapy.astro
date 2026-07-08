@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import SectionEyebrow from '../../components/SectionEyebrow.astro';
+import MondayCTA from '../../components/MondayCTA.astro';
+import Button from '../../components/Button.astro';
+import ScrollReveal from '../../components/ScrollReveal.astro';
+import Ornament from '../../components/Ornament.astro';
+import { offerings } from '../../data/offerings';
+
+const offering = offerings.find(o => o.slug === 'kids-therapy')!;
+---
+
+<Base
+  title="Kids Therapy"
+  description="Gentle, age-appropriate support for children navigating exam stress, bullying, social anxiety, and developmental challenges."
+>
+  <Hero
+    headline={offering.hero.headline}
+    sub={offering.hero.sub}
+    image={offering.hero.image}
+    imageAlt="Children in a calm, nature-based group setting"
+    primaryCta={{ label: 'Talk to Likhitha', onclick: "window.openWhatsApp('Kids therapy')" }}
+    secondaryCta={{ label: 'Join the Awareness Circle', href: '/monday' }}
+  />
+
+  <!-- What it's for -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[860px]">
+      <ScrollReveal>
+        <SectionEyebrow text="What it's for" class="mb-4" />
+        <h2 class="font-display text-forest mb-6" style="font-size:clamp(2rem,4vw,3rem); line-height:1.1; font-weight:500;">
+          Children feel everything. They just don't always have the words.
+        </h2>
+        <p class="font-body text-ink/80 leading-relaxed mb-10" style="font-size:1.06rem; max-width:60ch;">
+          Kids Therapy with Likhitha Sree creates a safe, gentle space where children
+          can process what they're carrying — without pressure, without labels, without
+          rush. Using yoga, movement, breath, and energy-based tools adapted for younger
+          bodies and minds.
+        </p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {offering.whatFor!.map(item => (
+            <li class="flex items-start gap-3 font-body text-ink/80 bg-sage/20 rounded-lg px-5 py-4" style="font-size:1rem; line-height:1.6;">
+              <Ornament name="lotus" size={18} color="#C99A4B" class="flex-shrink-0 mt-0.5 opacity-75" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-sage-wash section-pad">
+    <div class="site-container max-w-[800px]">
+      <ScrollReveal>
+        <SectionEyebrow text="How it works" class="mb-8" />
+        <ul class="flex flex-col gap-6">
+          {[
+            { label: 'A gentle first conversation', body: 'Likhitha speaks with the parents first to understand the child\'s world — home, school, friendships, what\'s hard right now. No forms, no clinical intake.' },
+            { label: 'Age-appropriate sessions', body: 'Sessions use movement, breath games, drawing, and gentle touch (with consent) — whatever the child responds to. No talking required if talking feels like too much.' },
+            { label: 'Parent awareness included', body: 'Parents receive simple, practical awareness tools to support the child at home. The work doesn\'t stop when the session does.' },
+            { label: 'No diagnosis, no labels', body: 'The focus is on how the child feels, not what category they fit. Every child\'s path through is different.' },
+          ].map(item => (
+            <li class="flex items-start gap-5">
+              <span class="text-gold font-script flex-shrink-0" style="font-size:22px; line-height:1.4;">—</span>
+              <div>
+                <p class="font-display text-forest font-medium mb-1" style="font-size:1.15rem;">{item.label}</p>
+                <p class="font-body text-ink/75 leading-relaxed" style="font-size:1rem;">{item.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- A note for parents -->
+  <section class="bg-cream section-pad">
+    <div class="site-container max-w-[720px]">
+      <ScrollReveal>
+        <SectionEyebrow text="A note for parents" class="mb-6" />
+        <blockquote class="relative pl-8 gold-border-l">
+          <p class="font-display italic text-forest" style="font-size:clamp(1.3rem,2.3vw,1.8rem); line-height:1.55;">
+            "Children don't need to be fixed. They need to be seen — and shown that what
+            they feel is not too much, not wrong, and not forever."
+          </p>
+          <footer class="mt-5">
+            <cite class="font-script not-italic text-gold" style="font-size:20px;">— Likhitha Sree</cite>
+          </footer>
+        </blockquote>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-sage-wash section-pad border-t border-rule">
+    <div class="site-container text-center max-w-[52ch] mx-auto">
+      <ScrollReveal>
+        <h2 class="font-display text-forest mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); font-weight:500;">
+          Is your child going through something?
+        </h2>
+        <p class="font-body text-ink/70 mb-8" style="font-size:1rem; line-height:1.65;">
+          Write to Likhitha. A short conversation to understand your child's situation
+          costs nothing and commits you to nothing.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <Button onclick="window.openWhatsApp('Kids therapy')" variant="primary">Talk to Likhitha</Button>
+          <Button href="/monday" variant="secondary">Join the Awareness Circle</Button>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <MondayCTA />
+</Base>
